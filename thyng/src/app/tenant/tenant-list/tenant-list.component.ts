@@ -9,12 +9,18 @@ import { TenantService } from '../tenant.service';
 })
 export class TenantListComponent implements OnInit {
 
- 
+  isLoading: boolean = true;
+  tenants: Tenant[] = [];
 
   constructor(private tenantService: TenantService) {}
 
   ngOnInit(): void {
-    
+    this.tenantService.findAll().subscribe(
+      data => {
+        this.tenants = data;
+        this.isLoading = false;
+      }
+    );
   }
   
 }
