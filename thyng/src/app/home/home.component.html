@@ -21,62 +21,62 @@
     </clr-header>
     <div class="content-container">
         <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clr-nav-level]="1">
-            <a clrVerticalNavLink routerLink="./normal" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="landing" routerLinkActive="active">
               <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
               Home
             </a>
-            <a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="dashboards" routerLinkActive="active">
               <clr-icon clrVerticalNavIcon shape="dashboard"></clr-icon>
               Dashboards
             </a>
             <div class="nav-divider"></div>
-            <a clrVerticalNavLink routerLink="./poison" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="tenants" routerLinkActive="active">
               <clr-icon clrVerticalNavIcon shape="bank"></clr-icon>
               Tenants
             </a>
-            <a clrVerticalNavLink routerLink="./grass" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="gateways" routerLinkActive="active">
               <clr-icon clrVerticalNavIcon shape="cloud-traffic"></clr-icon>
               Gateways
             </a>
-            <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="things" routerLinkActive="active">
               <clr-icon clrVerticalNavIcon shape="node"></clr-icon>
               Things
             </a>
-            <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="triggers" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="alarm-clock"></clr-icon>
                 Triggers
               </a>
-              <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+              <a clrVerticalNavLink routerLink="alerts" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="bell"></clr-icon>
                 Alerts
               </a>
-              <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+              <a clrVerticalNavLink routerLink="webhooks" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="link"></clr-icon>
                 Webhooks
               </a>
-            <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="reports" routerLinkActive="active">
               <clr-icon clrVerticalNavIcon shape="pie-chart"></clr-icon>
               Reports
             </a>
             <div class="nav-divider"></div>
-            <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="users" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="users"></clr-icon>
                 Users
             </a>
-            <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="billing" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="dollar"></clr-icon>
                 Billing
             </a>
             <div class="nav-divider"></div>
-            <a clrVerticalNavLink routerLink="./grass" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="documentation" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="library"></clr-icon>
                 Documentation
             </a>
-            <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="howtos" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="help-info"></clr-icon>
                 How Tos
             </a>
-            <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="faqs" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="help"></clr-icon>
                 FAQs
             </a>
@@ -85,7 +85,7 @@
 
           </clr-vertical-nav>
         <main class="content-area">
-
+          <router-outlet></router-outlet>
         </main>
     </div>
 </clr-main-container>

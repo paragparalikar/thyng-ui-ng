@@ -4,17 +4,19 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent,
     children:[
+      {path: 'landing', component: LandingPageComponent},
       {path: 'tenants', loadChildren: () => import('../tenant/tenant.module').then(m => m.TenantModule)}
     ]
   }
 ];
 
 @NgModule({
-  declarations: [HomeComponent], 
+  declarations: [HomeComponent, LandingPageComponent], 
   imports: [
     CommonModule,
     ClarityModule,
