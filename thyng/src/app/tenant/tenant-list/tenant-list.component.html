@@ -10,11 +10,24 @@
             <clr-dg-column>Name</clr-dg-column>
             <clr-dg-column>Enabled</clr-dg-column>
             <clr-dg-column>Id</clr-dg-column>
+            <clr-dg-column>Actions</clr-dg-column>
             <clr-dg-row *clrDgItems="let tenant of tenants">
                 <clr-dg-cell>{{tenant.name}}</clr-dg-cell>
                 <clr-dg-cell>{{tenant.enabled}}</clr-dg-cell>
                 <clr-dg-cell>{{tenant.id}}</clr-dg-cell>
-              </clr-dg-row>
+                <clr-dg-cell>
+                    <div class="btn-group btn-primary btn-icon">
+                        <button class="btn"><clr-icon shape="copy"></clr-icon></button>
+                        <button class="btn"><clr-icon shape="note"></clr-icon></button>
+                        <button class="btn btn-danger"><clr-icon shape="trash"></clr-icon></button>
+                    </div>
+                </clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-footer>
+                <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                  {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
+                </clr-dg-pagination>
+            </clr-dg-footer>
         </clr-datagrid>
     </div>
 </div>
