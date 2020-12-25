@@ -1,49 +1,91 @@
-<div class="main-container">
-    <header class="header header-6">
-      <div class="branding">
-        <span class="title">Thyng</span>
-      </div>
-    </header>
+<clr-main-container>
+    <clr-header class="header header-6">
+        <div class="branding">
+            <a href="javascript://" class="nav-link">
+                <clr-icon shape="node-group"></clr-icon>
+                <span class="title">Thyng</span>
+            </a>
+        </div>
+        <div class="header-actions">
+            <clr-dropdown clrPosition="bottom-right">
+                <button clrDropdownTrigger>
+                    parag.paralikar@gmail.com
+                    <clr-icon shape="caret" direction="down"></clr-icon>
+                </button>
+                <clr-dropdown-menu>
+                    <div aria-label="Preferences" clrDropdownItem><clr-icon shape="cog"></clr-icon> Preferences</div>
+                    <div aria-label="Log Out" clrDropdownItem><clr-icon shape="logout"></clr-icon> Log Out</div>    
+                </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
+    </clr-header>
     <div class="content-container">
-      <clr-vertical-nav [clrVerticalNavCollapsible]="true">
-        <a clrVerticalNavLink routerLink="./normal" routerLinkActive="active">
-          <clr-icon clrVerticalNavIcon shape="user"></clr-icon>
-          Home
-        </a>
-        <a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
-          <clr-icon clrVerticalNavIcon shape="bolt"></clr-icon>
-          Dashboard
-        </a>
-        <div class="nav-divider"></div>
-        <a clrVerticalNavLink routerLink="/tenants" routerLinkActive="active">
-          <clr-icon clrVerticalNavIcon shape="sad-face"></clr-icon>
-          Tenants
-        </a>
-        <a clrVerticalNavLink routerLink="./poison" routerLinkActive="active">
-          <clr-icon clrVerticalNavIcon shape="sad-face"></clr-icon>
-          Gateways
-        </a>
-        <a clrVerticalNavLink routerLink="./grass" routerLinkActive="active">
-          <clr-icon clrVerticalNavIcon shape="bug"></clr-icon>
-          Things
-        </a>
-        <div class="nav-divider"></div>
-        <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
-          <clr-icon clrVerticalNavIcon shape="shield"></clr-icon>
-          Users
-        </a>
-        <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
-          <clr-icon clrVerticalNavIcon shape="shield"></clr-icon>
-          Reports
-        </a>
-        <div class="nav-divider"></div>
-        <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">
-          <clr-icon clrVerticalNavIcon shape="certificate"></clr-icon>
-          Billing
-        </a>
-      </clr-vertical-nav> 
-      <div class="content-area">
-        <router-outlet></router-outlet>
-      </div>
+        <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clr-nav-level]="1">
+            <a clrVerticalNavLink routerLink="./normal" routerLinkActive="active">
+              <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
+              Home
+            </a>
+            <a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
+              <clr-icon clrVerticalNavIcon shape="dashboard"></clr-icon>
+              Dashboards
+            </a>
+            <div class="nav-divider"></div>
+            <a clrVerticalNavLink routerLink="./poison" routerLinkActive="active">
+              <clr-icon clrVerticalNavIcon shape="bank"></clr-icon>
+              Tenants
+            </a>
+            <a clrVerticalNavLink routerLink="./grass" routerLinkActive="active">
+              <clr-icon clrVerticalNavIcon shape="cloud-traffic"></clr-icon>
+              Gateways
+            </a>
+            <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+              <clr-icon clrVerticalNavIcon shape="node"></clr-icon>
+              Things
+            </a>
+            <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+                <clr-icon clrVerticalNavIcon shape="alarm-clock"></clr-icon>
+                Triggers
+              </a>
+              <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+                <clr-icon clrVerticalNavIcon shape="bell"></clr-icon>
+                Alerts
+              </a>
+              <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+                <clr-icon clrVerticalNavIcon shape="link"></clr-icon>
+                Webhooks
+              </a>
+            <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">
+              <clr-icon clrVerticalNavIcon shape="pie-chart"></clr-icon>
+              Reports
+            </a>
+            <div class="nav-divider"></div>
+            <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+                <clr-icon clrVerticalNavIcon shape="users"></clr-icon>
+                Users
+            </a>
+            <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">
+                <clr-icon clrVerticalNavIcon shape="dollar"></clr-icon>
+                Billing
+            </a>
+            <div class="nav-divider"></div>
+            <a clrVerticalNavLink routerLink="./grass" routerLinkActive="active">
+                <clr-icon clrVerticalNavIcon shape="library"></clr-icon>
+                Documentation
+            </a>
+            <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
+                <clr-icon clrVerticalNavIcon shape="help-info"></clr-icon>
+                How Tos
+            </a>
+            <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">
+                <clr-icon clrVerticalNavIcon shape="help"></clr-icon>
+                FAQs
+            </a>
+
+
+
+          </clr-vertical-nav>
+        <main class="content-area">
+
+        </main>
     </div>
-  </div>
+</clr-main-container>
