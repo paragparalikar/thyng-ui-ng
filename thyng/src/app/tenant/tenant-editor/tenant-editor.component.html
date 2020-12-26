@@ -11,7 +11,8 @@
     </div>
 </div>
 <div class="card" *ngIf="tenant">
-    <div class="card-header">Edit Tenant : {{tenant.name}}</div>
+    <div class="card-header" *ngIf="tenant.name">Edit Tenant : {{tenant.name}}</div>
+    <div class="card-header" *ngIf="!tenant.name">Create New Tenant</div>
     <div class="card-block">
         <div *ngIf="successMessage">
             <div class="alert alert-success" role="alert">
@@ -26,7 +27,7 @@
             </div>
         </div>
         <form clrForm>
-            <clr-input-container>
+            <clr-input-container *ngIf="tenant.id">
                 <label>Key</label>
                 <input clrInput type="text" [(ngModel)]="tenant.id" name="id" readonly /> 
             </clr-input-container>

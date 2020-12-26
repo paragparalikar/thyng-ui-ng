@@ -14,7 +14,7 @@
 
 <div class="card">
     <div class="card-header">Tenants
-        <button class="action-item btn btn-success right">
+        <button class="action-item btn btn-success right" routerLink="new">
             <clr-icon shape="plus"></clr-icon> New Tenant
         </button>
     </div>
@@ -35,14 +35,14 @@
             </div>
         </div>
         <clr-datagrid [clrDgLoading]="isLoading" [style.width.px]=450>
-            <clr-dg-column [style.width.px]=200>Name</clr-dg-column>
-            <clr-dg-column [style.width.px]=50>Enabled</clr-dg-column>
+            <clr-dg-column>Name</clr-dg-column>
+            <clr-dg-column [style.width.px]=30>Enabled</clr-dg-column>
             <clr-dg-column>Actions</clr-dg-column>
             <clr-dg-row *clrDgItems="let tenant of tenants">
                 <clr-dg-cell>{{tenant.name}}</clr-dg-cell>
                 <clr-dg-cell>
-                    <clr-icon shape="check" *ngIf="tenant.enabled"></clr-icon>
-                    <clr-icon shape="times" *ngIf="!tenant.enabled"></clr-icon>
+                    <clr-icon shape="check" class="is-success" *ngIf="tenant.enabled"></clr-icon>
+                    <clr-icon shape="times" class="is-danger" *ngIf="!tenant.enabled"></clr-icon>
                 </clr-dg-cell>
                 <clr-dg-cell>
                     <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0;">
