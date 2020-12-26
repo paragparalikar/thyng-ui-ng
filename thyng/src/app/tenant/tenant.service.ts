@@ -17,10 +17,14 @@ export class TenantService {
   }
 
   findById(id: string): Observable<Tenant>{
-    return this.http.get<Tenant>(this.baseUrl + "/" + id);
+    return this.http.get<Tenant>(`${this.baseUrl}/${id}`);
   }
 
   save(tenant: Tenant): Observable<Tenant>{
     return this.http.post<Tenant>(this.baseUrl, tenant);
+  }
+
+  delete(id: string): Observable<any>{
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }
