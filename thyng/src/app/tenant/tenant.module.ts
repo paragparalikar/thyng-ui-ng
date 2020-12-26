@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TenantListComponent } from './tenant-list/tenant-list.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ClrDatagridModule, ClrIconModule } from '@clr/angular';
+import { ClipboardModule } from 'ngx-clipboard';
 
 const routes: Routes = [
   {path:'', component: TenantListComponent}
@@ -15,6 +16,7 @@ const routes: Routes = [
     CommonModule,
     ClrDatagridModule,
     ClrIconModule,
+    ClipboardModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]

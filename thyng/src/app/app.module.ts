@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClipboardModule } from 'ngx-clipboard';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HomeModule,
     ClarityModule,
+    ClipboardModule,
     BrowserAnimationsModule
   ],
   providers: [],
