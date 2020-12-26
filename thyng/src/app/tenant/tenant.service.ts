@@ -20,4 +20,7 @@ export class TenantService {
     return this.http.get<Tenant>(this.baseUrl + "/" + id);
   }
 
+  save(tenant: Tenant): Observable<Tenant>{
+    return this.http.post<Tenant>(this.baseUrl, tenant);
+  }
 }

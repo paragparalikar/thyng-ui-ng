@@ -10,31 +10,43 @@
         </div>
     </div>
 </div>
-<div class="card">
-    <div class="card-header">Edit Tenant : {{tenant?.name}}</div>
+<div class="card" *ngIf="tenant">
+    <div class="card-header">Edit Tenant : {{tenant.name}}</div>
     <div class="card-block">
+        <div *ngIf="successMessage">
+            <div class="alert alert-success" role="alert">
+                <div class="alert-items">
+                    <div class="alert-item static">
+                        <div class="alert-icon-wrapper">
+                            <clr-icon class="alert-icon" shape="check"></clr-icon>
+                        </div>
+                        <span class="alert-text">{{successMessage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <form clrForm>
             <clr-input-container>
                 <label>Key</label>
-                <input clrInput type="text"  [(ngModel)]="tenant.id" name="id" readonly /> 
+                <input clrInput type="text" [(ngModel)]="tenant.id" name="id" readonly /> 
             </clr-input-container>
             <clr-input-container>
                 <label>Name</label>
-                <input clrInput type="text"  [(ngModel)]="tenant.name" name="name" /> 
+                <input clrInput type="text" [(ngModel)]="tenant.name" name="name" required minlength=3/> 
             </clr-input-container>
             <clr-toggle-container>
                 <label>Enabled</label>
                 <clr-toggle-wrapper>
-                    <input clrToggle type="checkbox"  [(ngModel)]="tenant.enabled" name="enabled" /> 
+                    <input clrToggle type="checkbox" [(ngModel)]="tenant.enabled" name="enabled" /> 
                 </clr-toggle-wrapper>
             </clr-toggle-container>
         </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-link">
+        <button class="btn btn-link" routerLink='/tenants'>
             <clr-icon shape="times"></clr-icon> Cancel
         </button>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" (click)="save()">
             <clr-icon shape="floppy"></clr-icon> Save
         </button>
     </div>
