@@ -1,4 +1,18 @@
-<div class="card">
+<div *ngIf="errorMessage">
+    <div class="alert alert-danger alert-app-level" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">{{errorMessage}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card" *ngIf="!errorMessage">
     <div class="card-header">
         Tenants
         <button class="action-item btn btn-primary right">
@@ -6,17 +20,19 @@
         </button>
     </div>
     <div>
-        <clr-datagrid [clrDgLoading]="isLoading">
-            <clr-dg-column>Name</clr-dg-column>
-            <clr-dg-column>Enabled</clr-dg-column>
-            <clr-dg-column>Id</clr-dg-column>
-            <clr-dg-column>Actions</clr-dg-column>
+        <clr-datagrid [clrDgLoading]="isLoading" [style.width.px]=500>
+            <clr-dg-column [style.width.px]=200>Name</clr-dg-column>
+            <clr-dg-column [style.width.px]=50>Enabled</clr-dg-column>
+            <clr-dg-column [style.width.px]=200>Actions</clr-dg-column>
             <clr-dg-row *clrDgItems="let tenant of tenants">
                 <clr-dg-cell>{{tenant.name}}</clr-dg-cell>
-                <clr-dg-cell>{{tenant.enabled}}</clr-dg-cell>
-                <clr-dg-cell>{{tenant.id}}</clr-dg-cell>
+                <clr-dg-cell>
+                    <clr-icon shape="check" *ngIf="tenant.enabled"></clr-icon>
+                    <clr-icon shape="cross" *ngIf="!tenant.enabled"></clr-icon>
+                </clr-dg-cell>
                 <clr-dg-cell>
                     <div class="btn-group btn-primary btn-icon">
+                        <button class="btn"><clr-icon shape="key"></clr-icon></button>
                         <button class="btn"><clr-icon shape="copy"></clr-icon></button>
                         <button class="btn"><clr-icon shape="note"></clr-icon></button>
                         <button class="btn btn-danger"><clr-icon shape="trash"></clr-icon></button>

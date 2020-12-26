@@ -9,6 +9,7 @@ import { TenantService } from '../tenant.service';
 })
 export class TenantListComponent implements OnInit {
 
+  errorMessage: string = '';
   isLoading: boolean = true;
   tenants: Tenant[] = [];
 
@@ -19,6 +20,11 @@ export class TenantListComponent implements OnInit {
       data => {
         this.tenants = data;
         this.isLoading = false;
+      },
+      error => {
+        console.log(error);
+        this.isLoading = false;
+        this.errorMessage = "Failed to load data, please check internet connection";
       }
     );
   }
