@@ -5,6 +5,7 @@ import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ClarityModule } from '@clr/angular';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ThingModule } from '../thing/thing.module';
 
 const routes: Routes = [
   {path:'', component:HomeComponent,
@@ -20,7 +21,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ClarityModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ThingModule
   ],
   exports: [RouterModule]
 })

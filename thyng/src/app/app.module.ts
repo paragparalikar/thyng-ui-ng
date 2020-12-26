@@ -8,6 +8,8 @@ import { HomeModule } from './home/home.module';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
+import { SensorModule } from './sensor/sensor.module';
+import { ActuatorModule } from './actuator/actuator.module';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { ClipboardModule } from 'ngx-clipboard';
     HomeModule,
     ClarityModule,
     ClipboardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SensorModule,
+    ActuatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
