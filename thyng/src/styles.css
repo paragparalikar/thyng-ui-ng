@@ -10,7 +10,12 @@ html{
     top: 0;
     right: 0;
 }
-
+.card{
+    width: fit-content;
+    margin-top: 0;
+}
 .datagrid{
     margin-top: 0;
+    border: none;
+    border-radius: 0;
 }

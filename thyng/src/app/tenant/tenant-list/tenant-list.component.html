@@ -13,9 +13,8 @@
 
 
 <div class="card" *ngIf="!errorMessage">
-    <div class="card-header">
-        Tenants
-        <button class="action-item btn btn-primary right">
+    <div class="card-header">Tenants
+        <button class="action-item btn btn-success right">
             <clr-icon shape="plus"></clr-icon> New Tenant
         </button>
     </div>
@@ -23,7 +22,7 @@
         <clr-datagrid [clrDgLoading]="isLoading" [style.width.px]=500>
             <clr-dg-column [style.width.px]=200>Name</clr-dg-column>
             <clr-dg-column [style.width.px]=50>Enabled</clr-dg-column>
-            <clr-dg-column [style.width.px]=200>Actions</clr-dg-column>
+            <clr-dg-column>Actions</clr-dg-column>
             <clr-dg-row *clrDgItems="let tenant of tenants">
                 <clr-dg-cell>{{tenant.name}}</clr-dg-cell>
                 <clr-dg-cell>
@@ -31,11 +30,23 @@
                     <clr-icon shape="cross" *ngIf="!tenant.enabled"></clr-icon>
                 </clr-dg-cell>
                 <clr-dg-cell>
-                    <div class="btn-group btn-primary btn-icon">
-                        <button class="btn"><clr-icon shape="key"></clr-icon></button>
-                        <button class="btn"><clr-icon shape="copy"></clr-icon></button>
-                        <button class="btn"><clr-icon shape="note"></clr-icon></button>
-                        <button class="btn btn-danger"><clr-icon shape="trash"></clr-icon></button>
+                    <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0;">
+                        <a href="..." role="tooltip" aria-haspopup="true" class="tooltip tooltip-lg">
+                            <button class="btn"><clr-icon shape="key"></clr-icon></button>
+                            <span class="tooltip-content">{{tenant.id}}</span>
+                        </a>
+                        <a href="..." role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
+                            <button class="btn"><clr-icon shape="copy"></clr-icon></button>
+                            <span class="tooltip-content">Copy</span>
+                        </a>
+                        <a href="..." role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
+                            <button class="btn"><clr-icon shape="note"></clr-icon></button>
+                            <span class="tooltip-content">Edit</span>
+                        </a>
+                        <a href="..." role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
+                            <button class="btn btn-danger"><clr-icon shape="trash"></clr-icon></button>
+                            <span class="tooltip-content">Delete</span>
+                        </a>
                     </div>
                 </clr-dg-cell>
             </clr-dg-row>
