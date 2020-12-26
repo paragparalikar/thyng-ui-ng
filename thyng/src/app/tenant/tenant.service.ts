@@ -8,9 +8,16 @@ import { Tenant } from './tenant';
 })
 export class TenantService {
 
+  baseUrl: string = 'http://localhost:8080/tenants';
+
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Tenant[]>{
-    return this.http.get<Tenant[]>('http://localhost:8080/tenants');
+    return this.http.get<Tenant[]>(this.baseUrl);
   }
+
+  findById(id: string): Observable<Tenant>{
+    return this.http.get<Tenant>(this.baseUrl + "/" + id);
+  }
+
 }

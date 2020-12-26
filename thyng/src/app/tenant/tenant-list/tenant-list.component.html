@@ -12,7 +12,7 @@
 </div>
 
 
-<div class="card" *ngIf="!errorMessage">
+<div class="card">
     <div class="card-header">Tenants
         <button class="action-item btn btn-success right">
             <clr-icon shape="plus"></clr-icon> New Tenant
@@ -27,7 +27,7 @@
                 <clr-dg-cell>{{tenant.name}}</clr-dg-cell>
                 <clr-dg-cell>
                     <clr-icon shape="check" *ngIf="tenant.enabled"></clr-icon>
-                    <clr-icon shape="cross" *ngIf="!tenant.enabled"></clr-icon>
+                    <clr-icon shape="times" *ngIf="!tenant.enabled"></clr-icon>
                 </clr-dg-cell>
                 <clr-dg-cell>
                     <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0;">
@@ -40,7 +40,9 @@
                             <span class="tooltip-content">Copy</span>
                         </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn"><clr-icon shape="note"></clr-icon></button>
+                            <button class="btn" [routerLink]="[tenant.id]">
+                                <clr-icon shape="note"></clr-icon>
+                            </button>
                             <span class="tooltip-content">Edit</span>
                         </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
