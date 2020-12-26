@@ -23,9 +23,7 @@ import { ActuatorModule } from './actuator/actuator.module';
     HomeModule,
     ClarityModule,
     ClipboardModule,
-    BrowserAnimationsModule,
-    SensorModule,
-    ActuatorModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

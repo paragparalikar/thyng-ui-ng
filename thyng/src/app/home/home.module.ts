@@ -11,7 +11,8 @@ const routes: Routes = [
   {path:'', component:HomeComponent,
     children:[
       {path: 'landing', component: LandingPageComponent},
-      {path: 'tenants', loadChildren: () => import('../tenant/tenant.module').then(m => m.TenantModule)}
+      {path: 'tenants', loadChildren: () => import('../tenant/tenant.module').then(m => m.TenantModule)},
+      {path: 'things', loadChildren: () => import('../thing/thing.module').then(m => m.ThingModule)}
     ]
   }
 ];
@@ -21,8 +22,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ClarityModule,
-    RouterModule.forChild(routes),
-    ThingModule
+    RouterModule.forChild(routes)
   ],
   exports: [RouterModule]
 })
