@@ -1,17 +1,3 @@
-<div *ngIf="errorMessage">
-    <div class="alert alert-danger alert-app-level" role="alert">
-        <div class="alert-items">
-            <div class="alert-item static">
-                <div class="alert-icon-wrapper">
-                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
-                </div>
-                <span class="alert-text">{{errorMessage}}</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="card">
     <div class="card-header">Tenants
         <button class="action-item btn btn-success right" routerLink="new">
@@ -19,22 +5,8 @@
         </button>
     </div>
     <div>
-        <div *ngIf="successMessage">
-            <div class="alert alert-success" role="alert">
-                <div class="alert-items">
-                    <div class="alert-item static">
-                        <div class="alert-icon-wrapper">
-                            <clr-icon class="alert-icon" shape="check"></clr-icon>
-                        </div>
-                        <span class="alert-text">{{successMessage}}</span>
-                        <button type="button" class="close" aria-label="Close" (click)="successMessage=undefined">
-                            <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                        </button>                    
-                    </div>
-                </div>
-            </div>
-        </div>
-        <clr-datagrid [clrDgLoading]="isLoading" [style.width.px]=450>
+       <app-local-message [message]="message"></app-local-message>
+        <clr-datagrid [style.width.px]=450>
             <clr-dg-column>Name</clr-dg-column>
             <clr-dg-column [style.width.px]=30>Enabled</clr-dg-column>
             <clr-dg-column>Actions</clr-dg-column>
@@ -57,7 +29,7 @@
                             <span class="tooltip-content">Edit</span>
                         </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn btn-danger" (click)="confirmDelete(tenant)"><clr-icon shape="trash"></clr-icon></button>
+                            <button class="btn btn-danger" (click)="delete(tenant)"><clr-icon shape="trash"></clr-icon></button>
                             <span class="tooltip-content">Delete</span>
                         </a>
                     </div>
@@ -65,24 +37,10 @@
             </clr-dg-row>
             <clr-dg-footer>
                 <clr-dg-pagination #pagination [clrDgPageSize]="5">
-                  {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
+                  {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} tenants
                 </clr-dg-pagination>
             </clr-dg-footer>
         </clr-datagrid>
     </div>
 </div>
-<clr-modal [(clrModalOpen)]="isModalVisible">
-    <h3 class="modal-title">
-        <clr-icon class="is-danger is-solid" size='36' shape="exclamation-triangle"></clr-icon> Please confirm !
-    </h3>
-    <div class="modal-body">
-        Are you sure, you want to delete this tenant ?<br>
-        All data related to the tenat will also be deleted permanently.<br>
-        This action can not be undone !!!
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-link" (click)="isModalVisible = false">Cancel</button>
-      <button type="button" class="btn btn-danger" (click)="delete();">Delete</button>
-    </div>
-  </clr-modal>
   

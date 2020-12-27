@@ -7,9 +7,14 @@ import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrModalModule } from
 import { ClipboardModule } from 'ngx-clipboard';
 import { TenantEditorComponent } from './tenant-editor/tenant-editor.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
+import { TenantListResolver } from './tenant-list/tenant-list.resolver';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
-  {path:'', component: TenantListComponent},
+  {path:'', component: TenantListComponent, resolve: {
+    tenants: TenantListResolver
+  }},
   {path:':id', component: TenantEditorComponent}
 ];
 
@@ -23,6 +28,7 @@ const routes: Routes = [
     ClrFormsModule,
     ClipboardModule,
     ClrModalModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]

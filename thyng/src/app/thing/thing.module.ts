@@ -5,6 +5,8 @@ import { ThingService } from './thing.service';
 import { ThingListComponent } from './thing-list/thing-list.component';
 import { ThingEditorComponent } from './thing-editor/thing-editor.component';
 import { Routes, RouterModule } from '@angular/router';
+import { ClrDatagridModule, ClrFormsModule, ClrIconModule } from '@clr/angular';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {path:'', component: ThingListComponent},
@@ -17,6 +19,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     HttpClientModule,
+    SharedModule,
+    ClrDatagridModule,
+    ClrFormsModule,
     RouterModule.forChild(routes)
   ]
 })

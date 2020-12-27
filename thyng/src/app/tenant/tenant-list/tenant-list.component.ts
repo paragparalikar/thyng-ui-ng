@@ -1,64 +1,60 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
+import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
+import { Message } from 'src/app/shared/message';
 import { Tenant } from '../tenant';
 import { TenantService } from '../tenant.service';
 
-@Component({
-  selector: "app-tenant-list",
-  templateUrl: "./tenant-list.component.html",
-  styles: [],
-})
+@Component({templateUrl: "./tenant-list.component.html"})
 export class TenantListComponent implements OnInit {
 
-  errorMessage: string | undefined;
-  successMessage: string | undefined;
-  isLoading: boolean = true;
+  message?: Message;
   tenants: Tenant[] = [];
-  isModalVisible: boolean = false;
-  deletableTenant: Tenant | undefined;
 
-  constructor(private tenantService: TenantService) {}
+  constructor(private route: ActivatedRoute,
+              private confirDialogService: ConfirmDialogService,
+              private tenantService: TenantService) {}
 
   ngOnInit(): void {
-    this.tenants = [];
-    this.errorMessage = undefined;
-    this.successMessage = undefined;
-    this.tenantService.findAll().subscribe(
+    this.route.data.subscribe(
       data => {
-        this.tenants = data;
-        this.isLoading = false;
-        this.errorMessage = undefined;
-        this.successMessage = undefined;
-      },
-      error => {
-        console.log(error);
-        this.isLoading = false;
-        this.successMessage = undefined;
-        this.errorMessage = "Failed to load data, please check internet connection";
+        this.tenants = data.tenants;
+        this.message = undefined;
       }
     );
   }
 
-  confirmDelete(tenant: Tenant){
-    this.deletableTenant = tenant;
-    this.isModalVisible = true;
+  delete(tenant: Tenant){
+    this.confirDialogService.show({
+      buttonClasses: 'btn-danger',
+      buttonText: 'Delete',
+      iconClasses: 'is-danger',
+      iconShape: 'exclamation-triangle',
+      text: `Are you sure you want to delete tenant ${tenant.name}?`
+    }).subscribe(
+      confirm => {
+        if(confirm) this._delete(tenant);
+      }      
+    );
   }
 
-  delete(): void{
-    this.isModalVisible = false;
-    if(this.deletableTenant){
-      const tenant = this.deletableTenant;
-      this.tenantService.delete(tenant.id).subscribe(
-        success => {
-          this.errorMessage = undefined;
-          this.tenants.splice(this.tenants.indexOf(tenant), 1);
-          this.successMessage = `Tenant ${tenant.name} has been deleted successfully`;
-        },
-        error => {
-          this.successMessage = undefined;
-          this.errorMessage = `Failed to delete tenant ${tenant.name}`;
-        }
-      );
-    }
+  private _delete(tenant: Tenant): void{
+    this.tenantService.delete(tenant.id).subscribe(
+      () => {
+        this.message = {
+          text: `Tenant ${tenant.name} has been deleted successfully`,
+          iconShape: 'check',
+          styleClasses: 'alert-success'
+        };
+        this.tenants.splice(this.tenants.indexOf(tenant), 1);
+      },
+      () => {
+        this.message = {
+          text: `Failed to delete tenant ${tenant.name}`,
+          iconShape: 'exclamation-triangle',
+          styleClasses: 'alert-danger'
+        };
+      }
+    );
   }
-  
 }

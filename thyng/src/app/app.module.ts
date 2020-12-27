@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
 import { SensorModule } from './sensor/sensor.module';
 import { ActuatorModule } from './actuator/actuator.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({

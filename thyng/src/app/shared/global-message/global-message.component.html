@@ -1,0 +1,15 @@
+<div *ngIf="message && isMessageVisible">
+    <div class="alert alert-app-level" [ngClass]="message.styleClasses" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="[message:iconShape]"></clr-icon>
+                </div>
+                <span class="alert-text">{{message.text}}</span>
+                <button type="button" class="close" aria-label="Close" (click)="isMessageVisible=false">
+                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
