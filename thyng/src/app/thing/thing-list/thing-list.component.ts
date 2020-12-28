@@ -21,6 +21,7 @@ export class ThingListComponent implements OnInit {
               private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {
+    this.message = undefined;
     this.route.data.subscribe(
       data => {
         this.things = data.things;
@@ -30,6 +31,20 @@ export class ThingListComponent implements OnInit {
   }
 
   delete(thing: Thing): void {
+    this.confirmDialogService.show({
+      buttonClasses: 'btn-danger',
+      buttonText: 'Delete',
+      iconClasses: 'is-danger',
+      iconShape: 'exclamation-triangle',
+      text: `Are you sure you want to delete thing ${thing.name}?`
+    }).subscribe(
+      value => {
+        if(value) this._delete(thing);
+      }
+    );
+  }
+
+  private _delete(thing: Thing): void {
 
   }
 

@@ -1,6 +1,6 @@
 <clr-modal [clrModalOpen]="options ? true : false" *ngIf="options">
     <h3 class="modal-title">
-        <clr-icon [ngClass]="options.iconClasses" size='36' shape="[options.iconShape]"></clr-icon> Please confirm !
+        <clr-icon [ngClass]="options.iconClasses" size='36' [attr.shape]="options.iconShape"></clr-icon> Please confirm !
     </h3>
     <div class="modal-body">{{options.text}}</div>
     <div class="modal-footer">
