@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClrDatagridModule, ClrFormsModule, ClrIconModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
 import { ThingListResolver } from './thing-list/thing-list.resolver';
+import { ClipboardModule } from 'ngx-clipboard';
 
 const routes: Routes = [
   {path:'', component: ThingListComponent, resolve: {things: ThingListResolver}},
@@ -24,6 +25,7 @@ const routes: Routes = [
     ClrDatagridModule,
     ClrFormsModule,
     ClrIconModule,
+    ClipboardModule,
     RouterModule.forChild(routes)
   ]
 })

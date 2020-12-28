@@ -1,3 +1,4 @@
 export enum ThingStatus {
-    ONLINE, OFFLINE
+    ONLINE = 'ONLINE', 
+    OFFLINE = 'OFFLINE'
 }
