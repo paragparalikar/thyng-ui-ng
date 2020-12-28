@@ -45,7 +45,13 @@ export class ThingListComponent implements OnInit {
   }
 
   private _delete(thing: Thing): void {
-
+    this.thingService.delete(thing.id).subscribe(
+      data => this.message = {
+        iconShape: 'check',
+        styleClasses: 'alert-success',
+        text: `Thing ${thing.name} has been deleted successfully`
+      }
+    );
   }
 
 }
