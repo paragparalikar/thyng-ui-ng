@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClrDatagridSortOrder } from '@clr/angular';
-import { constructor } from 'events';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Message } from 'src/app/shared/message';
 import { Thing } from '../thing';
