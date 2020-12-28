@@ -7,8 +7,8 @@ import { ConfirmDialogOptions } from './confirm-dialog-options';
 })
 export class ConfirmDialogService {
 
-  resultSubject = new Subject<boolean>();
-  optionsSubject = new Subject<ConfirmDialogOptions>();
+  private resultSubject = new Subject<boolean>();
+  private optionsSubject = new Subject<ConfirmDialogOptions>();
 
   hide(): void {
     this.optionsSubject.next();

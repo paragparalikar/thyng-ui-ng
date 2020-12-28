@@ -17,7 +17,6 @@
     </clr-header>
     <div class="content-container">
         <app-confirm-dialog></app-confirm-dialog>
-        <app-global-message></app-global-message>
         <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clr-nav-level]="1">
             <a clrVerticalNavLink routerLink="landing" routerLinkActive="active">
               <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
@@ -78,11 +77,9 @@
                 <clr-icon clrVerticalNavIcon shape="help"></clr-icon>
                 FAQs
             </a>
-
-
-
-          </clr-vertical-nav>
+          </clr-vertical-nav>          
         <main class="content-area">
+          <app-global-message></app-global-message>
           <router-outlet></router-outlet>
         </main>
     </div>

@@ -1,25 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Thing } from '../thing';
+import { ThingService } from '../thing.service';
 
-@Component({
-  templateUrl: './thing-list.component.html'
-})
+@Component({templateUrl: './thing-list.component.html'})
 export class ThingListComponent implements OnInit {
 
-  errorMessage: string | undefined;
-  successMessage: string | undefined;
-  isLoading: boolean = true;
   things: Thing[] = [];
-  isModalVisible: boolean = false;
-  deletableThing: Thing | undefined;
 
-  globalMessage: string = '';
-  globalMessageClass: string = '';
-  globalIconShape: string = '';
-
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private thingService: ThingService,
+              private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe(
+      data => this.things = data.things
+    );
   }
 
 }

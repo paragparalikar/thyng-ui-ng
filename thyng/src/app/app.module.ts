@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,9 +8,7 @@ import { HomeModule } from './home/home.module';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
-import { SensorModule } from './sensor/sensor.module';
-import { ActuatorModule } from './actuator/actuator.module';
-import { SharedModule } from './shared/shared.module';
+import { GlobalMessageHttpInterceptor } from './shared/global-message/global-message-http-interceptor';
 
 
 @NgModule({
@@ -26,7 +24,11 @@ import { SharedModule } from './shared/shared.module';
     ClipboardModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: GlobalMessageHttpInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

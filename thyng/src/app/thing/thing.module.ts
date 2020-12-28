@@ -7,9 +7,10 @@ import { ThingEditorComponent } from './thing-editor/thing-editor.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ClrDatagridModule, ClrFormsModule, ClrIconModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
+import { ThingListResolver } from './thing-list/thing-list.resolver';
 
 const routes: Routes = [
-  {path:'', component: ThingListComponent},
+  {path:'', component: ThingListComponent, resolve: {things: ThingListResolver}},
   {path:':id', component: ThingEditorComponent}
 ];
 
@@ -22,6 +23,7 @@ const routes: Routes = [
     SharedModule,
     ClrDatagridModule,
     ClrFormsModule,
+    ClrIconModule,
     RouterModule.forChild(routes)
   ]
 })

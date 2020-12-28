@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GlobalMessageComponent } from './global-message/global-message.component';
 import { LocalMessageComponent } from './local-message/local-message.component';
@@ -15,6 +15,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     ClrIconModule,
     ClrModalModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports:[
     GlobalMessageComponent, LocalMessageComponent, ConfirmDialogComponent
   ]

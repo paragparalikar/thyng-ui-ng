@@ -5,16 +5,17 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { Thing } from '../thing';
 import { ThingService } from '../thing.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ThingListResolver implements Resolve<boolean> {
+export class ThingListResolver implements Resolve<Thing[]> {
 
   constructor(private thingService: ThingService){}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return of(true);
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Thing[]> {
+    return this.thingService.findAll();
   }
 }
