@@ -14,8 +14,9 @@ html{
     width: fit-content;
     margin-top: 0;
 }
-.datagrid{
+.datagrid {
     margin-top: 0;
     border: none;
     border-radius: 0;
+    overflow: hidden;
 }
