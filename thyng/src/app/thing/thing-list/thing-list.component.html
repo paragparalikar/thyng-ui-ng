@@ -7,14 +7,13 @@
     <div>
         <app-local-message [message]="message"></app-local-message>
          <clr-datagrid [style.width.px]=450 class="datagrid-compact">
-            <clr-dg-column>Name</clr-dg-column>
-            <clr-dg-column>Status</clr-dg-column>
+            <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
+            <clr-dg-column [clrDgField]="'status'" [clrDgSortOrder]="sortType">Status</clr-dg-column>
             <clr-dg-column>Actions</clr-dg-column>
             <clr-dg-row *clrDgItems="let thing of things">
                 <clr-dg-cell>{{thing.name}}</clr-dg-cell>
                 <clr-dg-cell>
-                    <clr-icon shape="check" class="is-success" *ngIf="ThingStatus.ONLINE===thing.status"></clr-icon>
-                    <clr-icon shape="times" class="is-danger" *ngIf="ThingStatus.OFFLINE===thing.status"></clr-icon>
+                    <clr-icon shape="check" class="is-success" *ngIf="ThingStatus.ONLINE===thing.status"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="ThingStatus.OFFLINE===thing.status"></clr-icon> {{thing.status}}
                 </clr-dg-cell>
                 <clr-dg-cell>
                     <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0;">
