@@ -37,7 +37,7 @@
         <button class="btn btn-link" routerLink='/things'>
             <clr-icon shape="times"></clr-icon> Cancel
         </button>
-        <button class="btn btn-primary" (click)="save()" [disabled]="!thingForm.form.valid">
+        <button class="btn btn-primary" (click)="save()" [disabled]="!thingForm.form.valid || !thingForm.form.touched || !thingForm.form.dirty">
             <clr-icon shape="floppy"></clr-icon> Save
         </button>
     </div>
