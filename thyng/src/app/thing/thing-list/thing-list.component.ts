@@ -25,7 +25,6 @@ export class ThingListComponent implements OnInit {
     this.route.data.subscribe(
       data => {
         this.things = data.things;
-        console.log(this.things);
       }
     );
   }

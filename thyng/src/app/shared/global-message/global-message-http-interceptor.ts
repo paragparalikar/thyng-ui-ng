@@ -35,6 +35,7 @@ export class GlobalMessageHttpInterceptor implements HttpInterceptor {
           errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
           let messageText: string = 'Could not connect to server, please check internet connectivity';
           switch(error.status){
+              case 400: messageText = 'There has been an unexpected server error, please contact administrator'; break;
               case 401: messageText = 'Your session has expired, please login again'; break;
               case 402: messageText = 'Your account is suspended due to lack of funds'; break;
               case 403: messageText = 'You are not authorized to access this resource'; break;

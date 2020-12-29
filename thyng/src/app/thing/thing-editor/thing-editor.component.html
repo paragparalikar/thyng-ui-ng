@@ -2,7 +2,7 @@
     <div class="card-header">{{header}}</div>
     <div class="card-block">
         <app-local-message [message]="message"></app-local-message>
-        <form clrForm>
+        <form clrForm #thingForm="ngForm">
                 
             <div class="clr-form-control" *ngIf="thing.id">
                 <label class="clr-control-label">Key</label>
@@ -20,13 +20,16 @@
             <clr-input-container>
                 <label>Name</label>
                 <input clrInput type="text" [(ngModel)]="thing.name" name="name" required minlength=3 [readOnly]="readOnly" /> 
+                <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
+                <clr-control-error *clrIfError="'minlength'; error as err">Name must be at least {{ err.requiredLength }} characters</clr-control-error>
             </clr-input-container>
             <clr-control-container *ngIf="thing.id">
                 <label>Status</label> <clr-icon shape="check" class="is-success" *ngIf="ThingStatus.ONLINE===thing.status"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="ThingStatus.OFFLINE===thing.status"></clr-icon> {{thing.status}}
             </clr-control-container>
             <clr-input-container>
                 <label>Inactivity Period</label>
-                <input clrInput type="number" [(ngModel)]="thing.inactivityPeriod" name="inactivityPeriod" required min=60  [readOnly]="readOnly"/>
+                <input clrInput type="number" [(ngModel)]="thing.inactivityPeriod" #period="ngModel" name="inactivityPeriod" required min="60" [readOnly]="readOnly"/>
+                <clr-control-error *clrIfError="'required'">Inactivity Period is a required field</clr-control-error>
             </clr-input-container>
         </form>
     </div>
@@ -34,7 +37,7 @@
         <button class="btn btn-link" routerLink='/things'>
             <clr-icon shape="times"></clr-icon> Cancel
         </button>
-        <button class="btn btn-primary" (click)="save()">
+        <button class="btn btn-primary" (click)="save()" [disabled]="!thingForm.form.valid">
             <clr-icon shape="floppy"></clr-icon> Save
         </button>
     </div>
