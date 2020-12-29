@@ -22,19 +22,19 @@
                             <span class="tooltip-content">Copy key to clipboard<br>{{thing.id}}</span>
                         </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id]">
+                            <button class="btn" [routerLink]="[thing.id]" [queryParams]="{action: 'view'}">
                                 <clr-icon shape="eye"></clr-icon>
-                            </button>
+                            </button>   
                             <span class="tooltip-content">View</span>
                         </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id]">
+                            <button class="btn" [routerLink]="[thing.id]" [queryParams]="{action: 'copy'}">
                                 <clr-icon shape="copy"></clr-icon>
                             </button>
                             <span class="tooltip-content">Copy</span>
                         </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id]">
+                            <button class="btn" [routerLink]="[thing.id]" [queryParams]="{action: 'edit'}">
                                 <clr-icon shape="note"></clr-icon>
                             </button>
                             <span class="tooltip-content">Edit</span>
