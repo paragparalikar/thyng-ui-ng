@@ -1,1 +1,31 @@
-<p>thing-editor works!</p>
+<div class="card" *ngIf="thing">
+    <div class="card-header">{{header}}</div>
+    <div class="card-block">
+        <app-local-message [message]="message"></app-local-message>
+        <form clrForm>
+            <clr-input-container *ngIf="thing.id">
+                <label>Key</label>
+                <input clrInput type="text" [(ngModel)]="thing.id" name="id" readonly /> 
+            </clr-input-container>
+            <clr-input-container>
+                <label>Name</label>
+                <input clrInput type="text" [(ngModel)]="thing.name" name="name" required minlength=3/> 
+            </clr-input-container>
+            <clr-control-container>
+                <label>Status</label> {{thing.status}}
+            </clr-control-container>
+            <clr-input-container>
+                <label>Inactivity Period</label>
+                <input clrInput type="number" [(ngModel)]="thing.inactivityPeriod" name="inactivityPeriod" required min=60/> 
+            </clr-input-container>
+        </form>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-link" routerLink='/things'>
+            <clr-icon shape="times"></clr-icon> Cancel
+        </button>
+        <button class="btn btn-primary" (click)="save()">
+            <clr-icon shape="floppy"></clr-icon> Save
+        </button>
+    </div>
+</div>

@@ -9,10 +9,12 @@ import { ClrDatagridModule, ClrFormsModule, ClrIconModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
 import { ThingListResolver } from './thing-list/thing-list.resolver';
 import { ClipboardModule } from 'ngx-clipboard';
+import { FormsModule } from '@angular/forms';
+import { ThingResolver } from './thing-editor/thing.resolver';
 
 const routes: Routes = [
   {path:'', component: ThingListComponent, resolve: {things: ThingListResolver}},
-  {path:':id', component: ThingEditorComponent}
+  {path:':id', component: ThingEditorComponent, resolve:{thing: ThingResolver}}
 ];
 
 
@@ -23,6 +25,7 @@ const routes: Routes = [
     HttpClientModule,
     SharedModule,
     ClrDatagridModule,
+    FormsModule,
     ClrFormsModule,
     ClrIconModule,
     ClipboardModule,
