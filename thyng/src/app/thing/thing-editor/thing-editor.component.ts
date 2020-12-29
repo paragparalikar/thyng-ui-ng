@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/shared/message';
 import { Thing } from '../thing';
@@ -17,7 +18,7 @@ export class ThingEditorComponent implements OnInit {
   message?: Message;
   ThingStatus = ThingStatus;
   readOnly: boolean = true;
-  header: string = 'Create New Thing';
+  header: string = 'Create New Thing'
 
   constructor(private route: ActivatedRoute,
               private thingService: ThingService) { }
