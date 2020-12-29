@@ -21,6 +21,6 @@ html{
     overflow: hidden;
 }
 .clr-span {
-    color: #000;
+    color: var(--clr-forms-text-color, black);
     margin-right: 0.5rem;
 }
