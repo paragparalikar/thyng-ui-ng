@@ -20,3 +20,7 @@ html{
     border-radius: 0;
     overflow: hidden;
 }
+.clr-span {
+    color: #000;
+    margin-right: 0.5rem;
+}

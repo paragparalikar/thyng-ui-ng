@@ -17,15 +17,17 @@
                 </clr-dg-cell>
                 <clr-dg-cell>
                     <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0;">
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-lg">
-                            <button ngxClipboard [cbContent]="thing.id" class="btn"><clr-icon shape="key"></clr-icon></button>
-                            <span class="tooltip-content">Copy key to clipboard<br>{{thing.id}}</span>
-                        </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
                             <button class="btn" [routerLink]="[thing.id]" [queryParams]="{action: 'view'}">
                                 <clr-icon shape="eye"></clr-icon>
                             </button>   
                             <span class="tooltip-content">View</span>
+                        </a>
+                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
+                            <button class="btn" [routerLink]="[thing.id, 'versions']">
+                                <clr-icon shape="tasks"></clr-icon>
+                            </button>   
+                            <span class="tooltip-content">Audit</span>
                         </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
                             <button class="btn" [routerLink]="[thing.id]" [queryParams]="{action: 'copy'}">

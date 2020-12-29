@@ -30,7 +30,17 @@ export class ThingEditorComponent implements OnInit {
   }
 
   save(): void {
-
+    if(this.thing){
+      this.thingService.save(this.thing).subscribe(
+        result => {
+          this.message = {
+            iconShape: 'check',
+            styleClasses: 'alert-success',
+            text: `Thing ${this.thing?.name} has been saved successfully`
+          };
+        }
+      );
+    }
   }
 
 }

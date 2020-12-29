@@ -3,10 +3,20 @@
     <div class="card-block">
         <app-local-message [message]="message"></app-local-message>
         <form clrForm>
-            <clr-input-container *ngIf="thing.id">
-                <label>Key</label>
-                <input clrInput type="text" [(ngModel)]="thing.id" name="id" readonly /> 
-            </clr-input-container>
+                
+            <div class="clr-form-control">
+                <label class="clr-control-label">Key</label>
+                <div class="clr-control-container">
+                    <span class="clr-span">{{thing.id}}</span>
+                    <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
+                        <button ngxClipboard [cbContent]="thing.id" class="btn btn-link" type="button">
+                            <clr-icon shape="copy-to-clipboard"></clr-icon>
+                        </button>     
+                        <span class="tooltip-content">Copy to clipboard</span>
+                    </a>
+                </div>
+            </div>
+                
             <clr-input-container>
                 <label>Name</label>
                 <input clrInput type="text" [(ngModel)]="thing.name" name="name" required minlength=3/> 
