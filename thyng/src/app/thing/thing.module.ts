@@ -5,7 +5,7 @@ import { ThingService } from './thing.service';
 import { ThingListComponent } from './thing-list/thing-list.component';
 import { ThingEditorComponent } from './thing-editor/thing-editor.component';
 import { Routes, RouterModule } from '@angular/router';
-import { ClrDatagridModule, ClrFormsModule, ClrIconModule } from '@clr/angular';
+import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrTabsModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
 import { ThingListResolver } from './thing-list/thing-list.resolver';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -28,6 +28,7 @@ const routes: Routes = [
     FormsModule,
     ClrFormsModule,
     ClrIconModule,
+    ClrTabsModule,
     ClipboardModule,
     RouterModule.forChild(routes)
   ]
