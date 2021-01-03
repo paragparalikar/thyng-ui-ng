@@ -28,8 +28,13 @@ export class SensorEditorComponent implements OnInit {
         this.message = undefined;
         this.sensor = data.sensor;
         this.thing = data.thing;
+        this.header = this.sensor?.id ? `Edit Sensor ${this.sensor.name}` : 'Create New Sensor';
       }
     );
+  }
+
+  save(): void {
+    
   }
 
 }

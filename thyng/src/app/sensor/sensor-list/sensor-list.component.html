@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
     Sensors <a href="#" class="p7" [routerLink]="['/things',thing?.id]">for {{thing?.name}}</a>
-    <button class="action-item btn btn-primary right"routerLink="0"[queryParams]="{ sensorAction: 'create' }"><clr-icon shape="plus"></clr-icon> New Sensor</button>
+    <button class="action-item btn btn-primary right"routerLink="0"><clr-icon shape="plus"></clr-icon> New Sensor</button>
   </div>
   <div>
     <app-local-message [message]="message"></app-local-message>
@@ -15,7 +15,7 @@
         <clr-dg-cell>
           <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0">
             <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-              <button class="btn" [routerLink]="sensor.id" [queryParams]="{ sensorAction: 'view' }">
+              <button class="btn" [routerLink]="sensor.id" queryParams="{readOnly: true}">
                 <clr-icon shape="eye"></clr-icon>
               </button>
               <span class="tooltip-content">View</span>
@@ -27,13 +27,13 @@
               <span class="tooltip-content">Audit</span>
             </a>
             <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-              <button class="btn" [routerLink]="sensor.id" [queryParams]="{ sensorAction: 'copy' }">
+              <button class="btn" routerLink="0" [queryParams]="{templateSensorId: sensor.id}">
                 <clr-icon shape="copy"></clr-icon>
               </button>
               <span class="tooltip-content">Copy</span>
             </a>
             <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-              <button class="btn" [routerLink]="sensor.id" [queryParams]="{ sensorAction: 'edit' }">
+              <button class="btn" [routerLink]="sensor.id">
                 <clr-icon shape="note"></clr-icon>
               </button>
               <span class="tooltip-content">Edit</span>
