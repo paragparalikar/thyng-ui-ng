@@ -13,9 +13,9 @@
         <clr-dg-cell>{{ sensor.name }}</clr-dg-cell>
         <clr-dg-cell>{{ sensor.unit }}</clr-dg-cell>
         <clr-dg-cell>
-          <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0">
+          <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0">
             <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-              <button class="btn" [routerLink]="sensor.id" queryParams="{readOnly: true}">
+              <button class="btn" [routerLink]="sensor.id" [queryParams]="{readOnly: true}">
                 <clr-icon shape="eye"></clr-icon>
               </button>
               <span class="tooltip-content">View</span>

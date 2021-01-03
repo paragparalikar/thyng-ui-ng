@@ -16,9 +16,9 @@
                     <clr-icon shape="check" class="is-success" *ngIf="ThingStatus.ONLINE===thing.status"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="ThingStatus.OFFLINE===thing.status"></clr-icon> {{thing.status}}
                 </clr-dg-cell>
                 <clr-dg-cell>
-                    <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0;">
+                    <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0;">
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id]" queryParams="{readOnly: true}">
+                            <button class="btn" [routerLink]="[thing.id]" [queryParams]="{readOnly: true}">
                                 <clr-icon shape="eye"></clr-icon>
                             </button>   
                             <span class="tooltip-content">View</span>

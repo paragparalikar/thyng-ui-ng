@@ -16,7 +16,7 @@ export class SensorEditorComponent implements OnInit {
   sensor?: Sensor;
   thing?: Thing;
   message?: Message;
-  readOnly: boolean = true;
+  readOnly: boolean = false;
   header: string = '';
 
   constructor(private route: ActivatedRoute,
@@ -31,10 +31,15 @@ export class SensorEditorComponent implements OnInit {
         this.header = this.sensor?.id ? `Edit Sensor ${this.sensor.name}` : 'Create New Sensor';
       }
     );
+    this.route.queryParamMap.subscribe(
+      params => {
+        this.readOnly = 'true' === params.get('readOnly');
+      }
+    );
   }
 
   save(): void {
-    
+
   }
 
 }
