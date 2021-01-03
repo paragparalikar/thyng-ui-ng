@@ -28,8 +28,8 @@ export class SensorService {
     return this.http.post<Sensor>(this.baseUrl, sensor);
   }
 
-  delete(id: string): void{
-    this.http.delete(`${this.baseUrl}/${id}`);
+  delete(id: string): Observable<any>{
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
 }

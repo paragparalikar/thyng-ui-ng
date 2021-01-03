@@ -1,95 +1,44 @@
 <div class="card">
   <div class="card-header">
     Sensors <a href="#" class="p7" [routerLink]="['/things',thing?.id]">for {{thing?.name}}</a>
-    <button
-      class="action-item btn btn-primary right"
-      routerLink="0"
-      [queryParams]="{ action: 'create' }"
-    >
-      <clr-icon shape="plus"></clr-icon> New Sensor
-    </button>
+    <button class="action-item btn btn-primary right"routerLink="0"[queryParams]="{ sensorAction: 'create' }"><clr-icon shape="plus"></clr-icon> New Sensor</button>
   </div>
   <div>
     <app-local-message [message]="message"></app-local-message>
     <clr-datagrid [style.width.px]="450" class="datagrid-compact">
-      <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType"
-        >Name</clr-dg-column
-      >
+      <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
       <clr-dg-column [clrDgField]="'unit'">Unit</clr-dg-column>
       <clr-dg-column>Actions</clr-dg-column>
       <clr-dg-row *clrDgItems="let sensor of sensors">
         <clr-dg-cell>{{ sensor.name }}</clr-dg-cell>
         <clr-dg-cell>{{ sensor.unit }}</clr-dg-cell>
         <clr-dg-cell>
-          <div
-            class="btn-group btn-primary btn-icon"
-            style="float: right; margin-right: 0"
-          >
-            <a
-              href="javascript://"
-              role="tooltip"
-              aria-haspopup="true"
-              class="tooltip tooltip-sm"
-            >
-              <button
-                class="btn"
-                [routerLink]="['sensors', sensor.id]"
-                [queryParams]="{ action: 'view' }"
-              >
+          <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0">
+            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
+              <button class="btn" [routerLink]="sensor.id" [queryParams]="{ sensorAction: 'view' }">
                 <clr-icon shape="eye"></clr-icon>
               </button>
               <span class="tooltip-content">View</span>
             </a>
-            <a
-              href="javascript://"
-              role="tooltip"
-              aria-haspopup="true"
-              class="tooltip tooltip-sm"
-            >
-              <button
-                class="btn"
-                [routerLink]="['sensors', sensor.id, 'versions']"
-              >
+            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
+              <button class="btn" [routerLink]="[sensor.id, 'versions']">
                 <clr-icon shape="tasks"></clr-icon>
               </button>
               <span class="tooltip-content">Audit</span>
             </a>
-            <a
-              href="javascript://"
-              role="tooltip"
-              aria-haspopup="true"
-              class="tooltip tooltip-sm"
-            >
-              <button
-                class="btn"
-                [routerLink]="['sensors', sensor.id]"
-                [queryParams]="{ action: 'copy' }"
-              >
+            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
+              <button class="btn" [routerLink]="sensor.id" [queryParams]="{ sensorAction: 'copy' }">
                 <clr-icon shape="copy"></clr-icon>
               </button>
               <span class="tooltip-content">Copy</span>
             </a>
-            <a
-              href="javascript://"
-              role="tooltip"
-              aria-haspopup="true"
-              class="tooltip tooltip-sm"
-            >
-              <button
-                class="btn"
-                [routerLink]="['sensors', sensor.id]"
-                [queryParams]="{ action: 'edit' }"
-              >
+            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
+              <button class="btn" [routerLink]="sensor.id" [queryParams]="{ sensorAction: 'edit' }">
                 <clr-icon shape="note"></clr-icon>
               </button>
               <span class="tooltip-content">Edit</span>
             </a>
-            <a
-              href="javascript://"
-              role="tooltip"
-              aria-haspopup="true"
-              class="tooltip tooltip-sm"
-            >
+            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
               <button class="btn" (click)="delete(sensor)">
                 <clr-icon shape="trash"></clr-icon>
               </button>

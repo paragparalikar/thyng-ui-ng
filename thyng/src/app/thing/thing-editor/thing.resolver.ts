@@ -18,7 +18,7 @@ export class ThingResolver implements Resolve<Thing> {
   constructor(private thingService: ThingService){}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Thing> {
-    const id: string = route.paramMap.get('id')!;
+    const id: string = route.paramMap.get('thingId')!;
     if('0'===id){
       return of({
         id: '',

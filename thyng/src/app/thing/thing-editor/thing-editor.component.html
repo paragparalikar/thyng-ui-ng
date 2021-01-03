@@ -33,6 +33,14 @@
                 <input clrInput type="number" [(ngModel)]="thing.inactivityPeriod" #period="ngModel" name="inactivityPeriod" required min="60" [readOnly]="readOnly"/>
                 <clr-control-error *clrIfError="'required'">Inactivity Period is a required field</clr-control-error>
             </clr-input-container>
+            <div class="clr-form-control clr-row">
+                <label class="clr-control-label" for="attributes">Attributes</label>
+                <div class="clr-control-container">
+                  <div class="clr-textarea-wrapper">
+                    <textarea [(ngModel)]="attributes" name="attributes" id="attributes" class="clr-textarea"></textarea>
+                  </div>
+                </div>
+              </div>
         </form>
     </div>
     <div class="card-footer">

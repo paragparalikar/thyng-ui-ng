@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/shared/message';
+import { AttributesTransformer } from 'src/app/shared/transforms/attributes-transformer';
 import { Thing } from '../thing';
 import { ThingStatus } from '../thing-status.enum';
 import { ThingService } from '../thing.service';
@@ -15,13 +16,15 @@ import { ThingService } from '../thing.service';
 export class ThingEditorComponent implements OnInit {
 
   thing?: Thing;
+  attributes?: string;
   message?: Message;
   ThingStatus = ThingStatus;
   readOnly: boolean = true;
   header: string = 'Create New Thing'
 
   constructor(private route: ActivatedRoute,
-              private thingService: ThingService) { }
+              private thingService: ThingService,
+              private attributeTransformer: AttributesTransformer) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(
@@ -31,6 +34,7 @@ export class ThingEditorComponent implements OnInit {
         const action = this.route.snapshot.queryParamMap.get('action');
         if('copy' === action && this.thing) this.thing.id = '';
         this.header = this.thing?.id ? `Edit ${this.thing.name}` : 'Create New Thing'
+        this.attributes = this.attributeTransformer.from(this.thing?.attributes);
       }
     );
     this.route.queryParamMap.subscribe(
@@ -43,6 +47,7 @@ export class ThingEditorComponent implements OnInit {
 
   save(): void {
     if(this.thing){
+      this.thing.attributes = this.attributeTransformer.to(this.attributes);
       this.thingService.save(this.thing).subscribe(
         result => {
           this.message = {

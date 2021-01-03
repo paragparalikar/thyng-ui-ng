@@ -16,7 +16,7 @@ export class SensorListResolver implements Resolve<Sensor[]> {
   constructor(private sensorSerivce: SensorService){}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Sensor[]> {
-    const thingId = route.paramMap.get('id')!;
+    const thingId = route.paramMap.get('thingId')!;
     return this.sensorSerivce.findByThingId(thingId);
   }
 }

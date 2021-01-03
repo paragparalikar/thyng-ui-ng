@@ -10,10 +10,11 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { SharedModule } from '../shared/shared.module';
 import { SensorListResolver } from './sensor-list/sensor-list.resolver';
 import { ThingResolver } from '../thing/thing-editor/thing.resolver';
+import { SensorResolver } from './sensor-editor/sensor.resolver';
 
 const routes: Routes = [
   {path:'', component: SensorListComponent, resolve: {thing: ThingResolver, sensors: SensorListResolver}},
-  {path:':id', component: SensorEditorComponent}
+  {path:':sensorId', component: SensorEditorComponent, resolve: {thing: ThingResolver, sensor: SensorResolver}}
 ];
 
 @NgModule({
