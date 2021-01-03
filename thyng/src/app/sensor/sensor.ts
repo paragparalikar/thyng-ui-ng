@@ -1,6 +1,6 @@
 export interface Sensor {
-    id: string;
+    id?: number;
     name: string;
     unit: string;
-    thingId: string;
+    thingId: number;
 }

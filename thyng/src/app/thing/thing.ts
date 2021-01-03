@@ -1,7 +1,7 @@
 import { ThingStatus } from './thing-status.enum';
 
 export interface Thing {
-    id: string;
+    id?: number;
     name: string;
     status: ThingStatus;
     inactivityPeriod: number;

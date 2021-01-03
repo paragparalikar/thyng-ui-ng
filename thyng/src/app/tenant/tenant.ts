@@ -1,7 +1,5 @@
 export interface Tenant {
-
-    id: string;
+    id?: number;
     name: string;
     enabled: boolean;
-
 }

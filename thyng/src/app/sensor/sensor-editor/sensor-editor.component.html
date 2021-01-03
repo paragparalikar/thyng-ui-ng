@@ -6,12 +6,6 @@
             <clr-control-container *ngIf="sensor.id">
                 <label>Id</label> 
                 {{sensor.id}}
-                <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                    <button ngxClipboard [cbContent]="sensor.id" class="btn btn-link" type="button">
-                        <clr-icon shape="copy-to-clipboard"></clr-icon>
-                    </button>     
-                    <span class="tooltip-content">Copy to clipboard</span>
-                </a>
             </clr-control-container>
             <clr-input-container>
                 <label>Name</label>

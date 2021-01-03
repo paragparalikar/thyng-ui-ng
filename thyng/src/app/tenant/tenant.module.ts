@@ -26,7 +26,6 @@ const routes: Routes = [
     ClrIconModule,
     FormsModule,
     ClrFormsModule,
-    ClipboardModule,
     ClrModalModule,
     SharedModule,
     RouterModule.forChild(routes)

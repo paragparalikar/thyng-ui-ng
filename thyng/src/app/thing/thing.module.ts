@@ -28,7 +28,6 @@ const routes: Routes = [
     FormsModule,
     ClrFormsModule,
     ClrIconModule,
-    ClipboardModule,
     ClrButtonModule,
     ClrButtonGroupModule,
     ClrTextareaModule,
