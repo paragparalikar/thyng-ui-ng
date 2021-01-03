@@ -28,12 +28,15 @@ export class ThingEditorComponent implements OnInit {
       data => {
         this.message = undefined;
         this.thing = data.thing;
+        const action = this.route.snapshot.queryParamMap.get('action');
+        if('copy' === action && this.thing) this.thing.id = '';
         this.header = this.thing?.id ? `Edit ${this.thing.name}` : 'Create New Thing'
       }
     );
     this.route.queryParamMap.subscribe(
       map => {
-        this.readOnly = 'view'===map.get('action');
+        const action = map.get('action')!;
+        this.readOnly = 'view' === action;
       }
     );
   }

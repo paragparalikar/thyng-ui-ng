@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Sensor } from './sensor';
 
 @Injectable({
@@ -14,6 +14,10 @@ export class SensorService {
 
   findAll(): Observable<Sensor[]>{
     return this.http.get<Sensor[]>(this.baseUrl);
+  }
+
+  findByThingId(thingId: string): Observable<Sensor[]>{
+    return this.http.get<Sensor[]>(`${this.baseUrl}?thingId=${thingId}`);
   }
 
   findById(id: string): Observable<Sensor>{

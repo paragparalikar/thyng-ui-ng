@@ -19,8 +19,7 @@ export class ThingResolver implements Resolve<Thing> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Thing> {
     const id: string = route.paramMap.get('id')!;
-    const action = route.queryParamMap.get('action')!;
-    if('create'===action){
+    if('0'===id){
       return of({
         id: '',
         name: '',
@@ -28,13 +27,6 @@ export class ThingResolver implements Resolve<Thing> {
         inactivityPeriod: 60,
         attributes: new Map<string, string>()
       });
-    } else if('copy'===action){
-      return this.thingService.findById(id).pipe(
-        map((thing: Thing) => {
-          thing.id = '';
-          return thing;
-        })
-      );
     } else {
       return this.thingService.findById(id);
     }

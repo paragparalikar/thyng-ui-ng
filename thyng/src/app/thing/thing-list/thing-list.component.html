@@ -8,7 +8,7 @@
         <app-local-message [message]="message"></app-local-message>
          <clr-datagrid [style.width.px]=450 class="datagrid-compact">
             <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
-            <clr-dg-column [clrDgField]="'status'" [clrDgSortOrder]="sortType">Status</clr-dg-column>
+            <clr-dg-column [clrDgField]="'status'">Status</clr-dg-column>
             <clr-dg-column>Actions</clr-dg-column>
             <clr-dg-row *clrDgItems="let thing of things">
                 <clr-dg-cell>{{thing.name}}</clr-dg-cell>
