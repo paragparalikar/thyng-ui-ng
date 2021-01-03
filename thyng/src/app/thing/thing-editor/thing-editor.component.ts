@@ -19,7 +19,7 @@ export class ThingEditorComponent implements OnInit {
   attributes?: string;
   message?: Message;
   ThingStatus = ThingStatus;
-  readOnly: boolean = true;
+  readOnly: boolean = false;
   header: string = 'Create New Thing'
 
   constructor(private route: ActivatedRoute,
@@ -31,16 +31,14 @@ export class ThingEditorComponent implements OnInit {
       data => {
         this.message = undefined;
         this.thing = data.thing;
-        const action = this.route.snapshot.queryParamMap.get('action');
-        if('copy' === action && this.thing) this.thing.id = '';
+        this.readOnly = data.readOnly;
         this.header = this.thing?.id ? `Edit ${this.thing.name}` : 'Create New Thing'
         this.attributes = this.attributeTransformer.from(this.thing?.attributes);
       }
     );
     this.route.queryParamMap.subscribe(
-      map => {
-        const action = map.get('action')!;
-        this.readOnly = 'view' === action;
+      params => {
+        this.readOnly = 'true' === params.get('readOnly');
       }
     );
   }

@@ -19,14 +19,24 @@ export class ThingResolver implements Resolve<Thing> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Thing> {
     const id: string = route.paramMap.get('thingId')!;
+    const templateThingId = route.queryParamMap.get('templateThingId');
     if('0'===id){
-      return of({
-        id: '',
-        name: '',
-        status: ThingStatus.OFFLINE,
-        inactivityPeriod: 60,
-        attributes: new Map<string, string>()
-      });
+      if(templateThingId) {
+        return this.thingService.findById(templateThingId).pipe(
+          map(thing => {
+            thing.id = '';
+            return thing;
+          })
+        );
+      } else {
+        return of({
+          id: '',
+          name: '',
+          status: ThingStatus.OFFLINE,
+          inactivityPeriod: 60,
+          attributes: new Map<string, string>()
+        });
+      }
     } else {
       return this.thingService.findById(id);
     }

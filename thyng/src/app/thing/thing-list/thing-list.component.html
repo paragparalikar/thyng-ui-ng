@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">Things
-        <button class="action-item btn btn-primary right" routerLink="0" [queryParams]="{action: 'create'}">
+        <button class="action-item btn btn-primary right" routerLink="0">
             <clr-icon shape="plus"></clr-icon> New Thing
         </button>
     </div>
@@ -18,7 +18,7 @@
                 <clr-dg-cell>
                     <div class="btn-group btn-primary btn-icon" style="float: right; margin-right: 0;">
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id]" [queryParams]="{action: 'view'}">
+                            <button class="btn" [routerLink]="[thing.id]" queryParams="{readOnly: true}">
                                 <clr-icon shape="eye"></clr-icon>
                             </button>   
                             <span class="tooltip-content">View</span>
@@ -30,13 +30,13 @@
                             <span class="tooltip-content">Audit</span>
                         </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id]" [queryParams]="{action: 'copy'}">
+                            <button class="btn" routerLink="0" [queryParams]="{templateThingId: thing.id}">
                                 <clr-icon shape="copy"></clr-icon>
                             </button>
                             <span class="tooltip-content">Copy</span>
                         </a>
                         <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id]" [queryParams]="{action: 'edit'}">
+                            <button class="btn" [routerLink]="[thing.id]">
                                 <clr-icon shape="note"></clr-icon>
                             </button>
                             <span class="tooltip-content">Edit</span>
