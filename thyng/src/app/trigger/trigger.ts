@@ -8,4 +8,6 @@ export interface Trigger {
     language: Language;
     eventType: EventType;
     window?: Window;
+    thingSelectionScript: string;
+    evaluationScript: string;
 }

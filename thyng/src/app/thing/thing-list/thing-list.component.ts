@@ -44,7 +44,7 @@ export class ThingListComponent implements OnInit {
   }
 
   private _delete(thing: Thing): void {
-    this.thingService.delete(thing.id).subscribe(
+    this.thingService.delete(thing.id!).subscribe(
       data => {
         this.things.splice(this.things.indexOf(thing), 1);
         this.message = {

@@ -16,7 +16,7 @@ export class ThingService {
     return this.http.get<Thing[]>(this.baseUrl);
   }
 
-  findById(id: string): Observable<Thing>{
+  findById(id: number): Observable<Thing>{
     return this.http.get<Thing>(`${this.baseUrl}/${id}`);
   }
 
@@ -24,7 +24,7 @@ export class ThingService {
     return this.http.post<Thing>(this.baseUrl, thing);
   }
 
-  delete(id: string): Observable<any>{
+  delete(id: number): Observable<any>{
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
