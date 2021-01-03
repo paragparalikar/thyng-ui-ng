@@ -22,6 +22,9 @@
         </form>
     </div>
     <div class="card-footer">
+        <button class="btn btn-link" routerLink="..">
+            <clr-icon shape="caret left"></clr-icon> Back
+        </button>
         <button class="btn btn-primary" (click)="save()" [disabled]="!sensorForm.form.valid || !sensorForm.form.touched || !sensorForm.form.dirty">
             <clr-icon shape="floppy"></clr-icon> Save
         </button>
