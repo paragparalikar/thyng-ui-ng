@@ -1,6 +1,6 @@
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Message } from 'src/app/shared/message';
 import { Thing } from 'src/app/thing/thing';
 import { Sensor } from '../sensor';
 import { SensorService } from '../sensor.service';
@@ -39,7 +39,16 @@ export class SensorEditorComponent implements OnInit {
   }
 
   save(): void {
-
+    this.sensorService.save(this.sensor!).subscribe(
+      sensor => {
+        this.sensor = sensor;
+        this.message = {
+          iconShape: 'check',
+          styleClasses: 'alert-success',
+          text: `Sensor ${this.sensor?.name} has been saved successfully`
+        };
+      }
+    );
   }
 
 }

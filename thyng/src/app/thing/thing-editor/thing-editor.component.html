@@ -1,7 +1,7 @@
 <div class="card" *ngIf="thing">
     <div class="card-header">
         {{header}}
-        <clr-button-group class="btn btn-link right">
+        <clr-button-group class="btn btn-link right" *ngIf="thing.id">
             <clr-button routerLink="sensors">Sensors</clr-button>
             <clr-button routerLink="actuators">Actuators</clr-button>
         </clr-button-group>
@@ -44,9 +44,6 @@
         </form>
     </div>
     <div class="card-footer">
-        <button class="btn btn-link" routerLink='..'>
-            <clr-icon shape="times"></clr-icon> Disacard
-        </button>
         <button class="btn btn-primary" (click)="save()" [disabled]="!thingForm.form.valid || !thingForm.form.touched || !thingForm.form.dirty">
             <clr-icon shape="floppy"></clr-icon> Save
         </button>

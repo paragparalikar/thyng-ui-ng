@@ -48,6 +48,7 @@ export class ThingEditorComponent implements OnInit {
       this.thing.attributes = this.attributeTransformer.to(this.attributes);
       this.thingService.save(this.thing).subscribe(
         result => {
+          this.thing = result;
           this.message = {
             iconShape: 'check',
             styleClasses: 'alert-success',
