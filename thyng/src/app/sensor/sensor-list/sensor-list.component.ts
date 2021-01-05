@@ -4,6 +4,7 @@ import { ClrDatagridSortOrder } from '@clr/angular';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Message } from 'src/app/shared/message';
 import { Thing } from 'src/app/thing/thing';
+import { ThingService } from 'src/app/thing/thing.service';
 import { Sensor } from '../sensor';
 import { SensorService } from '../sensor.service';
 
@@ -21,15 +22,17 @@ export class SensorListComponent implements OnInit {
   sortType = ClrDatagridSortOrder.ASC;
 
   constructor(private route: ActivatedRoute,
+              private thingService: ThingService,
               private sensorService: SensorService,
               private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(
-      data => {
-        this.message = undefined;
-        this.thing = data.thing;
-        this.sensors = data.sensors;
+    this.message = undefined;
+    this.route.paramMap.subscribe(
+      map => {
+        const thingId = +map.get('thingId')!;
+        this.thingService.findById(thingId).subscribe(thing => this.thing = thing);
+        this.sensorService.findByThingId(thingId).subscribe(sensors => this.sensors = sensors);
       }
     );
   }
@@ -49,7 +52,7 @@ export class SensorListComponent implements OnInit {
   }
 
   private _delete(sensor: Sensor): void {
-    this.sensorService.delete(sensor.id).subscribe(
+    this.sensorService.delete(sensor.id!).subscribe(
       data => {
         this.sensors.splice(this.sensors.indexOf(sensor), 1);
         this.message = {

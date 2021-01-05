@@ -22,9 +22,9 @@ export class ThingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = undefined;
-    this.route.data.subscribe(
-      data => {
-        this.things = data.things;
+    this.thingService.findAll().subscribe(
+      things => {
+        this.things = things;
       }
     );
   }

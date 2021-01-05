@@ -27,18 +27,19 @@ export class ThingEditorComponent implements OnInit {
               private attributeTransformer: AttributesTransformer) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(
-      data => {
+    this.route.paramMap.subscribe(
+      map => {
         this.message = undefined;
-        this.thing = data.thing;
-        this.readOnly = data.readOnly;
-        this.header = this.thing?.id ? `Edit ${this.thing.name}` : 'Create New Thing'
-        this.attributes = this.attributeTransformer.from(this.thing?.attributes);
-      }
-    );
-    this.route.queryParamMap.subscribe(
-      params => {
-        this.readOnly = 'true' === params.get('readOnly');
+        const thingId = +map.get('thingId')!;
+        const templateThingId = +this.route.snapshot.queryParamMap.get('templateThingId')!;
+        this.thingService.findById(thingId, templateThingId).subscribe(
+          thing => {
+            this.thing = thing;
+            this.readOnly = false; // check if user has access to edit things
+            this.header = this.thing?.id ? `Edit ${this.thing.name}` : 'Create New Thing'
+            this.attributes = this.attributeTransformer.from(this.thing?.attributes);
+          }
+        );
       }
     );
   }

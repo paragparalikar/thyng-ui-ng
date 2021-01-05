@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Sensor } from './sensor';
 
 @Injectable({
@@ -16,19 +17,39 @@ export class SensorService {
     return this.http.get<Sensor[]>(this.baseUrl);
   }
 
-  findByThingId(thingId: string): Observable<Sensor[]>{
+  findByThingId(thingId: number): Observable<Sensor[]>{
     return this.http.get<Sensor[]>(`${this.baseUrl}?thingId=${thingId}`);
   }
 
-  findById(id: string): Observable<Sensor>{
-    return this.http.get<Sensor>(`${this.baseUrl}/${id}`);
+  findById(id: number, thingId: number, tempalteSensorId?: number): Observable<Sensor> {
+    return 0 === id? (tempalteSensorId ? this._copy(tempalteSensorId, thingId) : 
+      this._default(thingId)) : this.http.get<Sensor>(`${this.baseUrl}/${id}`);
   }
+
+  private _default(thingId: number): Observable<Sensor> {
+    return of({
+      id: undefined,
+      name: '',
+      thingId: thingId,
+      unit: ''
+    });
+  }
+
+  private _copy(tempalteSensorId: number, thingId: number): Observable<Sensor> {
+    return this.http.get<Sensor>(`${this.baseUrl}/${tempalteSensorId}`).pipe(
+      map(sensor => {
+        sensor.id = undefined;
+        sensor.thingId = thingId;
+        return sensor;
+      })
+    );
+  } 
 
   save(sensor: Sensor): Observable<Sensor>{
     return this.http.post<Sensor>(this.baseUrl, sensor);
   }
 
-  delete(id: string): Observable<any>{
+  delete(id: number): Observable<any>{
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 

@@ -23,17 +23,18 @@ export class SensorEditorComponent implements OnInit {
               private sensorService: SensorService) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(
-      data => {
+    this.route.paramMap.subscribe(
+      map => {
         this.message = undefined;
-        this.sensor = data.sensor;
-        this.thing = data.thing;
-        this.header = this.sensor?.id ? `Edit Sensor ${this.sensor.name}` : 'Create New Sensor';
-      }
-    );
-    this.route.queryParamMap.subscribe(
-      params => {
-        this.readOnly = 'true' === params.get('readOnly');
+        const thingId = +map.get('thingId')!;
+        const sensorId = +map.get('sensorId')!;
+        const templateSensorId =  this.route.snapshot.queryParamMap.get('templateSensorId');
+        this.sensorService.findById(sensorId, thingId, templateSensorId ? +templateSensorId : undefined).subscribe(
+          sensor => {
+            this.sensor = sensor;
+            this.header = this.sensor?.id ? `Edit Sensor ${this.sensor.name}` : 'Create New Sensor';
+          }
+        );
       }
     );
   }
