@@ -11,42 +11,16 @@
             <clr-dg-column [clrDgField]="'status'">Status</clr-dg-column>
             <clr-dg-column>Actions</clr-dg-column>
             <clr-dg-row *clrDgItems="let thing of things">
-                <clr-dg-cell>{{thing.name}}</clr-dg-cell>
+                <clr-dg-cell>
+                    <a href="javascript://" [routerLink]="[thing.id]">{{thing.name}}</a>
+                </clr-dg-cell>
                 <clr-dg-cell>
                     <clr-icon shape="check" class="is-success" *ngIf="ThingStatus.ONLINE===thing.status"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="ThingStatus.OFFLINE===thing.status"></clr-icon> {{thing.status}}
                 </clr-dg-cell>
                 <clr-dg-cell>
                     <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0;">
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id]" [queryParams]="{readOnly: true}">
-                                <clr-icon shape="eye"></clr-icon>
-                            </button>   
-                            <span class="tooltip-content">View</span>
-                        </a>
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id, 'versions']">
-                                <clr-icon shape="tasks"></clr-icon>
-                            </button>   
-                            <span class="tooltip-content">Audit</span>
-                        </a>
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" routerLink="0" [queryParams]="{templateThingId: thing.id}">
-                                <clr-icon shape="copy"></clr-icon>
-                            </button>
-                            <span class="tooltip-content">Copy</span>
-                        </a>
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[thing.id]">
-                                <clr-icon shape="note"></clr-icon>
-                            </button>
-                            <span class="tooltip-content">Edit</span>
-                        </a>
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" (click)="delete(thing)">
-                                <clr-icon shape="trash"></clr-icon>
-                            </button>
-                            <span class="tooltip-content">Delete</span>
-                        </a>
+                        <button class="btn" routerLink="0" [queryParams]="{templateThingId: thing.id}"><clr-icon shape="copy"></clr-icon></button>
+                        <button class="btn" (click)="delete(thing)"><clr-icon shape="trash"></clr-icon></button>
                     </div>
                 </clr-dg-cell>
             </clr-dg-row>

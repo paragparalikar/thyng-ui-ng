@@ -10,40 +10,14 @@
       <clr-dg-column [clrDgField]="'unit'">Unit</clr-dg-column>
       <clr-dg-column>Actions</clr-dg-column>
       <clr-dg-row *clrDgItems="let sensor of sensors">
-        <clr-dg-cell>{{ sensor.name }}</clr-dg-cell>
+        <clr-dg-cell>
+          <a href="javascript://" [routerLink]="sensor.id">{{ sensor.name }}</a>
+        </clr-dg-cell>
         <clr-dg-cell>{{ sensor.unit }}</clr-dg-cell>
         <clr-dg-cell>
-          <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0">
-            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-              <button class="btn" [routerLink]="sensor.id" [queryParams]="{readOnly: true}">
-                <clr-icon shape="eye"></clr-icon>
-              </button>
-              <span class="tooltip-content">View</span>
-            </a>
-            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-              <button class="btn" [routerLink]="[sensor.id, 'versions']">
-                <clr-icon shape="tasks"></clr-icon>
-              </button>
-              <span class="tooltip-content">Audit</span>
-            </a>
-            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-              <button class="btn" routerLink="0" [queryParams]="{templateSensorId: sensor.id}">
-                <clr-icon shape="copy"></clr-icon>
-              </button>
-              <span class="tooltip-content">Copy</span>
-            </a>
-            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-              <button class="btn" [routerLink]="sensor.id">
-                <clr-icon shape="note"></clr-icon>
-              </button>
-              <span class="tooltip-content">Edit</span>
-            </a>
-            <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-              <button class="btn" (click)="delete(sensor)">
-                <clr-icon shape="trash"></clr-icon>
-              </button>
-              <span class="tooltip-content">Delete</span>
-            </a>
+          <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0;">
+            <button class="btn" routerLink="0" [queryParams]="{templateSensorId: sensor.id}"><clr-icon shape="copy"></clr-icon></button>            
+            <button class="btn" (click)="delete(sensor)"><clr-icon shape="trash"></clr-icon></button>
           </div>
         </clr-dg-cell>
       </clr-dg-row>
