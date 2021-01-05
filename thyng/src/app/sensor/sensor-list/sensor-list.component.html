@@ -3,7 +3,8 @@
     Sensors <a href="#" class="p7" [routerLink]="['/things',thing?.id]">for {{thing?.name}}</a>
     <button class="action-item btn btn-primary right"routerLink="0"><clr-icon shape="plus"></clr-icon> New Sensor</button>
   </div>
-  <div>
+  <div class="card-block">
+    <clr-progress-bar class="progress top" clrLoop *ngIf="showProgressBar"></clr-progress-bar>
     <app-local-message [message]="message"></app-local-message>
     <clr-datagrid [style.width.px]="450" class="datagrid-compact">
       <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>

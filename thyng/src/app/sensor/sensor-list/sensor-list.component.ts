@@ -20,6 +20,7 @@ export class SensorListComponent implements OnInit {
   sensors: Sensor[] = [];
   message?: Message;
   sortType = ClrDatagridSortOrder.ASC;
+  showProgressBar: boolean = true;
 
   constructor(private route: ActivatedRoute,
               private thingService: ThingService,
@@ -30,9 +31,13 @@ export class SensorListComponent implements OnInit {
     this.message = undefined;
     this.route.paramMap.subscribe(
       map => {
+        this.showProgressBar = true;
         const thingId = +map.get('thingId')!;
         this.thingService.findById(thingId).subscribe(thing => this.thing = thing);
-        this.sensorService.findByThingId(thingId).subscribe(sensors => this.sensors = sensors);
+        this.sensorService.findByThingId(thingId).subscribe(sensors => {
+          this.sensors = sensors;
+          this.showProgressBar = false;
+        });
       }
     );
   }
