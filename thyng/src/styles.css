@@ -25,14 +25,8 @@ html{
     margin-right: 0.5rem;
 }
 
-td > .clr-form-control {
+.compact{
     margin-top: 0;
-}
-.table.table-noborder.table-compact{
-    margin-top: 0;
-}
-.table.table-compact.table-noborder td,
-.table.table-compact.table-noborder th{
     padding-top: 0;
     padding-bottom: 0;
 }

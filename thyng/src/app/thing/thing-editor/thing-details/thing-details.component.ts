@@ -12,27 +12,15 @@ import { ThingService } from '../../thing.service';
 })
 export class ThingDetailsComponent implements OnInit {
 
-  _thing: Thing;
-  attributes?: string;
+  @Input() thing: Thing;
   ThingStatus = ThingStatus;
   readOnly: boolean = false;
 
-  constructor(
-    private thingService: ThingService,
-    private attributeTransformer: AttributesTransformer) { 
-      this._thing = thingService.buildDefault();
+  constructor(private thingService: ThingService) { 
+      this.thing = thingService.buildDefault();
     }
 
   ngOnInit(): void {
-  }
-
-  @Input()
-  get thing(): Thing { 
-    return this._thing; 
-  }
-  set thing(thing: Thing) {
-    this._thing = thing;
-    this.attributes = this.attributeTransformer.from(thing.attributes);
   }
 
 }
