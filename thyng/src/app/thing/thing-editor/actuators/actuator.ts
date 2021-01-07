@@ -1,5 +1,4 @@
 export interface Actuator {
-    id?: number;
+    id?: string;
     name: string;
-    thingId: number;
 }

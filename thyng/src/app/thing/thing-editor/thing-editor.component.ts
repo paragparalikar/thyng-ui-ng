@@ -15,29 +15,29 @@ import { ThingService } from '../thing.service';
 })
 export class ThingEditorComponent implements OnInit {
 
-  thing?: Thing;
-  attributes?: string;
+  thing: Thing;
   message?: Message;
   ThingStatus = ThingStatus;
   readOnly: boolean = false;
   header: string = 'Create New Thing'
 
   constructor(private route: ActivatedRoute,
-              private thingService: ThingService,
-              private attributeTransformer: AttributesTransformer) { }
+              private thingService: ThingService) { 
+    this.thing = thingService.buildDefault();
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       map => {
         this.message = undefined;
-        const thingId = +map.get('thingId')!;
-        const templateThingId = +this.route.snapshot.queryParamMap.get('templateThingId')!;
+        const thingId = map.get('thingId')!;
+        const templateThingId = this.route.snapshot.queryParamMap.get('templateThingId')!;
         this.thingService.findById(thingId, templateThingId).subscribe(
           thing => {
             this.thing = thing;
+            console.log(this.thing);
             this.readOnly = false; // check if user has access to edit things
             this.header = this.thing?.id ? `Edit ${this.thing.name}` : 'Create New Thing'
-            this.attributes = this.attributeTransformer.from(this.thing?.attributes);
           }
         );
       }
@@ -46,7 +46,6 @@ export class ThingEditorComponent implements OnInit {
 
   save(): void {
     if(this.thing){
-      this.thing.attributes = this.attributeTransformer.to(this.attributes);
       this.thingService.save(this.thing).subscribe(
         result => {
           this.thing = result;

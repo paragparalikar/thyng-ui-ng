@@ -1,0 +1,28 @@
+<form clrForm #thingForm="ngForm">
+    <clr-control-container *ngIf="thing.id">
+        <label>Id</label> 
+        {{thing.id}}
+    </clr-control-container>
+    <clr-input-container>
+        <label>Name</label>
+        <input clrInput type="text" [(ngModel)]="thing.name" name="name" required minlength=3 [readOnly]="readOnly" /> 
+        <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
+        <clr-control-error *clrIfError="'minlength'; error as err">Name must be at least {{ err.requiredLength }} characters</clr-control-error>
+    </clr-input-container>
+    <clr-control-container *ngIf="thing.id">
+        <label>Status</label> <clr-icon shape="check" class="is-success" *ngIf="ThingStatus.ONLINE===thing.status"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="ThingStatus.OFFLINE===thing.status"></clr-icon> {{thing.status}}
+    </clr-control-container>
+    <clr-input-container>
+        <label>Inactivity Period</label>
+        <input clrInput type="number" [(ngModel)]="thing.inactivityPeriod" #period="ngModel" name="inactivityPeriod" required min="60" [readOnly]="readOnly"/>
+        <clr-control-error *clrIfError="'required'">Inactivity Period is a required field</clr-control-error>
+    </clr-input-container>
+    <div class="clr-form-control clr-row">
+        <label class="clr-control-label" for="attributes">Attributes</label>
+        <div class="clr-control-container clr-col-md-10 clr-col-12">
+          <div class="clr-textarea-wrapper">
+            <textarea [(ngModel)]="attributes" name="attributes" id="attributes" class="clr-textarea" [readOnly]="readOnly"></textarea>
+          </div>
+        </div>
+      </div>
+</form>

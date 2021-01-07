@@ -1,0 +1,32 @@
+<table class="table table-noborder table-compact">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Unit</th>
+            <th>
+                <button class="btn btn-link" (click)="create()">
+                    <clr-icon shape="plus"></clr-icon> Add Sensor
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let sensor of sensors">
+            <td>
+                <clr-input-container>
+                    <input clrInput [(ngModel)]="sensor.name" name="name" required minlength="3"/>
+                </clr-input-container>
+            </td>
+            <td>
+                <clr-input-container>
+                    <input clrInput [(ngModel)]="sensor.unit" name="unit" required minlength="1"/>
+                </clr-input-container>
+            </td>
+            <td>
+                <button class="btn btn-link btn-icon" (click)="delete(sensor)">
+                    <clr-icon shape="trash"></clr-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

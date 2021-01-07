@@ -14,7 +14,7 @@
                     <clr-dg-column>Actions</clr-dg-column>
                     <clr-dg-row *clrDgItems="let thing of things">
                         <clr-dg-cell>
-                            <a href="javascript://" [routerLink]="[thing.id]">{{thing.name}}</a>
+                            <a href="javascript://" [routerLink]="thing.id">{{thing.name}}</a>
                         </clr-dg-cell>
                         <clr-dg-cell>
                             <clr-icon shape="check" class="is-success" *ngIf="ThingStatus.ONLINE===thing.status"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="ThingStatus.OFFLINE===thing.status"></clr-icon> {{thing.status}}

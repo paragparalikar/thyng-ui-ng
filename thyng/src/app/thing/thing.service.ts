@@ -18,22 +18,24 @@ export class ThingService {
     return this.http.get<Thing[]>(this.baseUrl);
   }
 
-  findById(id: number, templateThingId?: number): Observable<Thing>{
-    return 0 === id ? (templateThingId? this._copy(templateThingId) : this._default()) 
+  findById(id: string, templateThingId?: string): Observable<Thing>{
+    return '0' === id ? (templateThingId? this.copy(templateThingId) : of(this.buildDefault())) 
             : this.http.get<Thing>(`${this.baseUrl}/${id}`);
   }
 
-  private _default(): Observable<Thing>{
-    return of({
+  buildDefault(): Thing{
+    return {
       id: undefined,
       name: '',
       status: ThingStatus.OFFLINE,
       inactivityPeriod: 60,
-      attributes: new Map<string, string>()
-    });
+      attributes: new Map<string, string>(),
+      sensors: [],
+      actuators: []
+    };
   }
 
-  private _copy(templateThingId: number): Observable<Thing> {
+  copy(templateThingId: string): Observable<Thing> {
     return this.http.get<Thing>(`${this.baseUrl}/${templateThingId}`).pipe(
       map(thing => {
         thing.id = undefined;
@@ -46,7 +48,7 @@ export class ThingService {
     return this.http.post<Thing>(this.baseUrl, thing);
   }
 
-  delete(id: number): Observable<any>{
+  delete(id: string): Observable<any>{
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
