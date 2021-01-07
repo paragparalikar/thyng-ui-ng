@@ -7,6 +7,7 @@
     <div class="clr-col-5">
         <span>
             <clr-input-container class="compact">
+                <label hidden></label>
                 <input clrInput [(ngModel)]="sensor.name" name="name" placeholder="Name" required minlength="3"/>
             </clr-input-container>
         </span>
@@ -14,11 +15,12 @@
     <div class="clr-col-5">
         <span>
             <clr-input-container class="compact">
+                <label hidden></label>
                 <input clrInput [(ngModel)]="sensor.unit" name="unit" placeholder="Unit" required/>
             </clr-input-container>
         </span>
     </div>
-    <div class="clr-col-2">
+    <div class="clr-col-2 text-right">
         <span>
             <button class="btn btn-link btn-icon" (click)="delete(sensor)">
                 <clr-icon shape="trash"></clr-icon>

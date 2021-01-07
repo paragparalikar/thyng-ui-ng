@@ -34,7 +34,7 @@ export class ThingAttributesComponent {
     });
   }
 
-  delete(attribute: [string, string]){
+  delete(attribute: any){
     this.attributes.splice(this.attributes.indexOf(attribute), 1);
     this.update();
   }
