@@ -35,7 +35,6 @@ export class ThingEditorComponent implements OnInit {
         this.thingService.findById(thingId, templateThingId).subscribe(
           thing => {
             this.thing = thing;
-            console.log(this.thing);
             this.readOnly = false; // check if user has access to edit things
             this.header = this.thing?.id ? `Edit ${this.thing.name}` : 'Create New Thing'
           }

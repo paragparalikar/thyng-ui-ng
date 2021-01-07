@@ -7,7 +7,7 @@ export interface Thing {
     name: string;
     status: ThingStatus;
     inactivityPeriod: number;
-    attributes: Map<string, string>;
+    attributes: any;
     sensors: Sensor[];
     actuators: Actuator[];
 }

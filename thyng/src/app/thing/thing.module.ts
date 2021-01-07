@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ThingDetailsComponent } from './thing-editor/thing-details/thing-details.component';
 import { SensorsComponent } from './thing-editor/sensors/sensors.component';
 import { ActuatorsComponent } from './thing-editor/actuators/actuators.component';
+import { ThingAttributesComponent } from './thing-editor/thing-attributes/thing-attributes.component';
 
 const routes: Routes = [
   {path:'', component: ThingListComponent},
@@ -18,7 +19,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [ThingListComponent, ThingEditorComponent, ThingDetailsComponent, SensorsComponent, ActuatorsComponent],
+  declarations: [ThingListComponent, ThingEditorComponent, ThingDetailsComponent, SensorsComponent, ActuatorsComponent, ThingAttributesComponent],
   imports: [
     CommonModule,
     HttpClientModule,

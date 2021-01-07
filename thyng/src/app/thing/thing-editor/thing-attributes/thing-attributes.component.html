@@ -1,26 +1,26 @@
 <div class="text-right">
     <button class="btn btn-link" (click)="create()">
-        <clr-icon shape="plus"></clr-icon> Add Sensor
+        <clr-icon shape="plus"></clr-icon> Add Attribute
     </button>
 </div>
-<div *ngFor="let sensor of sensors" class="clr-row"> 
+<div *ngFor="let attribute of attributes | keyvalue" class="clr-row"> 
     <div class="clr-col-5">
         <span>
             <clr-input-container class="compact">
-                <input clrInput [(ngModel)]="sensor.name" name="name" placeholder="Name" required minlength="3"/>
+                <input clrInput [(ngModel)]="attribute.value[0]" (blur)="update()" name="key" placeholder="Key" required/>
             </clr-input-container>
         </span>
     </div>
     <div class="clr-col-5">
         <span>
             <clr-input-container class="compact">
-                <input clrInput [(ngModel)]="sensor.unit" name="unit" placeholder="Unit" required/>
+                <input clrInput [(ngModel)]="attribute.value[1]" (blur)="update()" name="value" placeholder="Value" required/>
             </clr-input-container>
         </span>
     </div>
     <div class="clr-col-2">
         <span>
-            <button class="btn btn-link btn-icon" (click)="delete(sensor)">
+            <button class="btn btn-link btn-icon" (click)="delete(attribute)">
                 <clr-icon shape="trash"></clr-icon>
             </button>
         </span>
