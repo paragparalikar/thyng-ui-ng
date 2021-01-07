@@ -1,64 +1,43 @@
-<div class="card">
-    <div class="card-header">Triggers
-        <button class="action-item btn btn-primary right" routerLink="0">
-            <clr-icon shape="plus"></clr-icon> New Trigger
-        </button>
-    </div>
-    <div>
-        <app-local-message [message]="message"></app-local-message>
-         <clr-datagrid [style.width.px]=450 class="datagrid-compact">
-            <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
-            <clr-dg-column [clrDgField]="'enabled'">Enabled</clr-dg-column>
-            <clr-dg-column [clrDgField]="'language'">Language</clr-dg-column>
-            <clr-dg-column [clrDgField]="'eventType'">Event Type</clr-dg-column>
-            <clr-dg-column>Actions</clr-dg-column>
-            <clr-dg-row *clrDgItems="let trigger of triggers">
-                <clr-dg-cell>{{trigger.name}}</clr-dg-cell>
-                <clr-dg-cell>
-                    <clr-icon shape="check" class="is-success" *ngIf="trigger.enabled"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="!trigger.enabled"></clr-icon> {{trigger.enabled ? 'Yes' : 'No'}}
-                </clr-dg-cell>
-                <clr-dg-cell>{{trigger.language}}</clr-dg-cell>
-                <clr-dg-cell>{{trigger.eventType}}</clr-dg-cell>
-                <clr-dg-cell>
-                    <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0;">
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[trigger.id]" [queryParams]="{readOnly: true}">
-                                <clr-icon shape="eye"></clr-icon>
-                            </button>   
-                            <span class="tooltip-content">View</span>
-                        </a>
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[trigger.id, 'versions']">
-                                <clr-icon shape="tasks"></clr-icon>
-                            </button>   
-                            <span class="tooltip-content">Audit</span>
-                        </a>
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" routerLink="0" [queryParams]="{templateTriggerId: trigger.id}">
-                                <clr-icon shape="copy"></clr-icon>
-                            </button>
-                            <span class="tooltip-content">Copy</span>
-                        </a>
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" [routerLink]="[trigger.id]">
-                                <clr-icon shape="note"></clr-icon>
-                            </button>
-                            <span class="tooltip-content">Edit</span>
-                        </a>
-                        <a href="javascript://" role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm">
-                            <button class="btn" (click)="delete(trigger)">
-                                <clr-icon shape="trash"></clr-icon>
-                            </button>
-                            <span class="tooltip-content">Delete</span>
-                        </a>
-                    </div>
-                </clr-dg-cell>
-            </clr-dg-row>
-            <clr-dg-footer>
-                <clr-dg-pagination #pagination [clrDgPageSize]="10">
-                  {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} triggers
-                </clr-dg-pagination>
-            </clr-dg-footer>
-        </clr-datagrid>
+<div class="clr-row">
+    <div class="clr-col-sm-12 clr-col-lg-4">
+        <div class="card">
+            <div class="card-header">Triggers
+                <button class="action-item btn btn-primary right" routerLink="0">
+                    <clr-icon shape="plus"></clr-icon> New Trigger
+                </button>
+            </div>
+            <div>
+                <app-local-message [message]="message"></app-local-message>
+                 <clr-datagrid class="datagrid-compact">
+                    <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
+                    <clr-dg-column [clrDgField]="'enabled'">Enabled</clr-dg-column>
+                    <clr-dg-column [clrDgField]="'language'">Language</clr-dg-column>
+                    <clr-dg-column [clrDgField]="'eventType'">Event Type</clr-dg-column>
+                    <clr-dg-column>Actions</clr-dg-column>
+                    <clr-dg-row *clrDgItems="let trigger of triggers">
+                        <clr-dg-cell>
+                            <a href="javascript://" [routerLink]="trigger.id">{{trigger.name}}</a>
+                        </clr-dg-cell>
+                        <clr-dg-cell>
+                            <clr-icon shape="check" class="is-success" *ngIf="trigger.enabled"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="!trigger.enabled"></clr-icon> {{trigger.enabled ? 'Yes' : 'No'}}
+                        </clr-dg-cell>
+                        <clr-dg-cell>{{trigger.language}}</clr-dg-cell>
+                        <clr-dg-cell>{{trigger.eventType}}</clr-dg-cell>
+                        <clr-dg-cell>
+                            <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0;">
+                                <button class="btn" routerLink="0" [queryParams]="{templateTriggerId: trigger.id}"><clr-icon shape="copy"></clr-icon></button>
+                                <button class="btn" (click)="delete(trigger)"><clr-icon shape="trash"></clr-icon></button>
+                            </div>
+                        </clr-dg-cell>
+                    </clr-dg-row>
+                    <clr-dg-footer>
+                        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                          {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} triggers
+                        </clr-dg-pagination>
+                    </clr-dg-footer>
+                </clr-datagrid>
+            </div>
+        </div>
     </div>
 </div>
+

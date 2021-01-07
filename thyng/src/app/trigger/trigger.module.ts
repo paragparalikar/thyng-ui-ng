@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule } from '@clr/angular';
+import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule, ClrInputModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
 import { TriggerListComponent } from './trigger-list/trigger-list.component';
 import { TriggerEditorComponent } from './trigger-editor/trigger-editor.component';
@@ -27,6 +27,7 @@ const routes: Routes = [
     ClrButtonGroupModule,
     ClrTextareaModule,
     ClrDatagridModule,
+    ClrInputModule,
     RouterModule.forChild(routes)
   ]
 })

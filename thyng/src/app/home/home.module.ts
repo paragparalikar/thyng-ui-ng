@@ -12,7 +12,8 @@ const routes: Routes = [
   {path:'', component:HomeComponent,
     children:[
       {path: 'landing', component: LandingPageComponent},
-      {path: 'things', loadChildren: () => import('../thing/thing.module').then(m => m.ThingModule)}
+      {path: 'things', loadChildren: () => import('../thing/thing.module').then(m => m.ThingModule)},
+      {path: 'triggers', loadChildren: () => import('../trigger/trigger.module').then(m => m.TriggerModule)}
     ]
   }
 ];
