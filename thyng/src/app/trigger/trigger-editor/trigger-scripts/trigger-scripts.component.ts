@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Trigger } from '../../trigger';
+import { TriggerService } from '../../trigger.service';
 
 @Component({
   selector: 'app-trigger-scripts',
@@ -8,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TriggerScriptsComponent implements OnInit {
 
-  constructor() { }
+  @Input() trigger: Trigger;
+  readOnly: boolean = false;
+
+  constructor(private triggerSerivce: TriggerService) {
+    this.trigger = triggerSerivce.buildDefault();
+  }
 
   ngOnInit(): void {
   }

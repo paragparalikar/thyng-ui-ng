@@ -15,13 +15,13 @@
                         <clr-tab>
                             <button clrTabLink>Scripts</button>
                             <clr-tab-content>
-                                <app-trigger-scripts></app-trigger-scripts>
+                                <app-trigger-scripts [trigger]="trigger"></app-trigger-scripts>
                             </clr-tab-content>
                         </clr-tab>
                         <clr-tab>
                             <button clrTabLink>Window</button>
                             <clr-tab-content>
-                                <app-trigger-window></app-trigger-window>
+                                <app-trigger-window [trigger]="trigger"></app-trigger-window>
                             </clr-tab-content>
                         </clr-tab>
                     </clr-tabs>
