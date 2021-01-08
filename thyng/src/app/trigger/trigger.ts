@@ -2,12 +2,14 @@ import { EventType } from './event-type.enum';
 import { Language } from './language.enum';
 
 export interface Trigger {
-    id?: number;
+    id?: string;
     name: string;
     enabled: boolean;
-    language: Language;
     eventType: EventType;
-    window?: Window;
+
+    language: Language;
     thingSelectionScript: string;
     evaluationScript: string;
+    
+    window?: Window;
 }

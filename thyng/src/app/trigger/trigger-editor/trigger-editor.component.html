@@ -5,31 +5,41 @@
             <div class="card-block">
                 <app-local-message [message]="message"></app-local-message>
                 <form clrForm #triggerForm="ngForm">
-                    <clr-control-container *ngIf="trigger?.id">
-                        <label>Id</label> 
-                        {{trigger.id}}
-                    </clr-control-container>
-                    <clr-input-container>
-                        <label>Name</label>
-                        <input clrInput type="text" [(ngModel)]="trigger.name" name="name" required minlength=3 [readOnly]="readOnly" /> 
-                        <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
-                        <clr-control-error *clrIfError="'minlength'; error as err">Name must be at least {{ err.requiredLength }} characters</clr-control-error>
-                    </clr-input-container>
-                    <clr-control-container *ngIf="trigger?.id">
-                        <label>Enabled</label> 
-                        <clr-icon shape="check" class="is-success" *ngIf="trigger?.enabled"></clr-icon>
-                        <clr-icon shape="times" class="is-danger" *ngIf="!trigger?.enabled"></clr-icon>
-                    </clr-control-container>
+                    <clr-tabs>
+                        <clr-tab>
+                            <button clrTabLink>Details</button>
+                            <clr-tab-content>
+                                <app-trigger-details [trigger]="trigger"></app-trigger-details>
+                            </clr-tab-content>
+                        </clr-tab>
+                        <clr-tab>
+                            <button clrTabLink>Scripts</button>
+                            <clr-tab-content>
+                                <app-trigger-scripts></app-trigger-scripts>
+                            </clr-tab-content>
+                        </clr-tab>
+                        <clr-tab>
+                            <button clrTabLink>Window</button>
+                            <clr-tab-content>
+                                <app-trigger-window></app-trigger-window>
+                            </clr-tab-content>
+                        </clr-tab>
+                    </clr-tabs>
                 </form>
             </div>
             <div class="card-footer">
-                <button class="btn btn-link" routerLink="..">
-                    <clr-icon shape="caret left"></clr-icon> Back
-                </button>
-                <button class="btn btn-primary" (click)="save()" [disabled]="!triggerForm.form.valid 
-                || !triggerForm.form.touched || !triggerForm.form.dirty">
-                    <clr-icon shape="floppy"></clr-icon> Save
-                </button>
+                <div class="clr-row clr-justify-content-between">
+                    <div class="clr-col">
+                        <button class="btn btn-link" routerLink="..">
+                            <clr-icon shape="caret left"></clr-icon> Back
+                        </button>
+                    </div>
+                    <div class="clr-col text-right">
+                        <button class="btn btn-primary" (click)="save()" [disabled]="!triggerForm.valid">
+                            <clr-icon shape="floppy"></clr-icon> Save
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

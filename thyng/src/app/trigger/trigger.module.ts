@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule, ClrInputModule } from '@clr/angular';
+import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule, ClrInputModule, ClrTabsModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
 import { TriggerListComponent } from './trigger-list/trigger-list.component';
 import { TriggerEditorComponent } from './trigger-editor/trigger-editor.component';
+import { TriggerDetailsComponent } from './trigger-editor/trigger-details/trigger-details.component';
+import { TriggerScriptsComponent } from './trigger-editor/trigger-scripts/trigger-scripts.component';
+import { TriggerWindowComponent } from './trigger-editor/trigger-window/trigger-window.component';
 
 const routes: Routes = [
   {path:'', component: TriggerListComponent},
@@ -14,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TriggerListComponent, TriggerEditorComponent],
+  declarations: [TriggerListComponent, TriggerEditorComponent, TriggerDetailsComponent, TriggerScriptsComponent, TriggerWindowComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -28,6 +31,7 @@ const routes: Routes = [
     ClrTextareaModule,
     ClrDatagridModule,
     ClrInputModule,
+    ClrTabsModule,
     RouterModule.forChild(routes)
   ]
 })
