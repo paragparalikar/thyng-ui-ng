@@ -25,3 +25,7 @@ html{
     padding-top: 0;
     padding-bottom: 0;
 }
+
+.clr-error .no-validation-icon + .clr-validate-icon {
+    display: none;
+}

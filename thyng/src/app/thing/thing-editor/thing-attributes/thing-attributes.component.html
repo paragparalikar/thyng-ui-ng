@@ -8,7 +8,7 @@
         <span>
             <clr-input-container class="compact">
                 <label hidden></label>
-                <input clrInput [(ngModel)]="attribute[0]" (blur)="update()" name="key" placeholder="Key" required/>
+                <input clrInput [(ngModel)]="attribute[0]" class="no-validation-icon" (blur)="update()" name="key" placeholder="Key" required/>
             </clr-input-container>
         </span>
     </div>
@@ -16,7 +16,7 @@
         <span>
             <clr-input-container class="compact">
                 <label hidden></label>
-                <input clrInput [(ngModel)]="attribute[1]" (blur)="update()" name="value" placeholder="Value" required/>
+                <input clrInput [(ngModel)]="attribute[1]" class="no-validation-icon" (blur)="update()" name="value" placeholder="Value" required/>
             </clr-input-container>
         </span>
     </div>
