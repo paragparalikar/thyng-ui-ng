@@ -4,9 +4,8 @@
 </clr-control-container>
 <clr-input-container>
     <label>Name</label>
-    <input clrInput type="text" [(ngModel)]="thing.name" name="name" required minlength=3 [readOnly]="readOnly" /> 
+    <input clrInput type="text" [(ngModel)]="thing.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
     <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
-    <clr-control-error *clrIfError="'minlength'; error as err">Name must be at least {{ err.requiredLength }} characters</clr-control-error>
 </clr-input-container>
 <clr-control-container *ngIf="thing.id">
     <label>Status</label> <clr-icon shape="check" class="is-success" *ngIf="ThingStatus.ONLINE===thing.status"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="ThingStatus.OFFLINE===thing.status"></clr-icon> {{thing.status}}

@@ -6,18 +6,30 @@
             </div>
             <div class="card-block">
                 <app-local-message [message]="message"></app-local-message>
-                <form clrForm #thingForm="ngForm">
+                <form clrForm #templateForm="ngForm">
                     <clr-tabs>
                         <clr-tab>
                             <button clrTabLink>Details</button>
                             <clr-tab-content>
-                                <app-thing-details [thing]="thing"></app-thing-details>
+                                <app-template-details [template]="template"></app-template-details>
                             </clr-tab-content>
                         </clr-tab>
                         <clr-tab>
                             <button clrTabLink>Attributes</button>
                             <clr-tab-content>
-                                <app-thing-attributes [thing]="thing"></app-thing-attributes>
+                                <app-template-attributes [template]="template"></app-template-attributes>
+                            </clr-tab-content>
+                        </clr-tab>
+                        <clr-tab>
+                            <button clrTabLink>Sensors</button>
+                            <clr-tab-content>
+                                <app-sensors [sensors]="template.sensors"></app-sensors>
+                            </clr-tab-content>
+                        </clr-tab>
+                        <clr-tab>
+                            <button clrTabLink>Actuators</button>
+                            <clr-tab-content>
+                                <app-actuators></app-actuators>
                             </clr-tab-content>
                         </clr-tab>
                     </clr-tabs>
@@ -31,7 +43,7 @@
                         </button>
                     </div>
                     <div class="clr-col text-right">
-                        <button class="btn btn-primary" (click)="save()" [disabled]="!thingForm.valid">
+                        <button class="btn btn-primary" (click)="save()" [disabled]="!templateForm.valid">
                             <clr-icon shape="floppy"></clr-icon> Save
                         </button>
                     </div>

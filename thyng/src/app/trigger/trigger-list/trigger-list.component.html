@@ -25,7 +25,6 @@
                         <clr-dg-cell>{{trigger.eventType}}</clr-dg-cell>
                         <clr-dg-cell>
                             <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0;">
-                                <button class="btn" routerLink="0" [queryParams]="{templateTriggerId: trigger.id}"><clr-icon shape="copy"></clr-icon></button>
                                 <button class="btn" (click)="delete(trigger)"><clr-icon shape="trash"></clr-icon></button>
                             </div>
                         </clr-dg-cell>

@@ -10,7 +10,7 @@ import { ThingStatus } from './thing-status.enum';
 })
 export class ThingService {
 
-  baseUrl: string = 'http://localhost:8080/things';
+  baseUrl: string = 'http://localhost:4567/things';
 
   constructor(private http: HttpClient) { }
 
@@ -29,9 +29,7 @@ export class ThingService {
       name: '',
       status: ThingStatus.OFFLINE,
       inactivityPeriod: 60,
-      attributes: new Map<string, string>(),
-      sensors: [],
-      actuators: []
+      attributes: new Map<string, string>()
     };
   }
 

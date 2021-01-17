@@ -1,5 +1,3 @@
-import { Actuator } from './thing-editor/actuators/actuator';
-import { Sensor } from './thing-editor/sensors/sensor';
 import { ThingStatus } from './thing-status.enum';
 
 export interface Thing {
@@ -8,6 +6,4 @@ export interface Thing {
     status: ThingStatus;
     inactivityPeriod: number;
     attributes: any;
-    sensors: Sensor[];
-    actuators: Actuator[];
 }

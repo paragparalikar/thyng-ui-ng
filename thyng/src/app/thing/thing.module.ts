@@ -8,8 +8,6 @@ import { ClrButtonGroupModule, ClrButtonModule, ClrDatagridModule, ClrFormsModul
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ThingDetailsComponent } from './thing-editor/thing-details/thing-details.component';
-import { SensorsComponent } from './thing-editor/sensors/sensors.component';
-import { ActuatorsComponent } from './thing-editor/actuators/actuators.component';
 import { ThingAttributesComponent } from './thing-editor/thing-attributes/thing-attributes.component';
 
 const routes: Routes = [
@@ -19,7 +17,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [ThingListComponent, ThingEditorComponent, ThingDetailsComponent, SensorsComponent, ActuatorsComponent, ThingAttributesComponent],
+  declarations: [ThingListComponent, ThingEditorComponent, ThingDetailsComponent, ThingAttributesComponent],
   imports: [
     CommonModule,
     HttpClientModule,
