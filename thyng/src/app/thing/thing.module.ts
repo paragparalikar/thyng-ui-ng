@@ -8,6 +8,7 @@ import { ClrButtonGroupModule, ClrButtonModule, ClrDatagridModule, ClrFormsModul
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ThingDetailsComponent } from './thing-editor/thing-details/thing-details.component';
+import { TemplateModule } from '../template/template.module';
 import { ThingAttributesComponent } from './thing-editor/thing-attributes/thing-attributes.component';
 
 const routes: Routes = [

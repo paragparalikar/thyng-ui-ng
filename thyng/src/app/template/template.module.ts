@@ -32,6 +32,7 @@ const routes: Routes = [
     ClrTextareaModule,
     ClrTabsModule,
     RouterModule.forChild(routes)
-  ]
+  ],
+  exports: [TemplateAttributesComponent, SensorsComponent, ActuatorsComponent]
 })
 export class TemplateModule { }

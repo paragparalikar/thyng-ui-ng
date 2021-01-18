@@ -11,7 +11,7 @@ import { Template } from '../../template';
 export class TemplateAttributesComponent {
 
   @Input() attributes: Attribute[] = [];
-
+  
   create(){
     this.attributes.push({
       id: '',

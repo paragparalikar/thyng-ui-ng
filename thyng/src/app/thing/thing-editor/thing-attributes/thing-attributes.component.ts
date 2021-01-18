@@ -1,19 +1,18 @@
 import { Component, Input } from '@angular/core';
-import { ControlContainer, NgForm } from '@angular/forms';
 import { Attribute } from 'src/app/template/attribute';
-import { Thing } from '../../thing';
 
 @Component({
   selector: 'app-thing-attributes',
   templateUrl: './thing-attributes.component.html',
-  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
+  styles: [
+  ]
 })
 export class ThingAttributesComponent {
 
-  @Input() thing!: Thing;
+  @Input() attributes: Attribute[] = [];
   
   create(){
-    this.thing.attributes.push({
+    this.attributes.push({
       id: '',
       name: '',
       value: ''
@@ -21,7 +20,8 @@ export class ThingAttributesComponent {
   }
 
   delete(attribute: Attribute){
-    this.thing.attributes.splice(this.thing.attributes.indexOf(attribute), 1);
+    this.attributes.splice(this.attributes.indexOf(attribute), 1);
   }
+
 
 }

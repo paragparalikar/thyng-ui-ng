@@ -8,7 +8,8 @@
         <span>
             <clr-input-container class="compact">
                 <label hidden></label>
-                <input clrInput [(ngModel)]="attribute.name" class="no-validation-icon" [name]="'name'+i" placeholder="Name" required maxlength="255"/>
+                <input clrInput [(ngModel)]="attribute.name" class="no-validation-icon" 
+                    [name]="'name'+i" placeholder="Name" required maxlength="255"/>
                 <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
             </clr-input-container>
         </span>
@@ -17,7 +18,8 @@
         <span>
             <clr-input-container class="compact">
                 <label hidden></label>
-                <input clrInput [(ngModel)]="attribute.value" class="no-validation-icon" [name]="'value'+i" placeholder="Value" required maxlength="255"/>
+                <input clrInput [(ngModel)]="attribute.value" class="no-validation-icon" 
+                [name]="'value'+i" placeholder="Value" required maxlength="255"/>
                 <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
             </clr-input-container>
         </span>
