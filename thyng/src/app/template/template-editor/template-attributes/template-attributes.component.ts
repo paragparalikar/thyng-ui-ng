@@ -10,10 +10,10 @@ import { Template } from '../../template';
 })
 export class TemplateAttributesComponent {
 
-  @Input() template!: Template;
+  @Input() attributes: Attribute[] = [];
 
   create(){
-    this.template.attributes.push({
+    this.attributes.push({
       id: '',
       name: '',
       value: ''
@@ -21,7 +21,7 @@ export class TemplateAttributesComponent {
   }
 
   delete(attribute: Attribute){
-    this.template.attributes.splice(this.template.attributes.indexOf(attribute), 1);
+    this.attributes.splice(this.attributes.indexOf(attribute), 1);
   }
 
 }
