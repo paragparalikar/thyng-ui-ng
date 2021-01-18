@@ -1,5 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { Attribute } from 'src/app/template/attribute';
 import { Thing } from '../../thing';
 
 @Component({
@@ -10,33 +11,18 @@ import { Thing } from '../../thing';
 })
 export class ThingAttributesComponent {
 
-  private _thing!: Thing;
-  attributes: [string, string][] = [];
-
-  @Input()
-  get thing(): Thing {
-    return this._thing!;
-  }
-  set thing(thing: Thing) {
-    this._thing = thing;
-    this.attributes = Object.entries<string>(thing.attributes);
-  }
-
+  @Input() thing!: Thing;
+  
   create(){
-    this.attributes.push(['','']);
-    this.update();
-  }
-
-  update(){
-    this._thing.attributes = {};
-    this.attributes.forEach(attribute => {
-      this._thing.attributes[attribute[0]] = attribute[1];
+    this.thing.attributes.push({
+      id: '',
+      name: '',
+      value: ''
     });
   }
 
-  delete(attribute: any){
-    this.attributes.splice(this.attributes.indexOf(attribute), 1);
-    this.update();
+  delete(attribute: Attribute){
+    this.thing.attributes.splice(this.thing.attributes.indexOf(attribute), 1);
   }
 
 }

@@ -1,3 +1,4 @@
+import { Attribute } from '../template/attribute';
 import { ThingStatus } from './thing-status.enum';
 
 export interface Thing {
@@ -5,5 +6,5 @@ export interface Thing {
     name: string;
     status: ThingStatus;
     inactivityPeriod: number;
-    attributes: any;
+    attributes: Attribute[];
 }
