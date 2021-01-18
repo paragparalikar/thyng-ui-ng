@@ -1,34 +1,21 @@
-<p>thing-attributes works!</p>
-<div class="text-right">
-    <button class="btn btn-link" (click)="create()">
-        <clr-icon shape="plus"></clr-icon> Add Attribute
-    </button>
-</div>
 <div *ngFor="let attribute of attributes; let i = index" class="clr-row"> 
-    <div class="clr-col-5">
+    <div class="clr-col-6">
         <span>
-            <clr-input-container class="compact">
+            <clr-input-container>
                 <label hidden></label>
                 <input clrInput [(ngModel)]="attribute.name" class="no-validation-icon" 
                     [name]="'name'+i" placeholder="Name" required maxlength="255" readonly disabled/>
             </clr-input-container>
         </span>
     </div>
-    <div class="clr-col-5">
+    <div class="clr-col-6">
         <span>
-            <clr-input-container class="compact">
+            <clr-input-container>
                 <label hidden></label>
                 <input clrInput [(ngModel)]="attribute.value" class="no-validation-icon" 
                 [name]="'value'+i" placeholder="Value" required maxlength="255"/>
                 <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
             </clr-input-container>
-        </span>
-    </div>
-    <div class="clr-col-2 text-right">
-        <span>
-            <button class="btn btn-link btn-icon" (click)="delete(attribute)">
-                <clr-icon shape="trash"></clr-icon>
-            </button>
         </span>
     </div>
 </div>
