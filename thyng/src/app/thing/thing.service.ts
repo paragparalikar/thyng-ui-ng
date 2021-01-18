@@ -29,7 +29,7 @@ export class ThingService {
       name: '',
       status: ThingStatus.OFFLINE,
       inactivityPeriod: 60,
-      attributes: new Map<string, string>()
+      attributes: []
     };
   }
 

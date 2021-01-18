@@ -1,5 +1,4 @@
-import { KeyValue } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Attribute } from 'src/app/template/attribute';
 import { Thing } from '../../thing';
 

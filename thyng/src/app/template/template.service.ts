@@ -27,7 +27,7 @@ export class TemplateService {
       id: undefined,
       name: '',
       inactivityPeriod: 60,
-      attributes: new Map<string, string>(),
+      attributes: [],
       sensors: [],
       actuators: []
     };
