@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Sensor } from './sensor';
 
 @Component({
   selector: 'app-sensors',
   templateUrl: './sensors.component.html',
-  styles: [
-  ]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class SensorsComponent implements OnInit {
 

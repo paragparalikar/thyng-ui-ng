@@ -43,7 +43,7 @@
                         </button>
                     </div>
                     <div class="clr-col text-right">
-                        <button class="btn btn-primary" (click)="save()" [disabled]="!templateForm.valid">
+                        <button class="btn btn-primary" (click)="save()" [disabled]="templateForm.untouched || templateForm.invalid">
                             <clr-icon shape="floppy"></clr-icon> Save
                         </button>
                     </div>
