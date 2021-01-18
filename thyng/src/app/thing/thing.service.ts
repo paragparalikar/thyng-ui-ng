@@ -27,6 +27,7 @@ export class ThingService {
     return {
       id: undefined,
       name: '',
+      templateId: '',
       status: ThingStatus.OFFLINE,
       inactivityPeriod: 60,
       attributes: []

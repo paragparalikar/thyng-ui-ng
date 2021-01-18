@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ThingListComponent } from './thing-list/thing-list.component';
 import { ThingEditorComponent } from './thing-editor/thing-editor.component';
 import { Routes, RouterModule } from '@angular/router';
-import { ClrButtonGroupModule, ClrButtonModule, ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrTabsModule, ClrTextareaModule } from '@clr/angular';
+import { ClrButtonGroupModule, ClrButtonModule, ClrComboboxModule, ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrSelectModule, ClrTabsModule, ClrTextareaModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ThingDetailsComponent } from './thing-editor/thing-details/thing-details.component';
@@ -30,6 +30,8 @@ const routes: Routes = [
     ClrButtonGroupModule,
     ClrTextareaModule,
     ClrTabsModule,
+    ClrSelectModule,
+    ClrComboboxModule,
     RouterModule.forChild(routes)
   ]
 })
