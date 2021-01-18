@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { AttributesTransformer } from 'src/app/shared/transforms/attributes-transformer';
 import { Template } from 'src/app/template/template';
 import { TemplateService } from 'src/app/template/template.service';
@@ -9,8 +10,7 @@ import { ThingService } from '../../thing.service';
 @Component({
   selector: 'app-thing-details',
   templateUrl: './thing-details.component.html',
-  styles: [
-  ]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class ThingDetailsComponent implements OnInit {
 

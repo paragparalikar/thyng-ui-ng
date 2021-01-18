@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { Attribute } from 'src/app/template/attribute';
 import { Thing } from '../../thing';
 
 @Component({
   selector: 'app-thing-attributes',
   templateUrl: './thing-attributes.component.html',
-  styles: [
-  ]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class ThingAttributesComponent {
 

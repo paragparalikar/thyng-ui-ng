@@ -3,14 +3,13 @@
         <clr-icon shape="plus"></clr-icon> Add Sensor
     </button>
 </div>
-<div *ngFor="let sensor of sensors" class="clr-row"> 
+<div *ngFor="let sensor of sensors; let i = index" class="clr-row"> 
     <div class="clr-col-5">
         <span>
             <clr-input-container class="compact">
                 <label hidden></label>
-                <input clrInput [(ngModel)]="sensor.name" class="no-validation-icon" name="name" placeholder="Name" required minlength="3"/>
+                <input clrInput [(ngModel)]="sensor.name" class="no-validation-icon" [name]="'name'+i" placeholder="Name" required maxlength="255"/>
                 <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
-                <clr-control-error *clrIfError="'minlength'; error as err">Name must be at least {{ err.requiredLength }} characters</clr-control-error>
             </clr-input-container>
         </span>
     </div>
@@ -18,7 +17,7 @@
         <span>
             <clr-input-container class="compact">
                 <label hidden></label>
-                <input clrInput [(ngModel)]="sensor.unit" class="no-validation-icon" name="unit" placeholder="Unit" required/>
+                <input clrInput [(ngModel)]="sensor.unit" class="no-validation-icon" [name]="'unit'+i" placeholder="Unit" required maxlength="255"/>
                 <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
             </clr-input-container>
         </span>
