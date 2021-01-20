@@ -7,6 +7,7 @@ import { Sensor } from './sensor';
 @Component({
   selector: 'app-sensors',
   templateUrl: './sensors.component.html',
+  styleUrls: ['./sensor.component.css'],
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class SensorsComponent implements OnInit {

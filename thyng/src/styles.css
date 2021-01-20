@@ -28,14 +28,12 @@ html{
     margin-top: 0;
     padding-top: 0;
     padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
-
-.clr-error .no-validation-icon + .clr-validate-icon {
-    display: none;
-}
-.no-validation-icon.clr-input, .no-validation-icon.clr-select{
+.inline-control {
     width:-webkit-fill-available;
 }
-.no-validation-icon.clr-col-12 {
-    padding-right: 0;
+.inline-control+.clr-validate-icon {
+    display: none;
 }

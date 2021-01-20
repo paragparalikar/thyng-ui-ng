@@ -8,25 +8,25 @@
         <span>
             <clr-input-container class="compact">
                 <label hidden></label>
-                <input clrInput [(ngModel)]="sensor.name" class="no-validation-icon" [name]="'name'+i" placeholder="Name" required maxlength="255"/>
+                <input clrInput [(ngModel)]="sensor.name" class="inline-control" [name]="'name'+i" placeholder="Name" required maxlength="255"/>
                 <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
             </clr-input-container>
         </span>
     </div>
-    <div class="clr-col-3">
+    <div class="clr-col-3 compact">
         <span>
             <clr-input-container class="compact">
                 <label hidden></label>
-                <input clrInput [(ngModel)]="sensor.unit" class="no-validation-icon" [name]="'unit'+i" placeholder="Unit" required maxlength="255"/>
+                <input clrInput [(ngModel)]="sensor.unit" class="inline-control" [name]="'unit'+i" placeholder="Unit" required maxlength="255"/>
                 <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
             </clr-input-container>
         </span>
     </div>
-    <div class="clr-col-3">
+    <div class="clr-col-3 compact">
         <span>
             <clr-select-container class="compact">
                 <label hidden></label>
-                <select clrSelect name="options" [(ngModel)]="sensor.dataType" class="no-validation-icon" [name]="'dataType'+i" required>
+                <select clrSelect name="options" [(ngModel)]="sensor.dataType" class="inline-control" [name]="'dataType'+i" required>
                     <option *ngFor="let dataType of DataType.values()" [value]="dataType">{{dataType}}</option>
                   </select>
                   <clr-control-error *clrIfError="'required'">Data Type is a required field</clr-control-error>
