@@ -3,41 +3,25 @@
         <clr-icon shape="plus"></clr-icon> Add Sensor
     </button>
 </div>
-<div *ngFor="let sensor of sensors; let i = index" class="clr-row"> 
-    <div class="clr-col-5">
-        <span>
-            <clr-input-container class="compact">
-                <label hidden></label>
-                <input clrInput [(ngModel)]="sensor.name" class="inline-control" [name]="'name'+i" placeholder="Name" required maxlength="255"/>
-                <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
-            </clr-input-container>
-        </span>
-    </div>
-    <div class="clr-col-3 compact">
-        <span>
-            <clr-input-container class="compact">
-                <label hidden></label>
-                <input clrInput [(ngModel)]="sensor.unit" class="inline-control" [name]="'unit'+i" placeholder="Unit" required maxlength="255"/>
-                <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
-            </clr-input-container>
-        </span>
-    </div>
-    <div class="clr-col-3 compact">
-        <span>
-            <clr-select-container class="compact">
-                <label hidden></label>
-                <select clrSelect name="options" [(ngModel)]="sensor.dataType" class="inline-control" [name]="'dataType'+i" required>
-                    <option *ngFor="let dataType of DataType.values()" [value]="dataType">{{dataType}}</option>
-                  </select>
-                  <clr-control-error *clrIfError="'required'">Data Type is a required field</clr-control-error>
-            </clr-select-container>
-        </span>
-    </div>
-    <div class="clr-col-1 text-right">
-        <span>
-            <button class="btn btn-link btn-icon" (click)="delete(sensor)">
-                <clr-icon shape="trash"></clr-icon>
-            </button>
-        </span>
-    </div>
+<div *ngFor="let sensor of sensors; let i = index" class="clr-row">
+    <clr-input-container class="compact clr-col-5">
+        <label hidden></label>
+        <input clrInput [(ngModel)]="sensor.name" class="inline-control compact" [name]="'name'+i" placeholder="Name" required maxlength="255"/>
+        <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
+    </clr-input-container>
+    <clr-input-container class="compact clr-col-4">
+        <label hidden></label>
+        <input clrInput [(ngModel)]="sensor.unit" class="inline-control compact" [name]="'unit'+i" placeholder="Unit" required maxlength="255"/>
+        <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
+    </clr-input-container>
+    <clr-select-container class="compact clr-col-4">
+        <label hidden></label>
+        <select clrSelect name="options" [(ngModel)]="sensor.dataType" class="inline-control compact" [name]="'dataType'+i" required>
+            <option *ngFor="let dataType of DataType.values()" [value]="dataType">{{dataType}}</option>
+          </select>
+          <clr-control-error *clrIfError="'required'">Data Type is a required field</clr-control-error>
+    </clr-select-container>
+    <button class="btn btn-link btn-icon" (click)="delete(sensor)">
+        <clr-icon shape="trash"></clr-icon>
+    </button>
 </div>

@@ -31,9 +31,15 @@ html{
     padding-left: 0;
     padding-right: 0;
 }
-.inline-control {
-    width:-webkit-fill-available;
+.compact:first-child {
+    padding-left: 0.6rem;
 }
 .inline-control+.clr-validate-icon {
     display: none;
+}
+.inline-control.clr-input,
+.inline-control.clr-select,
+.inline-control > .clr-select-wrapper {
+    width: 100%;
+    
 }
