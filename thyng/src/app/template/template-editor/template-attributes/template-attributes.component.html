@@ -4,31 +4,19 @@
     </button>
 </div>
 <div *ngFor="let attribute of attributes; let i = index" class="clr-row"> 
-    <div class="clr-col-5">
-        <span>
-            <clr-input-container class="compact">
-                <label hidden></label>
-                <input clrInput [(ngModel)]="attribute.name" class="no-validation-icon" 
-                    [name]="'name'+i" placeholder="Name" required maxlength="255"/>
-                <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
-            </clr-input-container>
-        </span>
-    </div>
-    <div class="clr-col-5">
-        <span>
-            <clr-input-container class="compact">
-                <label hidden></label>
-                <input clrInput [(ngModel)]="attribute.value" class="no-validation-icon" 
-                [name]="'value'+i" placeholder="Value" required maxlength="255"/>
-                <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
-            </clr-input-container>
-        </span>
-    </div>
-    <div class="clr-col-2 text-right">
-        <span>
-            <button class="btn btn-link btn-icon" (click)="delete(attribute)">
-                <clr-icon shape="trash"></clr-icon>
-            </button>
-        </span>
-    </div>
+    <clr-input-container class="compact clr-col-6">
+        <label hidden></label>
+        <input clrInput [(ngModel)]="attribute.name" class="inline-control compact" 
+            [name]="'name'+i" placeholder="Name" required maxlength="255"/>
+        <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
+    </clr-input-container>
+    <clr-input-container class="compact clr-col-6">
+        <label hidden></label>
+        <input clrInput [(ngModel)]="attribute.value" class="inline-control compact" 
+        [name]="'value'+i" placeholder="Value" required maxlength="255"/>
+        <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
+    </clr-input-container>
+    <button class="btn btn-link btn-icon" (click)="delete(attribute)">
+        <clr-icon shape="trash"></clr-icon>
+    </button>
 </div>

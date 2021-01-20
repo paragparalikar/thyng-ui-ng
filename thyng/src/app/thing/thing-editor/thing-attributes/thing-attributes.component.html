@@ -1,21 +1,13 @@
 <div *ngFor="let attribute of attributes; let i = index" class="clr-row"> 
-    <div class="clr-col-6">
-        <span>
-            <clr-input-container>
-                <label hidden></label>
-                <input clrInput [(ngModel)]="attribute.name" class="no-validation-icon" 
-                    [name]="'name'+i" placeholder="Name" required maxlength="255" readonly disabled/>
-            </clr-input-container>
-        </span>
-    </div>
-    <div class="clr-col-6">
-        <span>
-            <clr-input-container>
-                <label hidden></label>
-                <input clrInput [(ngModel)]="attribute.value" class="no-validation-icon" 
-                [name]="'value'+i" placeholder="Value" required maxlength="255"/>
-                <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
-            </clr-input-container>
-        </span>
-    </div>
+    <clr-input-container class="compact clr-col-6">
+        <label hidden></label>
+        <input clrInput [(ngModel)]="attribute.name" class="inline-control compact" 
+            [name]="'name'+i" placeholder="Name" required maxlength="255" readonly disabled/>
+    </clr-input-container>
+    <clr-input-container class="compact clr-col-6">
+        <label hidden></label>
+        <input clrInput [(ngModel)]="attribute.value" class="inline-control compact" 
+        [name]="'value'+i" placeholder="Value" required maxlength="255"/>
+        <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
+    </clr-input-container>
 </div>
