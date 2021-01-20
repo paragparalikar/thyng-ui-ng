@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/shared/message';
-import { EventType } from '../event-type.enum';
-import { Language } from '../language.enum';
+import { EventType } from '../../shared/event-type.enum';
+import { Language } from '../../shared/language.enum';
 import { Trigger } from '../trigger';
 import { TriggerService } from '../trigger.service';
 

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ClrDatagridSortOrder } from '@clr/angular';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Message } from 'src/app/shared/message';
-import { EventType } from '../event-type.enum';
-import { Language } from '../language.enum';
+import { EventType } from '../../shared/event-type.enum';
+import { Language } from '../../shared/language.enum';
 import { Trigger } from '../trigger';
 import { TriggerService } from '../trigger.service';
 

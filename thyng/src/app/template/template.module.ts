@@ -5,7 +5,7 @@ import { TemplateEditorComponent } from './template-editor/template-editor.compo
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule, ClrTabsModule } from '@clr/angular';
+import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule, ClrTabsModule, ClrSelectModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
 import { TemplateAttributesComponent } from './template-editor/template-attributes/template-attributes.component';
 import { TemplateDetailsComponent } from './template-editor/template-details/template-details.component';
@@ -31,6 +31,7 @@ const routes: Routes = [
     ClrButtonGroupModule,
     ClrTextareaModule,
     ClrTabsModule,
+    ClrSelectModule,
     RouterModule.forChild(routes)
   ],
   exports: [TemplateAttributesComponent, SensorsComponent, ActuatorsComponent]

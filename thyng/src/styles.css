@@ -8,6 +8,7 @@ html{
 .clr-input, .clr-select {
     width: 130px;
 }
+
 .card{
     width: fit-content;
     margin-top: 0;
@@ -31,4 +32,10 @@ html{
 
 .clr-error .no-validation-icon + .clr-validate-icon {
     display: none;
+}
+.no-validation-icon.clr-input, .no-validation-icon.clr-select{
+    width:-webkit-fill-available;
+}
+.no-validation-icon.clr-col-12 {
+    padding-right: 0;
 }

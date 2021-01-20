@@ -1,5 +1,5 @@
-import { EventType } from './event-type.enum';
-import { Language } from './language.enum';
+import { EventType } from '../shared/event-type.enum';
+import { Language } from '../shared/language.enum';
 
 export interface Trigger {
     id?: string;

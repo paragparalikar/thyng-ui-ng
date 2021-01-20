@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EventType } from './event-type.enum';
-import { Language } from './language.enum';
+import { EventType } from '../shared/event-type.enum';
+import { Language } from '../shared/language.enum';
 import { Trigger } from './trigger';
 
 @Injectable({

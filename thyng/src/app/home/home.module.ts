@@ -13,6 +13,7 @@ const routes: Routes = [
       {path: 'landing', component: LandingPageComponent},
       {path: 'templates', loadChildren: () => import('../template/template.module').then(m => m.TemplateModule)},
       {path: 'things', loadChildren: () => import('../thing/thing.module').then(m => m.ThingModule)},
+      {path: 'thing-groups', loadChildren: () => import('../thing-group/thing-group.module').then(m => m.ThingGroupModule)},
       {path: 'triggers', loadChildren: () => import('../trigger/trigger.module').then(m => m.TriggerModule)}
     ]
   }

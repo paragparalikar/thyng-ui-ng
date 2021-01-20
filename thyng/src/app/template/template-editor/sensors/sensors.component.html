@@ -13,7 +13,7 @@
             </clr-input-container>
         </span>
     </div>
-    <div class="clr-col-5">
+    <div class="clr-col-3">
         <span>
             <clr-input-container class="compact">
                 <label hidden></label>
@@ -22,7 +22,18 @@
             </clr-input-container>
         </span>
     </div>
-    <div class="clr-col-2 text-right">
+    <div class="clr-col-3">
+        <span>
+            <clr-select-container class="compact">
+                <label hidden></label>
+                <select clrSelect name="options" [(ngModel)]="sensor.dataType" class="no-validation-icon" [name]="'dataType'+i" required>
+                    <option *ngFor="let dataType of DataType.values()" [value]="dataType">{{dataType}}</option>
+                  </select>
+                  <clr-control-error *clrIfError="'required'">Data Type is a required field</clr-control-error>
+            </clr-select-container>
+        </span>
+    </div>
+    <div class="clr-col-1 text-right">
         <span>
             <button class="btn btn-link btn-icon" (click)="delete(sensor)">
                 <clr-icon shape="trash"></clr-icon>

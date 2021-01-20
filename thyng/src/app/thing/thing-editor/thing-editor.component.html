@@ -31,7 +31,7 @@
                         </button>
                     </div>
                     <div class="clr-col text-right">
-                        <button class="btn btn-primary" (click)="save()" [disabled]="!thingForm.valid">
+                        <button class="btn btn-primary" (click)="save()" [disabled]="thingForm.untouched || thingForm.invalid">
                             <clr-icon shape="floppy"></clr-icon> Save
                         </button>
                     </div>

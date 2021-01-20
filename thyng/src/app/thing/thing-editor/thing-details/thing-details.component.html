@@ -9,7 +9,7 @@
 </clr-input-container>
 <clr-select-container>
     <label>Template</label>
-    <select clrSelect name="options" [(ngModel)]="thing.templateId" required>
+    <select clrSelect name="options" [ngModel]="thing.templateId" (ngModelChange)="onTemplateSelected($event)" required>
       <option *ngFor="let template of templates" [value]="template.id">{{template.name}}</option>
     </select>
     <clr-control-error *clrIfError="'required'">Template is a required field</clr-control-error>

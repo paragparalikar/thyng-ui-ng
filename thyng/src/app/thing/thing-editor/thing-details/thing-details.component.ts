@@ -36,11 +36,11 @@ export class ThingDetailsComponent implements OnInit {
     });
   }
 
-  update(): void {
-    console.log(this.selectedTemplate);
-    if(this.selectedTemplate && this.selectedTemplate.id) {
-      this.thing.templateId = this.selectedTemplate.id;
-    }
+  onTemplateSelected(templateId: string){
+    this.thing.templateId = templateId;
+    this.templateService.findById(templateId).subscribe(
+      template => this.thing.attributes = template.attributes
+    );
   }
 
 }
