@@ -24,6 +24,9 @@ html{
     color: var(--clr-forms-text-color, black);
     margin-right: 0.5rem;
 }
+.clr-combobox-wrapper.multi{
+    min-width: 8.4rem;
+}
 
 .compact{
     margin-top: 0;

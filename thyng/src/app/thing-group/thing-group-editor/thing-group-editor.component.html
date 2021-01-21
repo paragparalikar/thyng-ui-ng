@@ -22,13 +22,13 @@
                         </clr-tab>
                         <clr-tab *ngIf="'TEMPLATE' === thingGroup.type">
                             <button clrTabLink>Templates</button>
-                            <clr-tab-content *clrIfActive>
+                            <clr-tab-content *clrIfActive="false">
                                 <app-thing-group-templates [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-templates>
                             </clr-tab-content>
                         </clr-tab>
                         <clr-tab *ngIf="'THING' === thingGroup.type">
                             <button clrTabLink>Things</button>
-                            <clr-tab-content *clrIfActive>
+                            <clr-tab-content *clrIfActive="false">
                                 <app-thing-group-things [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-things>
                             </clr-tab-content>
                         </clr-tab>

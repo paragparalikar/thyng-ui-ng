@@ -15,13 +15,11 @@
                 <app-local-message [message]="message"></app-local-message>
                  <clr-datagrid class="datagrid-compact">
                     <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
-                    <clr-dg-column [clrDgField]="'type'">Type</clr-dg-column>
                     <clr-dg-column>Actions</clr-dg-column>
                     <clr-dg-row *clrDgItems="let thingGroup of thingGroups">
                         <clr-dg-cell>
                             <a href="javascript://" [routerLink]="thingGroup.id">{{thingGroup.name}}</a>
                         </clr-dg-cell>
-                        <clr-dg-cell>{{thingGroup.type}}</clr-dg-cell>
                         <clr-dg-cell>
                             <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0;">
                                 <button class="btn" (click)="delete(thingGroup)"><clr-icon shape="trash"></clr-icon></button>

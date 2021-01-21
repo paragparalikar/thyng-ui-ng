@@ -11,7 +11,7 @@ import { Trigger } from './trigger';
 })
 export class TriggerService {
 
-  baseUrl: string = 'http://localhost:8080/triggers';
+  baseUrl: string = 'http://localhost:4567/triggers';
 
   constructor(private http: HttpClient) { }
 
@@ -29,8 +29,8 @@ export class TriggerService {
       id: undefined,
       name: '',
       enabled: true,
-      evaluationScript: '',
-      thingSelectionScript: '',
+      script: '',
+      thingGroupIds: [],
       eventType: EventType.TELEMETRY,
       language: Language.SQL,
       window: undefined

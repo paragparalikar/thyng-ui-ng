@@ -7,7 +7,7 @@
     <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
     <clr-dg-row *clrDgItems="let thing of things" [clrDgItem]="thing">
         <clr-dg-cell>
-            <a href="javascript://" [routerLink]="'/templates/'+thing.id">{{thing.name}}</a>
+            <a href="javascript://" [routerLink]="'/things/'+thing.id">{{thing.name}}</a>
         </clr-dg-cell>
     </clr-dg-row>
     <clr-dg-footer>

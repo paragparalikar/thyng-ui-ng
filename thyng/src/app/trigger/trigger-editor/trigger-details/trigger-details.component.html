@@ -4,12 +4,36 @@
 </clr-control-container>
 <clr-input-container>
     <label>Name</label>
-    <input clrInput type="text" [(ngModel)]="trigger.name" name="name" required minlength=3 [readOnly]="readOnly" /> 
+    <input clrInput type="text" [(ngModel)]="trigger.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
     <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
-    <clr-control-error *clrIfError="'minlength'; error as err">Name must be at least {{ err.requiredLength }} characters</clr-control-error>
 </clr-input-container>
-<clr-control-container *ngIf="trigger?.id">
-    <label>Enabled</label> 
-    <clr-icon shape="check" class="is-success" *ngIf="trigger?.enabled"></clr-icon>
-    <clr-icon shape="times" class="is-danger" *ngIf="!trigger?.enabled"></clr-icon>
-</clr-control-container>
+<clr-toggle-container>
+    <label>Enabled</label>
+    <clr-toggle-wrapper>
+        <input type="checkbox" clrToggle [(ngModel)]="trigger.enabled" name="enabled"/>
+    </clr-toggle-wrapper>
+</clr-toggle-container>
+<clr-combobox-container>
+    <label>Target Thing Groups</label>
+    <clr-combobox [(ngModel)]="selectedThingGroups" [clrMulti]="true">
+        <ng-container *clrOptionSelected="let selected">
+            <clr-icon shape="node-group"></clr-icon> {{selected.name}}
+        </ng-container>
+        <clr-options>
+            <clr-option *clrOptionItems="let thingGroup of thingGroups; field:'name'" [clrValue]="thingGroup">
+                <clr-icon shape="node-group"></clr-icon> {{thingGroup.name}}                
+            </clr-option>
+        </clr-options>
+    </clr-combobox>
+</clr-combobox-container>
+<clr-radio-container>
+    <label>Event Type</label>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="eventType" [value]="EventType.TELEMETRY" [(ngModel)]="trigger.eventType" [readOnly]="readOnly" />
+        <label>Telemetry<br><span class="p8">Trigger will be evaluated against telemetry events only</span></label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="eventType" [value]="EventType.STATUS_CHANGE" [(ngModel)]="trigger.eventType" [readOnly]="readOnly" />
+        <label>Status Change<br><span class="p8">Trigger will evaluated only when status of a Thing changes</span></label>
+    </clr-radio-wrapper>
+</clr-radio-container>

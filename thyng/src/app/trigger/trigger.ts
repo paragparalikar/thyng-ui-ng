@@ -8,8 +8,8 @@ export interface Trigger {
     eventType: EventType;
 
     language: Language;
-    thingSelectionScript: string;
-    evaluationScript: string;
+    thingGroupIds: string[];
+    script: string;
     
     window?: Window;
 }
