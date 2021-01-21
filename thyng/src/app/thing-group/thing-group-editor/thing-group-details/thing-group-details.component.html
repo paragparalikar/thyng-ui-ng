@@ -1,0 +1,24 @@
+<clr-control-container *ngIf="thingGroup.id">
+    <label>Id</label> 
+    {{thingGroup.id}}
+</clr-control-container>
+<clr-input-container>
+    <label>Name</label>
+    <input clrInput type="text" [(ngModel)]="thingGroup.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
+    <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
+</clr-input-container>
+<clr-radio-container>
+    <label>Type</label>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="type" value="SCRIPT" [(ngModel)]="thingGroup.type" [readOnly]="readOnly" />
+        <label>Script<p class="p8 top">Provide a script that will be evaulated to determine target Things for this group</p></label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="type" value="TEMPLATE" [(ngModel)]="thingGroup.type" [readOnly]="readOnly" />
+        <label>Templates<p class="p8 top">All things belonging to selected templates will be part of this group</p></label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="type" value="THING" [(ngModel)]="thingGroup.type" [readOnly]="readOnly" />
+        <label>Manual<p class="p8 top">Manually select individual Things from a list</p></label>
+    </clr-radio-wrapper>
+</clr-radio-container>

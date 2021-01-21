@@ -2,17 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/shared/message';
 import { ThingGroup } from '../thing-group';
-import { ThingGroupType } from '../thing-group-type.enum';
 import { ThingGroupService } from '../thing-group.service';
 
 @Component({
   templateUrl: './thing-group-editor.component.html',
+  styleUrls: ['./thing-group-editor.component.css']
 })
 export class ThingGroupEditorComponent implements OnInit {
 
   thingGroup: ThingGroup;
   message?: Message;
-  ThingGroupType = ThingGroupType;
   readOnly: boolean = false;
   header: string = 'Create New Thing Group'
 

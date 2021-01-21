@@ -4,7 +4,6 @@ import { ClrDatagridSortOrder } from '@clr/angular';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Message } from 'src/app/shared/message';
 import { ThingGroup } from '../thing-group';
-import { ThingGroupType } from '../thing-group-type.enum';
 import { ThingGroupService } from '../thing-group.service';
 
 @Component({
@@ -17,7 +16,6 @@ export class ThingGroupListComponent implements OnInit {
 
   thingGroups: ThingGroup[] = [];
   message?: Message;
-  ThingGroupType = ThingGroupType;
   sortType = ClrDatagridSortOrder.ASC;
 
 

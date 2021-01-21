@@ -1,12 +1,9 @@
-import { Language } from '../shared/language.enum';
-import { ThingGroupType } from './thing-group-type.enum';
-
 export interface ThingGroup {
     id?: string;
     name: string;
-    type: ThingGroupType;
+    type: string;
     script?: string;
-    language?: Language;
+    language?: string;
     thingIds?: string[];
     templateIds?: string[];
 }

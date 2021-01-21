@@ -7,16 +7,32 @@
             <div class="card-block">
                 <app-local-message [message]="message"></app-local-message>
                 <form clrForm #thingGroupForm="ngForm">
-                    <clr-control-container *ngIf="thingGroup.id">
-                        <label>Id</label> 
-                        {{thingGroup.id}}
-                    </clr-control-container>
-                    <clr-input-container>
-                        <label>Name</label>
-                        <input clrInput type="text" [(ngModel)]="thingGroup.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
-                        <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
-                    </clr-input-container>
-                    
+                    <clr-tabs>
+                        <clr-tab>
+                            <button clrTabLink>Details</button>
+                            <clr-tab-content>
+                                <app-thing-group-details [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-details>
+                            </clr-tab-content>
+                        </clr-tab>
+                        <clr-tab *ngIf="'SCRIPT' === thingGroup.type">  
+                            <button clrTabLink>Script</button>
+                            <clr-tab-content>
+                                <app-thing-group-script [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-script>
+                            </clr-tab-content>
+                        </clr-tab>
+                        <clr-tab *ngIf="'TEMPLATE' === thingGroup.type">
+                            <button clrTabLink>Templates</button>
+                            <clr-tab-content *clrIfActive>
+                                <app-thing-group-templates [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-templates>
+                            </clr-tab-content>
+                        </clr-tab>
+                        <clr-tab *ngIf="'THING' === thingGroup.type">
+                            <button clrTabLink>Things</button>
+                            <clr-tab-content *clrIfActive>
+                                <app-thing-group-things [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-things>
+                            </clr-tab-content>
+                        </clr-tab>
+                    </clr-tabs>
                 </form>
             </div>
             <div class="card-footer">
