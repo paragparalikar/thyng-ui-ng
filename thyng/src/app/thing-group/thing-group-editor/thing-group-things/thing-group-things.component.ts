@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
 import { Thing } from 'src/app/thing/thing';
 import { ThingService } from 'src/app/thing/thing.service';
@@ -7,8 +8,7 @@ import { ThingGroup } from '../../thing-group';
 @Component({
   selector: 'app-thing-group-things',
   templateUrl: './thing-group-things.component.html',
-  styles: [
-  ]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class ThingGroupThingsComponent {
 

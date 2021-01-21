@@ -1,1 +1,13 @@
-<p>trigger-scripts works!</p>
+<clr-select-container>
+    <label>Language</label>
+    <select clrSelect name="language" [(ngModel)]="trigger.language" [disabled]="readOnly" required>
+        <option value='SQL'>Sql</option>
+        <option value='PYTHON'>Python</option>
+        <option value='JAVASCRIPT'>Javascript</option>
+    </select>
+</clr-select-container>
+<clr-textarea-container>
+    <label>Script</label>
+    <textarea name="script" clrTextarea required [(ngModel)]="trigger.script" [readOnly]="readOnly"></textarea>
+    <clr-control-error *clrIfError="'required'">Script is required</clr-control-error>
+</clr-textarea-container>

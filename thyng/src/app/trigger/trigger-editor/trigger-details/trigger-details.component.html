@@ -15,7 +15,8 @@
 </clr-toggle-container>
 <clr-combobox-container>
     <label>Target Thing Groups</label>
-    <clr-combobox [(ngModel)]="selectedThingGroups" [clrMulti]="true">
+    <clr-combobox name="thingGroups" [(ngModel)]="selectedThingGroups" [clrMulti]="true" 
+        (clrSelectionChange)="onThingGroupSelectionChanged($event.model)">
         <ng-container *clrOptionSelected="let selected">
             <clr-icon shape="node-group"></clr-icon> {{selected.name}}
         </ng-container>

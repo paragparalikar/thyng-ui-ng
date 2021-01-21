@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { EventType } from 'src/app/shared/event-type.enum';
 import { ThingGroup } from 'src/app/thing-group/thing-group';
 import { ThingGroupService } from 'src/app/thing-group/thing-group.service';
@@ -8,8 +9,7 @@ import { TriggerService } from '../../trigger.service';
 @Component({
   selector: 'app-trigger-details',
   templateUrl: './trigger-details.component.html',
-  styles: [
-  ]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class TriggerDetailsComponent implements OnInit {
 
@@ -34,4 +34,7 @@ export class TriggerDetailsComponent implements OnInit {
     );
   }
 
+  onThingGroupSelectionChanged(thingGroups: ThingGroup[]){
+    this.trigger.thingGroupIds = thingGroups.map(group => group.id!);
+  }
 }

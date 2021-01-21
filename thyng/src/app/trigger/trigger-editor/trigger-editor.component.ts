@@ -16,21 +16,21 @@ export class TriggerEditorComponent implements OnInit {
 
   header: string = 'Create New Thing';
   message?: Message;
-  trigger?: Trigger;
+  trigger: Trigger;
   readOnly: boolean = false;
   Language = Language;
   EventType = EventType;
 
   constructor(private route: ActivatedRoute,
-              private triggerService: TriggerService) { }
+              private triggerService: TriggerService) { 
+    this.trigger = triggerService.buildDefault();
+  }
 
   ngOnInit(): void {
     this.message = undefined;
     this.route.paramMap.subscribe(
       map => {
-        const triggerId = map.get('triggerId')!;
-        const templateTriggerId = map.get('templateTriggerId');
-        this.triggerService.findById(triggerId, templateTriggerId ? templateTriggerId : undefined).subscribe(
+        this.triggerService.findById(map.get('triggerId')!).subscribe(
           trigger => {
             this.trigger = trigger;
             this.header = this.trigger?.id ? `Edit ${this.trigger.name}` : 'Create New Trigger'
@@ -41,7 +41,16 @@ export class TriggerEditorComponent implements OnInit {
   }
 
   save(): void {
-
+    this.triggerService.save(this.trigger).subscribe(
+      trigger => {
+        this.trigger = trigger;
+        this.message = {
+          iconShape: 'check',
+          styleClasses: 'alert-success',
+          text: `Trigger ${this.trigger.name} has been saved successfully`
+        };
+      }
+    );
   }
 
 }

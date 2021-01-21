@@ -1,21 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { Trigger } from '../../trigger';
 import { TriggerService } from '../../trigger.service';
 
 @Component({
   selector: 'app-trigger-scripts',
   templateUrl: './trigger-scripts.component.html',
-  styles: [
-  ]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class TriggerScriptsComponent implements OnInit {
 
-  @Input() trigger: Trigger;
+  @Input() trigger!: Trigger;
   readOnly: boolean = false;
 
-  constructor(private triggerSerivce: TriggerService) {
-    this.trigger = triggerSerivce.buildDefault();
-  }
+  constructor(private triggerSerivce: TriggerService) {}
 
   ngOnInit(): void {
   }
