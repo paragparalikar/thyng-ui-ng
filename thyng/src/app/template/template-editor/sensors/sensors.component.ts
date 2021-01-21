@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { DataType } from './data-type.enum';
 import { Sensor } from './sensor';
 
 @Component({
@@ -13,7 +12,6 @@ import { Sensor } from './sensor';
 export class SensorsComponent implements OnInit {
 
   @Input() sensors: Sensor[] = [];
-  DataType = DataType;
 
   constructor(private confirmDialogService: ConfirmDialogService) { }
 
@@ -25,7 +23,7 @@ export class SensorsComponent implements OnInit {
       id: undefined,
       name: '',
       unit: '',
-      dataType: DataType.NUMBER
+      dataType: 'NUMBER'
     };
   }
 

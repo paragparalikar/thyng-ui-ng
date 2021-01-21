@@ -16,8 +16,10 @@
     </clr-input-container>
     <clr-select-container class="compact clr-col-4">
         <label hidden></label>
-        <select clrSelect name="options" [(ngModel)]="sensor.dataType" class="inline-control compact" [name]="'dataType'+i" required>
-            <option *ngFor="let dataType of DataType.values()" [value]="dataType">{{dataType}}</option>
+        <select clrSelect [(ngModel)]="sensor.dataType" class="inline-control compact" [name]="'dataType'+i" required>
+            <option value="TEXT">Text</option>
+            <option value="NUMBER">Number</option>
+            <option value="BOOLEAN">Boolean</option>
           </select>
           <clr-control-error *clrIfError="'required'">Data Type is a required field</clr-control-error>
     </clr-select-container>
