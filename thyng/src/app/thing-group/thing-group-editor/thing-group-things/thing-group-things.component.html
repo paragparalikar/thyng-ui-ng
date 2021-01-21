@@ -1,7 +1,11 @@
-<clr-datagrid [(clrDgSelected)]="thingGroup.thingIds" (clrDgRefresh)="refresh($event)" 
+<clr-datagrid 
+    [(clrDgSelected)]="selection" 
+    [clrDgLoading]="loading"  
+    (clrDgRefresh)="refresh($event)" 
+    (clrDgSelectedChange)="selectionChanged($event)"
     class="datagrid-compact">
     <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
-    <clr-dg-row *clrDgItems="let thing of things" [clrDgItem]="thing.id">
+    <clr-dg-row *clrDgItems="let thing of things" [clrDgItem]="thing">
         <clr-dg-cell>
             <a href="javascript://" [routerLink]="'/templates/'+thing.id">{{thing.name}}</a>
         </clr-dg-cell>

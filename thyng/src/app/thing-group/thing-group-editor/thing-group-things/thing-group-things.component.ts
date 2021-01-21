@@ -16,6 +16,7 @@ export class ThingGroupThingsComponent {
   @Input() readOnly!: boolean;
   sortType = ClrDatagridSortOrder.ASC;
   things: Thing[] = [];
+  selection: Thing[] = [];
   loading: boolean = true;
 
   constructor(private thingService: ThingService) { }
@@ -23,9 +24,18 @@ export class ThingGroupThingsComponent {
   refresh(state: ClrDatagridStateInterface) {
     this.loading = true;
     this.thingService.findAll().subscribe(
-      things => this.things = things,
+      things => {
+        this.things = things;
+        this.selection = things.filter(thing => this.thingGroup.thingIds?.includes(thing.id!));
+      },
+      error => console.log(error),
       () => this.loading = false
     );
+  }
+
+  selectionChanged(things: Thing[]) {
+    this.selection = things;
+    this.thingGroup.thingIds = things.map(thing => thing.id!);
   }
 
 }

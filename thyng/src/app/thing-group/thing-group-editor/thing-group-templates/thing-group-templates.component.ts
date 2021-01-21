@@ -13,20 +13,30 @@ import { ThingGroup } from '../../thing-group';
 export class ThingGroupTemplatesComponent {
 
   templates: Template[] = [];
+  selection: Template[] = [];
   @Input() thingGroup!: ThingGroup;
   @Input() readOnly!: boolean;
   sortType = ClrDatagridSortOrder.ASC;
   loading: boolean = true;
-  totalItems: number = 0;
   
   constructor(private templateService: TemplateService) { }
 
   refresh(state: ClrDatagridStateInterface) {
     this.loading = true;
     this.templateService.findAll().subscribe(
-      templates => this.templates = templates,
-      () => this. loading = false
+      templates => {
+        this.templates = templates;
+        this.selection = templates
+          .filter(template => this.thingGroup.templateIds?.includes(template.id!));
+      },
+      error => console.log(error),
+      () => this.loading = false
     );
+  }
+
+  selectionChanged(templates: Template[]) {
+    this.selection = templates;
+    this.thingGroup.templateIds = templates.map(template => template.id!);
   }
 
 }
