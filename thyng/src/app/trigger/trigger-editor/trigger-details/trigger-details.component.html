@@ -27,14 +27,14 @@
         </clr-options>
     </clr-combobox>
 </clr-combobox-container>
-<clr-radio-container>
+<clr-radio-container clrInline>
     <label>Event Type</label>
     <clr-radio-wrapper>
         <input type="radio" clrRadio name="eventType" [value]="EventType.TELEMETRY" [(ngModel)]="trigger.eventType" [readOnly]="readOnly" />
-        <label>Telemetry<br><span class="p8">Trigger will be evaluated against telemetry events only</span></label>
+        <label>Telemetry</label>
     </clr-radio-wrapper>
     <clr-radio-wrapper>
         <input type="radio" clrRadio name="eventType" [value]="EventType.STATUS_CHANGE" [(ngModel)]="trigger.eventType" [readOnly]="readOnly" />
-        <label>Status Change<br><span class="p8">Trigger will evaluated only when status of a Thing changes</span></label>
+        <label>Status Change</label>
     </clr-radio-wrapper>
 </clr-radio-container>

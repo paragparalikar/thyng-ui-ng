@@ -22,8 +22,9 @@ export class TriggerWindowComponent {
     this.window = {
       base: WindowBase.TIME,
       type: WindowType.SLIDING,
-      slidingInterval: 1800,
-      tumblingInterval: 300
+      span: 1800,
+      timeout: 1800,
+      slidingSpan: 300
     };
   }
 

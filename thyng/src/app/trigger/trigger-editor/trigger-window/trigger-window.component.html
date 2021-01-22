@@ -1,22 +1,35 @@
 <clr-select-container>
     <label>Window Type</label>
-    <select clrSelect name="windowType" [(ngModel)]="window.type">
-        <clr-options>
-            <clr-option [clrValue]="">None</clr-option>
-            <clr-option [clrValue]="WindowType.TUMBLING">Tumbling Window</clr-option>
-            <clr-option [clrValue]="WindowType.SLIDING">Sliding Window</clr-option>
-            <clr-option [clrValue]="WindowType.SESSION">Session Window</clr-option>
-        </clr-options>
+    <select clrSelect name="windowType" [(ngModel)]="window.type" [disabled]="readOnly">
+            <option [value]="">None</option>
+            <option [value]="WindowType.TUMBLING">Tumbling Window</option>
+            <option [value]="WindowType.SLIDING">Sliding Window</option>
+            <option [value]="WindowType.SESSION">Session Window</option>
     </select>
 </clr-select-container>
-<clr-radio-container>
+<clr-radio-container clrInline *ngIf="WindowType.TUMBLING === window.type || WindowType.SLIDING === window.type">
     <label>Based On</label>
-    <clr-radio-wrapper>
-        <input type="radio" clrRadio name="windowBase" [value]="WindowBase.COUNT" [(ngModel)]="window.base" [readOnly]="readOnly" />
-        <label>Count</label>
-    </clr-radio-wrapper>
     <clr-radio-wrapper>
         <input type="radio" clrRadio name="windowBase" [value]="WindowBase.TIME" [(ngModel)]="window.base" [readOnly]="readOnly" />
         <label>Time</label>
     </clr-radio-wrapper>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="windowBase" [value]="WindowBase.COUNT" [(ngModel)]="window.base" [readOnly]="readOnly" />
+        <label>Count</label>
+    </clr-radio-wrapper>
 </clr-radio-container>
+<clr-input-container *ngIf="WindowType.TUMBLING === window.type || WindowType.SLIDING === window.type">
+    <label>Tumbling Span</label>
+    <input clrInput type="number" [(ngModel)]="window.span" name="span" required min="2" [readOnly]="readOnly"/>
+    <clr-control-error *clrIfError="'required'">Tumbling span is a required</clr-control-error>
+</clr-input-container>
+<clr-input-container *ngIf="WindowType.SLIDING === window.type">
+    <label>Sliding Span</label>
+    <input clrInput type="number" [(ngModel)]="window.slidingSpan" name="slidingSpan" required min="1" [readOnly]="readOnly"/>
+    <clr-control-error *clrIfError="'required'">Sliding span is a required</clr-control-error>
+</clr-input-container>
+<clr-input-container *ngIf="WindowType.SESSION === window.type">
+    <label>Timeout</label>
+    <input clrInput type="number" [(ngModel)]="window.timeout" name="timeout" required min="300" [readOnly]="readOnly"/>
+    <clr-control-error *clrIfError="'required'">Timeout is a required</clr-control-error>
+</clr-input-container>

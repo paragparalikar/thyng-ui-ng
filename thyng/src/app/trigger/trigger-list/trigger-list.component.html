@@ -10,19 +10,11 @@
                 <app-local-message [message]="message"></app-local-message>
                  <clr-datagrid class="datagrid-compact">
                     <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
-                    <clr-dg-column [clrDgField]="'enabled'">Enabled</clr-dg-column>
-                    <clr-dg-column [clrDgField]="'language'">Language</clr-dg-column>
-                    <clr-dg-column [clrDgField]="'eventType'">Event Type</clr-dg-column>
                     <clr-dg-column>Actions</clr-dg-column>
                     <clr-dg-row *clrDgItems="let trigger of triggers">
                         <clr-dg-cell>
                             <a href="javascript://" [routerLink]="trigger.id">{{trigger.name}}</a>
                         </clr-dg-cell>
-                        <clr-dg-cell>
-                            <clr-icon shape="check" class="is-success" *ngIf="trigger.enabled"></clr-icon><clr-icon shape="times" class="is-danger" *ngIf="!trigger.enabled"></clr-icon> {{trigger.enabled ? 'Yes' : 'No'}}
-                        </clr-dg-cell>
-                        <clr-dg-cell>{{trigger.language}}</clr-dg-cell>
-                        <clr-dg-cell>{{trigger.eventType}}</clr-dg-cell>
                         <clr-dg-cell>
                             <div class="btn-group btn-link btn-icon" style="float: right; margin-right: 0;">
                                 <button class="btn" (click)="delete(trigger)"><clr-icon shape="trash"></clr-icon></button>
