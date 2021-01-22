@@ -8,9 +8,7 @@ import { ThingGroupService } from '../thing-group.service';
 
 @Component({
   selector: 'app-thing-group-list',
-  templateUrl: './thing-group-list.component.html',
-  styles: [
-  ]
+  templateUrl: './thing-group-list.component.html'
 })
 export class ThingGroupListComponent implements OnInit {
 

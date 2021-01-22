@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Language } from '../shared/language.enum';
 import { ThingGroup } from './thing-group';
 
 @Injectable({
@@ -24,10 +25,7 @@ buildDefault(): ThingGroup {
   return {
     id: undefined,
     name: '',
-    type: 'SCRIPT',
-    language: 'SQL',
-    thingIds: [],
-    templateIds: []
+    language: Language.SQL
   };
 }
 

@@ -29,8 +29,7 @@ export class ThingEditorComponent implements OnInit {
       map => {
         this.message = undefined;
         const thingId = map.get('thingId')!;
-        const templateThingId = this.route.snapshot.queryParamMap.get('templateThingId');
-        this.thingService.findById(thingId, templateThingId ? templateThingId : undefined).subscribe(
+        this.thingService.findById(thingId).subscribe(
           thing => {
             this.thing = thing;
             this.readOnly = false; // check if user has access to edit things

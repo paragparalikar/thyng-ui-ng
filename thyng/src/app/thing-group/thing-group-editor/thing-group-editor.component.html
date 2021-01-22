@@ -7,32 +7,28 @@
             <div class="card-block">
                 <app-local-message [message]="message"></app-local-message>
                 <form clrForm #thingGroupForm="ngForm">
-                    <clr-tabs>
-                        <clr-tab>
-                            <button clrTabLink>Details</button>
-                            <clr-tab-content>
-                                <app-thing-group-details [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-details>
-                            </clr-tab-content>
-                        </clr-tab>
-                        <clr-tab *ngIf="'SCRIPT' === thingGroup.type">  
-                            <button clrTabLink>Script</button>
-                            <clr-tab-content>
-                                <app-thing-group-script [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-script>
-                            </clr-tab-content>
-                        </clr-tab>
-                        <clr-tab *ngIf="'TEMPLATE' === thingGroup.type">
-                            <button clrTabLink>Templates</button>
-                            <clr-tab-content *clrIfActive="false">
-                                <app-thing-group-templates [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-templates>
-                            </clr-tab-content>
-                        </clr-tab>
-                        <clr-tab *ngIf="'THING' === thingGroup.type">
-                            <button clrTabLink>Things</button>
-                            <clr-tab-content *clrIfActive="false">
-                                <app-thing-group-things [thingGroup]="thingGroup" [readOnly]="readOnly"></app-thing-group-things>
-                            </clr-tab-content>
-                        </clr-tab>
-                    </clr-tabs>
+                    <clr-control-container *ngIf="thingGroup.id">
+                        <label>Id</label> 
+                        {{thingGroup.id}}
+                    </clr-control-container>
+                    <clr-input-container>
+                        <label>Name</label>
+                        <input clrInput type="text" [(ngModel)]="thingGroup.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
+                        <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
+                    </clr-input-container>
+                    <clr-select-container>
+                        <label>Language</label>
+                        <select clrSelect name="language" [(ngModel)]="thingGroup.language" [disabled]="readOnly" required>
+                            <option value='SQL'>Sql</option>
+                            <option value='PYTHON'>Python</option>
+                            <option value='JAVASCRIPT'>Javascript</option>
+                        </select>
+                    </clr-select-container>
+                    <clr-textarea-container>
+                        <label>Script</label>
+                        <textarea name="script" clrTextarea required [(ngModel)]="thingGroup.script" [readOnly]="readOnly"></textarea>
+                        <clr-control-error *clrIfError="'required'">Script is required</clr-control-error>
+                    </clr-textarea-container>
                 </form>
             </div>
             <div class="card-footer">

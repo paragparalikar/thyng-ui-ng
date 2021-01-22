@@ -18,9 +18,8 @@ export class ThingService {
     return this.http.get<Thing[]>(this.baseUrl);
   }
 
-  findById(id: string, templateThingId?: string): Observable<Thing>{
-    return '0' === id ? (templateThingId? this.copy(templateThingId) : of(this.buildDefault())) 
-            : this.http.get<Thing>(`${this.baseUrl}/${id}`);
+  findById(id: string): Observable<Thing>{
+    return '0' === id ? of(this.buildDefault()) : this.http.get<Thing>(`${this.baseUrl}/${id}`);
   }
 
   buildDefault(): Thing{
@@ -32,15 +31,6 @@ export class ThingService {
       inactivityPeriod: 60,
       attributes: []
     };
-  }
-
-  copy(templateThingId: string): Observable<Thing> {
-    return this.http.get<Thing>(`${this.baseUrl}/${templateThingId}`).pipe(
-      map(thing => {
-        thing.id = undefined;
-        return thing;
-      })
-    );
   }
 
   save(thing: Thing): Observable<Thing>{

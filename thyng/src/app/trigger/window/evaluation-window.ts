@@ -1,7 +1,7 @@
 import { WindowBase } from './window-base.enum';
 import { WindowType } from './window-type.enum';
 
-export interface Window {
+export interface EvaluationWindow {
     base: WindowBase;
     type: WindowType;
     tumblingInterval: number;

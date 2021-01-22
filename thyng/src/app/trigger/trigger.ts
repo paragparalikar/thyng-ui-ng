@@ -1,5 +1,6 @@
 import { EventType } from '../shared/event-type.enum';
 import { Language } from '../shared/language.enum';
+import { EvaluationWindow } from './window/evaluation-window';
 
 export interface Trigger {
     id?: string;
@@ -11,5 +12,5 @@ export interface Trigger {
     thingGroupIds: string[];
     script: string;
     
-    window?: Window;
+    window?: EvaluationWindow;
 }

@@ -1,23 +1,39 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 import { Trigger } from '../../trigger';
-import { TriggerService } from '../../trigger.service';
+import { EvaluationWindow } from '../../window/evaluation-window';
+import { WindowBase } from '../../window/window-base.enum';
+import { WindowType } from '../../window/window-type.enum';
 
 @Component({
   selector: 'app-trigger-window',
   templateUrl: './trigger-window.component.html',
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
-export class TriggerWindowComponent implements OnInit {
+export class TriggerWindowComponent {
 
-  @Input() trigger: Trigger;
-  readOnly: boolean = false;
+  window: EvaluationWindow;
+  _trigger!: Trigger;
+  @Input() readOnly: boolean = false;
+  WindowBase = WindowBase;
+  WindowType = WindowType;
 
-  constructor(private triggerSerivce: TriggerService) {
-    this.trigger = triggerSerivce.buildDefault();
+  constructor(){
+    this.window = {
+      base: WindowBase.TIME,
+      type: WindowType.SLIDING,
+      slidingInterval: 1800,
+      tumblingInterval: 300
+    };
   }
 
-  ngOnInit(): void {
+  @Input()
+  set trigger(trigger: Trigger) {
+    this._trigger = trigger;
+    this.window = trigger.window? trigger.window : this.window;
   }
+
+  
+  
 
 }

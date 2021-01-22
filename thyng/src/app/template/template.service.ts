@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Template } from './template';
 
 @Injectable({
@@ -17,9 +16,8 @@ export class TemplateService {
     return this.http.get<Template[]>(this.baseUrl);
   }
 
-  findById(id: string, templateTemplateId?: string): Observable<Template>{
-    return '0' === id ? (templateTemplateId? this.copy(templateTemplateId) : of(this.buildDefault())) 
-            : this.http.get<Template>(`${this.baseUrl}/${id}`);
+  findById(id: string): Observable<Template>{
+    return '0' === id ? of(this.buildDefault()) : this.http.get<Template>(`${this.baseUrl}/${id}`);
   }
 
   buildDefault(): Template{
@@ -31,15 +29,6 @@ export class TemplateService {
       sensors: [],
       actuators: []
     };
-  }
-
-  copy(templateTemplateId: string): Observable<Template> {
-    return this.http.get<Template>(`${this.baseUrl}/${templateTemplateId}`).pipe(
-      map(template => {
-        template.id = undefined;
-        return template;
-      })
-    );
   }
 
   save(template: Template): Observable<Template>{

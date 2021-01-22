@@ -11,7 +11,7 @@ import { TriggerService } from '../../trigger.service';
 export class TriggerScriptsComponent implements OnInit {
 
   @Input() trigger!: Trigger;
-  readOnly: boolean = false;
+  @Input() readOnly: boolean = false;
 
   constructor(private triggerSerivce: TriggerService) {}
 

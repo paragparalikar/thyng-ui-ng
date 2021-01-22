@@ -7,10 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule, ClrTabsModule, ClrSelectModule, ClrRadioModule } from '@clr/angular';
 import { ThingGroupListComponent } from './thing-group-list/thing-group-list.component';
 import { ThingGroupEditorComponent } from './thing-group-editor/thing-group-editor.component';
-import { ThingGroupScriptComponent } from './thing-group-editor/thing-group-script/thing-group-script.component';
-import { ThingGroupTemplatesComponent } from './thing-group-editor/thing-group-templates/thing-group-templates.component';
-import { ThingGroupThingsComponent } from './thing-group-editor/thing-group-things/thing-group-things.component';
-import { ThingGroupDetailsComponent } from './thing-group-editor/thing-group-details/thing-group-details.component';
 
 const routes: Routes = [
   {path:'', component: ThingGroupListComponent},
@@ -18,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ThingGroupListComponent, ThingGroupEditorComponent, ThingGroupScriptComponent, ThingGroupTemplatesComponent, ThingGroupThingsComponent, ThingGroupDetailsComponent],
+  declarations: [ThingGroupListComponent, ThingGroupEditorComponent],
   imports: [
     CommonModule,
     HttpClientModule,

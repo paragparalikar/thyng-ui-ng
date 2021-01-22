@@ -1,1 +1,22 @@
-<p>trigger-window works!</p>
+<clr-select-container>
+    <label>Window Type</label>
+    <select clrSelect name="windowType" [(ngModel)]="window.type">
+        <clr-options>
+            <clr-option [clrValue]="">None</clr-option>
+            <clr-option [clrValue]="WindowType.TUMBLING">Tumbling Window</clr-option>
+            <clr-option [clrValue]="WindowType.SLIDING">Sliding Window</clr-option>
+            <clr-option [clrValue]="WindowType.SESSION">Session Window</clr-option>
+        </clr-options>
+    </select>
+</clr-select-container>
+<clr-radio-container>
+    <label>Based On</label>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="windowBase" [value]="WindowBase.COUNT" [(ngModel)]="window.base" [readOnly]="readOnly" />
+        <label>Count</label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="windowBase" [value]="WindowBase.TIME" [(ngModel)]="window.base" [readOnly]="readOnly" />
+        <label>Time</label>
+    </clr-radio-wrapper>
+</clr-radio-container>
