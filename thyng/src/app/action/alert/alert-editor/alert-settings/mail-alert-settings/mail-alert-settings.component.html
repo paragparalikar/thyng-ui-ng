@@ -1,0 +1,22 @@
+
+<clr-control-container>
+    <label>Recipients</label>
+    <button class="btn btn-link"><clr-icon shape="plus" (click)="create()"></clr-icon> Add Recipient</button>
+</clr-control-container>
+<div *ngFor="let mail of action.to; let i = index">
+    <clr-input-container class="compact clr-col-6">
+        <label hidden></label>
+        <input clrInput [ngModel]="mail" [name]="'email'+i" 
+        placeholder="Email" required maxlength="255" [readOnly]="readOnly"/>
+    </clr-input-container>
+</div>
+<clr-input-container>
+    <label>Subject</label>
+    <input clrInput type="text" [(ngModel)]="action.subject" name="subject" required maxlength=255 [readOnly]="readOnly" /> 
+    <clr-control-error *clrIfError="'required'">Subject is a required field</clr-control-error>
+</clr-input-container>
+<clr-textarea-container>
+    <label>Content</label>
+    <textarea clrTextarea [(ngModel)]="action.content" name="content" required [readOnly]="readOnly"></textarea>
+    <clr-control-error *clrIfError="'required'">Content is a required field</clr-control-error>
+</clr-textarea-container>

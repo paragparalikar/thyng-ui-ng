@@ -1,0 +1,57 @@
+<div class="clr-row">
+    <div class="clr-col-sm-12 clr-col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                {{header}}
+            </div>
+            <div class="card-block">
+                <app-local-message [message]="message"></app-local-message>
+                <form clrForm #userForm="ngForm">
+                    <clr-control-container *ngIf="user.id">
+                        <label>Id</label> 
+                        {{user.id}}
+                    </clr-control-container>
+                    <clr-input-container>
+                        <label>Username</label>
+                        <input clrInput type="text" [(ngModel)]="user.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
+                        <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
+                    </clr-input-container>
+                    <clr-input-container>
+                        <label>First Name</label>
+                        <input clrInput type="text" [(ngModel)]="user.firstName" name="firstName" required maxlength=255 [readOnly]="readOnly" /> 
+                        <clr-control-error *clrIfError="'required'">First Name is a required field</clr-control-error>
+                    </clr-input-container>
+                    <clr-input-container>
+                        <label>Last Name</label>
+                        <input clrInput type="text" [(ngModel)]="user.lastName" name="lastName" maxlength=255 [readOnly]="readOnly" /> 
+                    </clr-input-container>
+                    <clr-input-container>
+                        <label><clr-icon shape="envelope" class="clr-icon is-solid is-highlight"></clr-icon></label>
+                        <input clrInput type="email" [(ngModel)]="user.email" name="email" 
+                            email required maxlength=255 [readOnly]="readOnly"/>
+                        <clr-control-error *clrIfError="'required'">Email is a required field</clr-control-error>
+                    </clr-input-container>
+                    <clr-input-container>
+                        <label><clr-icon shape="phone-handset" class="clr-icon is-solid is-highlight"></clr-icon></label>
+                        <input clrInput type="text" [(ngModel)]="user.phone" name="phone" maxlength=255 [readOnly]="readOnly" /> 
+                        <clr-control-error *clrIfError="'required'">Phone is a required field</clr-control-error>
+                    </clr-input-container>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="clr-row clr-justify-content-between">
+                    <div class="clr-col">
+                        <button class="btn btn-link" routerLink="..">
+                            <clr-icon shape="caret left"></clr-icon> Back
+                        </button>
+                    </div>
+                    <div class="clr-col text-right">
+                        <button class="btn btn-primary" (click)="save()" [disabled]="userForm.untouched ||  userForm.invalid">
+                            <clr-icon shape="floppy"></clr-icon> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

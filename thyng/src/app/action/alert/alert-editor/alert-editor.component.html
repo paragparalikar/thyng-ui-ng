@@ -1,0 +1,42 @@
+<div class="clr-row">
+    <div class="clr-col-sm-12 clr-col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                {{header}}
+            </div>
+            <div class="card-block">
+                <app-local-message [message]="message"></app-local-message>
+                <form clrForm #actionFrom="ngForm">
+                    <clr-tabs>
+                        <clr-tab>
+                            <button clrTabLink>Details</button>
+                            <clr-tab-content>
+                                <app-alert-details [action]="action" [readOnly]="readOnly"></app-alert-details>
+                            </clr-tab-content>
+                        </clr-tab>
+                        <clr-tab>
+                            <button clrTabLink>Settings</button>
+                            <clr-tab-content>
+                                <app-alert-settings [action]="action" [readOnly]="readOnly"></app-alert-settings>
+                            </clr-tab-content>
+                        </clr-tab>
+                    </clr-tabs>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="clr-row clr-justify-content-between">
+                    <div class="clr-col">
+                        <button class="btn btn-link" routerLink="..">
+                            <clr-icon shape="caret left"></clr-icon> Back
+                        </button>
+                    </div>
+                    <div class="clr-col text-right">
+                        <button class="btn btn-primary" (click)="save()" [disabled]="actionFrom.untouched || actionFrom.invalid">
+                            <clr-icon shape="floppy"></clr-icon> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>

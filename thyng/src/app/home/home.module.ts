@@ -10,11 +10,13 @@ import { SharedModule } from '../shared/shared.module';
 const routes: Routes = [
   {path:'', component:HomeComponent,
     children:[
-      {path: 'landing', component: LandingPageComponent},
+      {path: 'home', component: LandingPageComponent},
       {path: 'templates', loadChildren: () => import('../template/template.module').then(m => m.TemplateModule)},
       {path: 'things', loadChildren: () => import('../thing/thing.module').then(m => m.ThingModule)},
       {path: 'thing-groups', loadChildren: () => import('../thing-group/thing-group.module').then(m => m.ThingGroupModule)},
-      {path: 'triggers', loadChildren: () => import('../trigger/trigger.module').then(m => m.TriggerModule)}
+      {path: 'triggers', loadChildren: () => import('../trigger/trigger.module').then(m => m.TriggerModule)},
+      {path: 'alerts', loadChildren: () => import('../action/alert/alert.module').then(m => m.AlertModule)},
+      {path: 'users', loadChildren: () => import('../user/user.module').then(m => m.UserModule)}
     ]
   }
 ];

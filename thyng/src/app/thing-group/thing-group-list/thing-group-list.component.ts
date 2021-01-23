@@ -17,8 +17,7 @@ export class ThingGroupListComponent implements OnInit {
   sortType = ClrDatagridSortOrder.ASC;
 
 
-  constructor(private route: ActivatedRoute,
-              private thingGroupService: ThingGroupService,
+  constructor(private thingGroupService: ThingGroupService,
               private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {

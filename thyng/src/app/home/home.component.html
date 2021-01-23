@@ -19,7 +19,7 @@
     <div class="content-container">
         <app-confirm-dialog></app-confirm-dialog>
         <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clr-nav-level]="1">
-            <a clrVerticalNavLink routerLink="landing" routerLinkActive="active">
+            <a clrVerticalNavLink routerLink="home" routerLinkActive="active">
               <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
               Home
             </a>
@@ -27,61 +27,94 @@
               <clr-icon clrVerticalNavIcon shape="dashboard"></clr-icon>
               Dashboards
             </a>
-            <div class="nav-divider"></div>
-            <a clrVerticalNavLink routerLink="gateways" routerLinkActive="active">
-              <clr-icon clrVerticalNavIcon shape="cloud-traffic"></clr-icon>
-              Gateways
-            </a>
-            <a clrVerticalNavLink routerLink="templates" routerLinkActive="active">
-              <clr-icon clrVerticalNavIcon shape="copy"></clr-icon>
-              Templates
-            </a>
-            <a clrVerticalNavLink routerLink="things" routerLinkActive="active">
-              <clr-icon clrVerticalNavIcon shape="node"></clr-icon>
-              Things
-            </a>
-            <a clrVerticalNavLink routerLink="thing-groups" routerLinkActive="active">
-              <clr-icon clrVerticalNavIcon shape="node-group"></clr-icon>
-              Thing Groups
-            </a>
-            <a clrVerticalNavLink routerLink="triggers" routerLinkActive="active">
-                <clr-icon clrVerticalNavIcon shape="alarm-clock"></clr-icon>
-                Triggers
-              </a>
-              <a clrVerticalNavLink routerLink="alerts" routerLinkActive="active">
-                <clr-icon clrVerticalNavIcon shape="bell"></clr-icon>
-                Alerts
-              </a>
-              <a clrVerticalNavLink routerLink="webhooks" routerLinkActive="active">
-                <clr-icon clrVerticalNavIcon shape="link"></clr-icon>
-                Webhooks
-              </a>
             <a clrVerticalNavLink routerLink="reports" routerLinkActive="active">
               <clr-icon clrVerticalNavIcon shape="pie-chart"></clr-icon>
               Reports
             </a>
-            <div class="nav-divider"></div>
-            <a clrVerticalNavLink routerLink="users" routerLinkActive="active">
-                <clr-icon clrVerticalNavIcon shape="users"></clr-icon>
-                Users
-            </a>
+            <clr-vertical-nav-group routerLinkActive="active">
+              <clr-icon shape="node" clrVerticalNavIcon></clr-icon>
+              Device Management
+              <clr-vertical-nav-group-children>
+                <a clrVerticalNavLink routerLink="gateways" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="cloud-traffic"></clr-icon>
+                  Gateways
+                </a>
+                <a clrVerticalNavLink routerLink="templates" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="copy"></clr-icon>
+                  Templates
+                </a>
+                <a clrVerticalNavLink routerLink="things" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="node"></clr-icon>
+                  Things
+                </a>
+                <a clrVerticalNavLink routerLink="thing-groups" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="node-group"></clr-icon>
+                  Thing Groups
+                </a>
+              </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+            <clr-vertical-nav-group routerLinkActive="active">
+              <clr-icon shape="flame" clrVerticalNavIcon></clr-icon>
+              Action Management
+              <clr-vertical-nav-group-children>
+                <a clrVerticalNavLink routerLink="triggers" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="alarm-clock"></clr-icon>
+                  Triggers
+                </a>
+                <a clrVerticalNavLink routerLink="alerts" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="bell"></clr-icon>
+                  Alerts
+                </a>
+                <a clrVerticalNavLink routerLink="webhooks" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="link"></clr-icon>
+                  Webhooks
+                </a>
+                <a clrVerticalNavLink routerLink="webhooks" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="flame"></clr-icon>
+                  Commands
+                </a>
+              </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+            <clr-vertical-nav-group routerLinkActive="active">
+              <clr-icon shape="users" clrVerticalNavIcon></clr-icon>
+              Access Management
+              <clr-vertical-nav-group-children>
+                <a clrVerticalNavLink routerLink="roles" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="users"></clr-icon>
+                  Roles
+                </a>
+                <a clrVerticalNavLink routerLink="users" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="users"></clr-icon>
+                  Users
+                </a>
+                <a clrVerticalNavLink routerLink="user-groups" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="users"></clr-icon>
+                  User Groups
+                </a>
+              </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
             <a clrVerticalNavLink routerLink="billing" routerLinkActive="active">
                 <clr-icon clrVerticalNavIcon shape="dollar"></clr-icon>
                 Billing
             </a>
-            <div class="nav-divider"></div>
-            <a clrVerticalNavLink routerLink="documentation" routerLinkActive="active">
-                <clr-icon clrVerticalNavIcon shape="library"></clr-icon>
-                Documentation
-            </a>
-            <a clrVerticalNavLink routerLink="howtos" routerLinkActive="active">
-                <clr-icon clrVerticalNavIcon shape="help-info"></clr-icon>
-                How Tos
-            </a>
-            <a clrVerticalNavLink routerLink="faqs" routerLinkActive="active">
-                <clr-icon clrVerticalNavIcon shape="help"></clr-icon>
-                FAQs
-            </a>
+             <clr-vertical-nav-group routerLinkActive="active">
+              <clr-icon shape="fire" clrVerticalNavIcon></clr-icon>
+              Help
+              <clr-vertical-nav-group-children>
+                <a clrVerticalNavLink routerLink="documentation" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="library"></clr-icon>
+                  Documentation
+              </a>
+              <a clrVerticalNavLink routerLink="howtos" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="help-info"></clr-icon>
+                  How Tos
+              </a>
+              <a clrVerticalNavLink routerLink="faqs" routerLinkActive="active">
+                  <clr-icon clrVerticalNavIcon shape="help"></clr-icon>
+                  FAQs
+              </a>
+              </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
           </clr-vertical-nav>          
         <main class="content-area">
           <router-outlet></router-outlet>

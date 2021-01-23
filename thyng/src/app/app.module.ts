@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
-import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
 import { GlobalMessageHttpInterceptor } from './shared/global-message/global-message-http-interceptor';
@@ -20,7 +19,6 @@ import { GlobalMessageHttpInterceptor } from './shared/global-message/global-mes
     HttpClientModule,
     AppRoutingModule,
     HomeModule,
-    ClarityModule,
     ClipboardModule,
     BrowserAnimationsModule
   ],

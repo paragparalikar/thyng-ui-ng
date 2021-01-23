@@ -1,8 +1,8 @@
 export interface User {
-    id: string;
-    username: string;
+    id?: string;
+    name: string;
     email: string;
     firstName: string;
     lastName?: string;
-    tenantId: string;
+    phone?: string;
 }
