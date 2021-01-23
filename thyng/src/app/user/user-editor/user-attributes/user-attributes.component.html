@@ -1,0 +1,22 @@
+<div class="text-right">
+    <button class="btn btn-link" (click)="create()">
+        <clr-icon shape="plus"></clr-icon> Add Attribute
+    </button>
+</div>
+<div *ngFor="let attribute of user.attributes; let i = index" class="clr-row"> 
+    <clr-input-container class="compact clr-col-6">
+        <label hidden></label>
+        <input clrInput [(ngModel)]="attribute.name" class="inline-control compact" 
+            [name]="'name'+i" placeholder="Name" required maxlength="255"/>
+        <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
+    </clr-input-container>
+    <clr-input-container class="compact clr-col-6">
+        <label hidden></label>
+        <input clrInput [(ngModel)]="attribute.value" class="inline-control compact" 
+        [name]="'value'+i" placeholder="Value" required maxlength="255"/>
+        <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
+    </clr-input-container>
+    <button class="btn btn-link btn-icon" (click)="delete(attribute)">
+        <clr-icon shape="trash"></clr-icon>
+    </button>
+</div>

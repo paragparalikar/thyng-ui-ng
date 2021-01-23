@@ -1,0 +1,29 @@
+<clr-control-container *ngIf="user.id">
+    <label>Id</label> 
+    {{user.id}}
+</clr-control-container>
+<clr-input-container>
+    <label>Username</label>
+    <input clrInput type="text" [(ngModel)]="user.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
+    <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
+</clr-input-container>
+<clr-input-container>
+    <label>First Name</label>
+    <input clrInput type="text" [(ngModel)]="user.firstName" name="firstName" required maxlength=255 [readOnly]="readOnly" /> 
+    <clr-control-error *clrIfError="'required'">First Name is a required field</clr-control-error>
+</clr-input-container>
+<clr-input-container>
+    <label>Last Name</label>
+    <input clrInput type="text" [(ngModel)]="user.lastName" name="lastName" maxlength=255 [readOnly]="readOnly" /> 
+</clr-input-container>
+<clr-input-container>
+    <label><clr-icon shape="envelope" class="clr-icon is-solid is-highlight"></clr-icon></label>
+    <input clrInput type="email" [(ngModel)]="user.email" name="email" 
+        email required maxlength=255 [readOnly]="readOnly"/>
+    <clr-control-error *clrIfError="'required'">Email is a required field</clr-control-error>
+</clr-input-container>
+<clr-input-container>
+    <label><clr-icon shape="phone-handset" class="clr-icon is-solid is-highlight"></clr-icon></label>
+    <input clrInput type="text" [(ngModel)]="user.phone" name="phone" maxlength=255 [readOnly]="readOnly" /> 
+    <clr-control-error *clrIfError="'required'">Phone is a required field</clr-control-error>
+</clr-input-container>

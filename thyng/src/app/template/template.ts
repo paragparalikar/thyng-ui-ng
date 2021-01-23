@@ -1,4 +1,4 @@
-import { Attribute } from './attribute';
+import { Attribute } from '../shared/attribute';
 import { Actuator } from './template-editor/actuators/actuator';
 import { Sensor } from './template-editor/sensors/sensor';
 

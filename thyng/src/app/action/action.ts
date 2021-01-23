@@ -7,7 +7,7 @@ export interface Action {
     name: string;
     rateLimit: number;
 
-    to?: string[];
+    userGroupIds?: string[];
     subject?: string;
     content?: string;
 }

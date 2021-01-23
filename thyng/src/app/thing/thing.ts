@@ -1,4 +1,4 @@
-import { Attribute } from '../template/attribute';
+import { Attribute } from '../shared/attribute';
 import { ThingStatus } from './thing-status.enum';
 
 export interface Thing {

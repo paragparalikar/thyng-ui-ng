@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule, ClrTabsModule, ClrSelectModule, ClrRadioModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
+import { UserDetailsComponent } from './user-editor/user-details/user-details.component';
+import { UserAttributesComponent } from './user-editor/user-attributes/user-attributes.component';
 
 const routes: Routes = [
   {path:'', component: UserListComponent},
@@ -15,7 +17,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [UserListComponent, UserEditorComponent],
+  declarations: [UserListComponent, UserEditorComponent, UserDetailsComponent, UserAttributesComponent],
   imports: [
     CommonModule,
     HttpClientModule,

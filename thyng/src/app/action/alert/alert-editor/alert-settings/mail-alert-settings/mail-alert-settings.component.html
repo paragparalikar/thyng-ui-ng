@@ -1,15 +1,3 @@
-
-<clr-control-container>
-    <label>Recipients</label>
-    <button class="btn btn-link"><clr-icon shape="plus" (click)="create()"></clr-icon> Add Recipient</button>
-</clr-control-container>
-<div *ngFor="let mail of action.to; let i = index">
-    <clr-input-container class="compact clr-col-6">
-        <label hidden></label>
-        <input clrInput [ngModel]="mail" [name]="'email'+i" 
-        placeholder="Email" required maxlength="255" [readOnly]="readOnly"/>
-    </clr-input-container>
-</div>
 <clr-input-container>
     <label>Subject</label>
     <input clrInput type="text" [(ngModel)]="action.subject" name="subject" required maxlength=255 [readOnly]="readOnly" /> 
@@ -20,3 +8,17 @@
     <textarea clrTextarea [(ngModel)]="action.content" name="content" required [readOnly]="readOnly"></textarea>
     <clr-control-error *clrIfError="'required'">Content is a required field</clr-control-error>
 </clr-textarea-container>
+<clr-combobox-container>
+    <label>Recipients</label>
+    <clr-combobox name="recipients" [(ngModel)]="selectedUserGroups" [clrMulti]="true" 
+        (clrSelectionChange)="onUserGroupSelectionChanged($event.model)">
+        <ng-container *clrOptionSelected="let selected">
+            <clr-icon shape="users"></clr-icon> {{selected.name}}
+        </ng-container>
+        <clr-options>
+            <clr-option *clrOptionItems="let userGroup of userGroups; field:'name'" [clrValue]="userGroup">
+                <clr-icon shape="users"></clr-icon> {{userGroup.name}}                
+            </clr-option>
+        </clr-options>
+    </clr-combobox>
+</clr-combobox-container>

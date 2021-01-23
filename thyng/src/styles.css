@@ -13,6 +13,12 @@ html{
     width: fit-content;
     margin-top: 0;
 }
+.alert-icon-wrapper,
+.alert-text {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .datagrid {
     margin-top: 0;
     border: none;

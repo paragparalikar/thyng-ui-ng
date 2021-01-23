@@ -19,7 +19,8 @@ export class UserService {
       firstName: '',
       lastName: '',
       email: '',
-      phone: ''
+      phone: '',
+      attributes: []
     };
   }
 

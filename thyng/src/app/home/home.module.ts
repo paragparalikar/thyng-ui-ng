@@ -16,7 +16,8 @@ const routes: Routes = [
       {path: 'thing-groups', loadChildren: () => import('../thing-group/thing-group.module').then(m => m.ThingGroupModule)},
       {path: 'triggers', loadChildren: () => import('../trigger/trigger.module').then(m => m.TriggerModule)},
       {path: 'alerts', loadChildren: () => import('../action/alert/alert.module').then(m => m.AlertModule)},
-      {path: 'users', loadChildren: () => import('../user/user.module').then(m => m.UserModule)}
+      {path: 'users', loadChildren: () => import('../user/user.module').then(m => m.UserModule)},
+      {path: 'user-groups', loadChildren: () => import('../user-group/user-group.module').then(m => m.UserGroupModule)}
     ]
   }
 ];

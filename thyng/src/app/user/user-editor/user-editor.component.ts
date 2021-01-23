@@ -29,7 +29,7 @@ export class UserEditorComponent implements OnInit {
         this.userService.findById(map.get('userId')!).subscribe(
           user => {
             this.user = user;
-            this.header = user?.id ? `Edit ${user.name}` : 'Create New User';
+            this.header = user?.id ? `Edit User ${user.name}` : 'Create New User';
           }
         );
       }

@@ -1,3 +1,5 @@
+import { Attribute } from '../shared/attribute';
+
 export interface User {
     id?: string;
     name: string;
@@ -5,4 +7,5 @@ export interface User {
     firstName: string;
     lastName?: string;
     phone?: string;
+    attributes: Attribute[];
 }

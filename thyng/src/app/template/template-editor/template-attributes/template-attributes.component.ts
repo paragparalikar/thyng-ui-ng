@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
-import { Attribute } from '../../attribute';
+import { Attribute } from '../../../shared/attribute';
 import { Template } from '../../template';
 
 @Component({
