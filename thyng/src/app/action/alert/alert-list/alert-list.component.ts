@@ -14,8 +14,7 @@ import { ActionService } from '../../action.service';
 })
 export class AlertListComponent implements OnInit {
 
-  header: string = 'Create New Alert';
-  message?: Message;
+    message?: Message;
   actions: Action[] = [];
   sortType = ClrDatagridSortOrder.ASC;
 

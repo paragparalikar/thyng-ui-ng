@@ -20,7 +20,7 @@ export class ActionService {
       enabled: true,
       actionType: ActionType.MAIL,
       rateLimit: 0,
-      to: [],
+      userGroupIds: [],
       subject: '',
       content: ''
     };
