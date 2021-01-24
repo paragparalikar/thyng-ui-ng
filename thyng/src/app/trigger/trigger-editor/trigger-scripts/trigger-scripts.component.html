@@ -1,11 +1,29 @@
-<clr-select-container>
+<clr-radio-container clrInline>
     <label>Language</label>
-    <select clrSelect name="language" [(ngModel)]="trigger.language" [disabled]="readOnly" required>
-        <option value='SQL'>Sql</option>
-        <option value='PYTHON'>Python</option>
-        <option value='JAVASCRIPT'>Javascript</option>
-    </select>
-</clr-select-container>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="language" [value]="Language.SQL" [(ngModel)]="trigger.language" [readOnly]="readOnly" />
+        <label>SQL</label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="language" [value]="Language.PYTHON" [(ngModel)]="trigger.language" [readOnly]="readOnly" />
+        <label>Python</label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+        <input type="radio" clrRadio name="language" [value]="Language.JAVASCRIPT" [(ngModel)]="trigger.language" [readOnly]="readOnly" />
+        <label>Javascript</label>
+    </clr-radio-wrapper>
+</clr-radio-container>
+<clr-checkbox-container clrInline>
+    <label>Data</label>
+    <clr-checkbox-wrapper>
+        <input type="checkbox" clrCheckbox name="includeAggregations" [(ngModel)]="trigger.includeAggregations"  [disabled]="readOnly" required/>
+        <label>Include Aggregations</label>
+    </clr-checkbox-wrapper>
+    <clr-checkbox-wrapper>
+        <input type="checkbox" clrCheckbox name="includeEvents" [(ngModel)]="trigger.includeEvents"  [disabled]="readOnly" required/>
+        <label>Include Events</label>
+    </clr-checkbox-wrapper>
+</clr-checkbox-container>
 <clr-textarea-container>
     <label>Script</label>
     <textarea name="script" clrTextarea required [(ngModel)]="trigger.script" [readOnly]="readOnly"></textarea>

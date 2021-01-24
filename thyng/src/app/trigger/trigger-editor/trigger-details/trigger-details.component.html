@@ -14,7 +14,7 @@
     </clr-toggle-wrapper>
 </clr-toggle-container>
 <clr-combobox-container>
-    <label>Target Thing Groups</label>
+    <label>Thing Groups</label>
     <clr-combobox name="thingGroups" [(ngModel)]="selectedThingGroups" [clrMulti]="true" 
         (clrSelectionChange)="onThingGroupSelectionChanged($event.model)">
         <ng-container *clrOptionSelected="let selected">
@@ -23,6 +23,20 @@
         <clr-options>
             <clr-option *clrOptionItems="let thingGroup of thingGroups; field:'name'" [clrValue]="thingGroup">
                 <clr-icon shape="node-group"></clr-icon> {{thingGroup.name}}                
+            </clr-option>
+        </clr-options>
+    </clr-combobox>
+</clr-combobox-container>
+<clr-combobox-container>
+    <label>Actions</label>
+    <clr-combobox name="actions" [(ngModel)]="selectedActions" [clrMulti]="true" 
+        (clrSelectionChange)="onActionSelectionChanged($event.model)">
+        <ng-container *clrOptionSelected="let selected">
+            <clr-icon shape="node-group"></clr-icon> {{selected.name}}
+        </ng-container>
+        <clr-options>
+            <clr-option *clrOptionItems="let action of actions; field:'name'" [clrValue]="action">
+                <clr-icon shape="node-group"></clr-icon> {{action.name}}                
             </clr-option>
         </clr-options>
     </clr-combobox>

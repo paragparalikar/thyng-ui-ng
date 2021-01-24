@@ -8,9 +8,12 @@ export interface Trigger {
     enabled: boolean;
     eventType: EventType;
 
-    language: Language;
-    thingGroupIds: string[];
     script: string;
+    language: Language;
+    includeEvents: boolean;
+    includeAggregations: boolean;
     
+    actionIds: string[];
+    thingGroupIds: string[];
     window?: EvaluationWindow;
 }

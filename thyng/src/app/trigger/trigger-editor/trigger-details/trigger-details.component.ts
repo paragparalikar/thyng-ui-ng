@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { Action } from 'src/app/action/action';
+import { ActionService } from 'src/app/action/action.service';
 import { EventType } from 'src/app/shared/event-type.enum';
 import { ThingGroup } from 'src/app/thing-group/thing-group';
 import { ThingGroupService } from 'src/app/thing-group/thing-group.service';
@@ -16,15 +18,25 @@ export class TriggerDetailsComponent implements OnInit {
   EventType = EventType;
   @Input() trigger: Trigger;
   @Input() readOnly: boolean = false;
+  actions: Action[] = [];
   thingGroups: ThingGroup[] = [];
+  selectedActions: Action[] = [];
   selectedThingGroups: ThingGroup[] = [];
 
   constructor(private triggerSerivce: TriggerService,
+              private actionService: ActionService,
               private thingGroupService: ThingGroupService) {
     this.trigger = triggerSerivce.buildDefault();
   }
 
   ngOnInit(): void {
+    this.actionService.findAll().subscribe(
+      actions => {
+        this.actions = actions;
+        this.selectedActions = actions
+        .filter(action => this.trigger.actionIds.includes(action.id!));
+      }
+    );
     this.thingGroupService.findAll().subscribe(
       thingGroups => {
         this.thingGroups = thingGroups;
@@ -36,5 +48,9 @@ export class TriggerDetailsComponent implements OnInit {
 
   onThingGroupSelectionChanged(thingGroups: ThingGroup[]){
     this.trigger.thingGroupIds = thingGroups.map(group => group.id!);
+  }
+
+  onActionSelectionChanged(actions: Action[]){
+    this.trigger.actionIds = actions.map(action => action.id!);
   }
 }

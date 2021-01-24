@@ -30,9 +30,12 @@ export class TriggerService {
       name: '',
       enabled: true,
       script: '',
+      actionIds: [],
       thingGroupIds: [],
       eventType: EventType.TELEMETRY,
       language: Language.SQL,
+      includeEvents: false,
+      includeAggregations: true,
       window: undefined
     };
   }
