@@ -7,13 +7,6 @@
     <input clrInput type="text" [(ngModel)]="thing.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
     <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
 </clr-input-container>
-<clr-select-container>
-    <label>Template</label>
-    <select clrSelect name="options" [ngModel]="thing.templateId" (ngModelChange)="onTemplateSelected($event)" required>
-      <option *ngFor="let template of templates" [value]="template.id">{{template.name}}</option>
-    </select>
-    <clr-control-error *clrIfError="'required'">Template is a required field</clr-control-error>
-</clr-select-container>
 <clr-input-container>
     <label>Inactivity Period</label>
     <input clrInput type="number" [(ngModel)]="thing.inactivityPeriod" #period="ngModel" name="inactivityPeriod" required min="60" [readOnly]="readOnly"/>

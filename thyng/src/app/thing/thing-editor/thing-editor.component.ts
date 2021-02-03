@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/shared/message';
 import { Thing } from '../thing';
-import { ThingStatus } from '../thing-status.enum';
 import { ThingService } from '../thing.service';
 
 @Component({
@@ -15,7 +14,6 @@ export class ThingEditorComponent implements OnInit {
 
   thing: Thing;
   message?: Message;
-  ThingStatus = ThingStatus;
   readOnly: boolean = false;
   header: string = 'Create New Thing'
 

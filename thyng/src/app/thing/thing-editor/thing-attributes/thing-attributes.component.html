@@ -1,8 +1,13 @@
+<div class="text-right">
+    <button class="btn btn-link" (click)="create()">
+        <clr-icon shape="plus"></clr-icon> Add Attribute
+    </button>
+</div>
 <div *ngFor="let attribute of attributes; let i = index" class="clr-row"> 
     <clr-input-container class="compact clr-col-6">
         <label hidden></label>
         <input clrInput [(ngModel)]="attribute.name" class="inline-control compact" 
-            [name]="'name'+i" placeholder="Name" required maxlength="255" readonly disabled/>
+            [name]="'name'+i" placeholder="Name" required maxlength="255"/>
     </clr-input-container>
     <clr-input-container class="compact clr-col-6">
         <label hidden></label>

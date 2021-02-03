@@ -1,11 +1,12 @@
 import { Attribute } from '../shared/attribute';
-import { ThingStatus } from './thing-status.enum';
+import { Actuator } from './thing-editor/actuators/actuator';
+import { Sensor } from './thing-editor/sensors/sensor';
 
 export interface Thing {
     id?: string;
     name: string;
-    templateId: string;
-    status: ThingStatus;
     inactivityPeriod: number;
     attributes: Attribute[];
+    sensors: Sensor[];
+    actuators: Actuator[];
 }

@@ -9,6 +9,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ThingDetailsComponent } from './thing-editor/thing-details/thing-details.component';
 import { ThingAttributesComponent } from './thing-editor/thing-attributes/thing-attributes.component';
+import { ActuatorsComponent } from './thing-editor/actuators/actuators.component';
+import { SensorsComponent } from './thing-editor/sensors/sensors.component';
 
 const routes: Routes = [
   {path:'', component: ThingListComponent},
@@ -17,7 +19,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [ThingListComponent, ThingEditorComponent, ThingDetailsComponent, ThingAttributesComponent],
+  declarations: [ThingListComponent, ThingEditorComponent, ThingDetailsComponent, ThingAttributesComponent, SensorsComponent, ActuatorsComponent],
   imports: [
     CommonModule,
     HttpClientModule,

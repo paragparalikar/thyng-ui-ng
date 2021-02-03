@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Page } from '../shared/page';
 import { Thing } from './thing';
-import { ThingStatus } from './thing-status.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,9 @@ export class ThingService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Thing[]>{
-    return this.http.get<Thing[]>(this.baseUrl);
+    return this.http.get<Page<Thing>>(this.baseUrl).pipe(
+      map(page => page?.items ? page.items : [])
+    );
   }
 
   findById(id: string): Observable<Thing>{
@@ -26,10 +28,10 @@ export class ThingService {
     return {
       id: undefined,
       name: '',
-      templateId: '',
-      status: ThingStatus.OFFLINE,
       inactivityPeriod: 60,
-      attributes: []
+      attributes: [],
+      sensors: [],
+      actuators: []
     };
   }
 
