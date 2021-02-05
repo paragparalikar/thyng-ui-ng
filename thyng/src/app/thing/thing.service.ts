@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Page } from '../shared/page';
+import { Page, Pagination } from '../shared/page';
 import { Thing } from './thing';
 
 @Injectable({
@@ -15,9 +15,13 @@ export class ThingService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Thing[]>{
-    return this.http.get<Page<Thing>>(this.baseUrl).pipe(
+    return this.http.get<Pagination<Thing>>(this.baseUrl).pipe(
       map(page => page?.items ? page.items : [])
     );
+  }
+
+  findPage(page: Pagination<Thing>): Observable<Pagination<Thing>>{
+    return this.http.post<Pagination<Thing>>(`${this.baseUrl}/query`, page);
   }
 
   findById(id: string): Observable<Thing>{

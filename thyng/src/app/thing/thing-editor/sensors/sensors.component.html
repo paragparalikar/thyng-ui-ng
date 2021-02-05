@@ -6,17 +6,17 @@
 <div *ngFor="let sensor of sensors; let i = index" class="clr-row">
     <clr-input-container class="compact clr-col-5">
         <label hidden></label>
-        <input clrInput [(ngModel)]="sensor.name" class="inline-control compact" [name]="'name'+i" placeholder="Name" required maxlength="255"/>
+        <input clrInput [(ngModel)]="sensor.name" class="inline-control compact" [name]="'sensor-name-'+i" placeholder="Name" required maxlength="255"/>
         <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
     </clr-input-container>
     <clr-input-container class="compact clr-col-4">
         <label hidden></label>
-        <input clrInput [(ngModel)]="sensor.unit" class="inline-control compact" [name]="'unit'+i" placeholder="Unit" required maxlength="255"/>
+        <input clrInput [(ngModel)]="sensor.unit" class="inline-control compact" [name]="'sensor-unit-'+i" placeholder="Unit" required maxlength="255"/>
         <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
     </clr-input-container>
     <clr-select-container class="compact clr-col-4">
         <label hidden></label>
-        <select clrSelect [(ngModel)]="sensor.dataType" class="inline-control compact" [name]="'dataType'+i" required>
+        <select clrSelect [(ngModel)]="sensor.dataType" class="inline-control compact" [name]="'sensor-dataType-'+i" required>
             <option value="TEXT">Text</option>
             <option value="NUMBER">Number</option>
             <option value="BOOLEAN">Boolean</option>

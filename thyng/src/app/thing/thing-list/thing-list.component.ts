@@ -1,28 +1,29 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ClrDatagridSortOrder } from '@clr/angular';
+import { Component } from '@angular/core';
+import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Message } from 'src/app/shared/message';
+import { Pagination } from 'src/app/shared/page';
 import { Thing } from '../thing';
 import { ThingService } from '../thing.service';
 
 @Component({templateUrl: './thing-list.component.html'})
-export class ThingListComponent implements OnInit {
+export class ThingListComponent {
 
   things: Thing[] = [];
   message?: Message;
   sortType = ClrDatagridSortOrder.ASC;
+  total: number = 0;
+  loading: boolean = true;
 
-
-  constructor(private route: ActivatedRoute,
-              private thingService: ThingService,
+  constructor(private thingService: ThingService,
               private confirmDialogService: ConfirmDialogService) { }
 
-  ngOnInit(): void {
-    this.message = undefined;
-    this.thingService.findAll().subscribe(
-      things => {
-        this.things = things;
+  refresh(state: ClrDatagridStateInterface) {
+    this.thingService.findPage(new Pagination<Thing>(state)).subscribe(
+      pagination => {
+        this.things = pagination.items;
+        this.total = pagination.page.total;
+        this.loading = false;
       }
     );
   }

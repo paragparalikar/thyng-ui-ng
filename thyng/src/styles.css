@@ -5,7 +5,7 @@
 html{
     font-size: 16px;
 }
-.clr-input, .clr-select {
+.clr-input:not(.pagination-current), .clr-select {
     width: 130px;
 }
 
