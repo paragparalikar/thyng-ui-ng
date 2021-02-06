@@ -32,7 +32,7 @@ export class ThingService {
     return {
       id: undefined,
       name: '',
-      inactivityPeriod: 60,
+      inactivityPeriod: 60000,
       attributes: [],
       sensors: [],
       actuators: []

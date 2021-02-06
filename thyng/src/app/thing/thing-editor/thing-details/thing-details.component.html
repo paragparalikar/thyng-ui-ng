@@ -8,7 +8,8 @@
     <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
 </clr-input-container>
 <clr-input-container>
-    <label>Inactivity Period</label>
-    <input clrInput type="number" [(ngModel)]="thing.inactivityPeriod" #period="ngModel" name="inactivityPeriod" required min="60" [readOnly]="readOnly"/>
+    <label>Inactivity Period (millis)</label>
+    <input clrInput type="number" [(ngModel)]="thing.inactivityPeriod" #period="ngModel" name="inactivityPeriod" required min="1" [readOnly]="readOnly"/>
     <clr-control-error *clrIfError="'required'">Inactivity Period is a required field</clr-control-error>
+    <clr-control-error *clrIfError="'min'">Inactivity Period must be positive</clr-control-error>
 </clr-input-container>

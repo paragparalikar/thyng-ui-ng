@@ -8,6 +8,7 @@
         <label hidden></label>
         <input clrInput [(ngModel)]="attribute.name" class="inline-control compact" 
             [name]="'attr-name-'+i" placeholder="Name" required maxlength="255"/>
+        <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>    
     </clr-input-container>
     <clr-input-container class="compact clr-col-6">
         <label hidden></label>
