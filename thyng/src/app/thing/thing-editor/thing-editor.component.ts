@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EMPTY, empty, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Message } from 'src/app/shared/message';
 import { Thing } from '../thing';
 import { ThingService } from '../thing.service';
@@ -48,9 +50,16 @@ export class ThingEditorComponent implements OnInit {
             styleClasses: 'alert-success',
             text: `Thing ${this.thing?.name} has been saved successfully`
           };
+        },
+        error => this.message = {
+          iconShape: 'error-standard',
+          styleClasses: 'alert-danger',
+          text: error.error
         }
       );
     }
   }
+
+  
 
 }

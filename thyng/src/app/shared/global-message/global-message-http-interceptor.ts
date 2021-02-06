@@ -33,7 +33,7 @@ export class GlobalMessageHttpInterceptor implements HttpInterceptor {
         } else {
           console.log("this is server side error");
           errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
-          let messageText: string = 'Could not connect to server, please check internet connectivity';
+          let messageText: string | undefined = undefined;
           switch(error.status){
               case 400: messageText = 'There has been an unexpected server error, please contact administrator'; break;
               case 401: messageText = 'Your session has expired, please login again'; break;
@@ -44,14 +44,16 @@ export class GlobalMessageHttpInterceptor implements HttpInterceptor {
               case 501: messageText = 'This functionality is yet to be implemented'; break;
               case 503: messageText = 'Server is currently unavailable, please try after some time';
           }
-          this.globalMessageService.setMessage({
-            iconShape: 'exclamation-triangle',
-            styleClasses: 'alert-danger',
-            text: messageText
-          });
+          if(messageText) {
+            this.globalMessageService.setMessage({
+              iconShape: 'exclamation-triangle',
+              styleClasses: 'alert-danger',
+              text: messageText
+            });
+          }
         }
         console.log(errorMsg);
-        return throwError(errorMsg);
+        return throwError(error);
       })
     );
   }
