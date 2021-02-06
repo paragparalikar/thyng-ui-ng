@@ -19,6 +19,7 @@ export class ThingListComponent {
               private confirmDialogService: ConfirmDialogService) { }
 
   refresh(state: ClrDatagridStateInterface) {
+    this.loading = true;
     this.thingService.findPage(new Pagination<Thing>(state)).subscribe(
       pagination => {
         this.things = pagination.items;

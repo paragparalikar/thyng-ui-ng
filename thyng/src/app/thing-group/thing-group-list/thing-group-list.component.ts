@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ClrDatagridSortOrder } from '@clr/angular';
+import { Component } from '@angular/core';
+import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Message } from 'src/app/shared/message';
+import { Pagination } from 'src/app/shared/page';
 import { ThingGroup } from '../thing-group';
 import { ThingGroupService } from '../thing-group.service';
 
@@ -10,21 +10,25 @@ import { ThingGroupService } from '../thing-group.service';
   selector: 'app-thing-group-list',
   templateUrl: './thing-group-list.component.html'
 })
-export class ThingGroupListComponent implements OnInit {
+export class ThingGroupListComponent {
 
   thingGroups: ThingGroup[] = [];
   message?: Message;
   sortType = ClrDatagridSortOrder.ASC;
+  total: number = 0;
+  loading: boolean = true;
 
 
   constructor(private thingGroupService: ThingGroupService,
               private confirmDialogService: ConfirmDialogService) { }
 
-  ngOnInit(): void {
-    this.message = undefined;
-    this.thingGroupService.findAll().subscribe(
-      thingGroups => {
-        this.thingGroups = thingGroups;
+  refresh(state: ClrDatagridStateInterface) {
+    this.loading = true;
+    this.thingGroupService.findPage(new Pagination<ThingGroup>(state)).subscribe(
+      page => {
+        this.thingGroups = page.items;
+        this.loading = false;
+        this.total = page.page.total;
       }
     );
   }
@@ -46,7 +50,8 @@ export class ThingGroupListComponent implements OnInit {
   private _delete(thingGroup: ThingGroup): void {
     this.thingGroupService.delete(thingGroup.id!).subscribe(
       data => {
-        this.thingGroups.splice(this.thingGroups.indexOf(thingGroup), 1);
+        let index = this.thingGroups.indexOf(thingGroup);
+        if(-1 < index) this.thingGroups.splice(index, 1);
         this.message = {
           iconShape: 'check',
           styleClasses: 'alert-success',

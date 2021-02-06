@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Language } from '../shared/language.enum';
+import { Pagination } from '../shared/page';
 import { UserGroup } from './user-group';
 
 @Injectable({
@@ -23,7 +25,13 @@ export class UserGroupService {
   }
 
   findAll(): Observable<UserGroup[]> {
-    return this.http.get<UserGroup[]>(this.baseUrl);
+    return this.http.get<Pagination<UserGroup>>(this.baseUrl).pipe(
+      map(page => page.items)
+    );
+  }
+
+  findPage(page: Pagination<UserGroup>): Observable<Pagination<UserGroup>> {
+    return this.http.post<Pagination<UserGroup>>(`${this.baseUrl}/query`, page);
   }
 
   findById(id: string): Observable<UserGroup> {

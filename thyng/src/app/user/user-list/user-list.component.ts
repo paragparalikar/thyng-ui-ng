@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ClrDatagridSortOrder } from '@clr/angular';
+import { Component } from '@angular/core';
+import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Message } from 'src/app/shared/message';
+import { Pagination } from 'src/app/shared/page';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -11,21 +12,27 @@ import { UserService } from '../user.service';
   styles: [
   ]
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent {
 
   users: User[] = [];
   message?: Message;
   sortType = ClrDatagridSortOrder.ASC;
+  total: number = 0;
+  loading: boolean = true;
 
   constructor(private userService: UserService,
     private confirmDialogService: ConfirmDialogService) { }
 
-  ngOnInit(): void {
-    this.message = undefined;
-    this.userService.findAll().subscribe(
-      users => this.users = users
-    );
-  }
+    refresh(state: ClrDatagridStateInterface) {
+      this.loading = true;
+      this.userService.findPage(new Pagination(state)).subscribe(
+        page => {
+          this.users = page.items;
+          this.loading = false;
+          this.total = page.page.total;
+        }
+      );
+    }
 
   delete(user: User): void {
     this.confirmDialogService.show({
