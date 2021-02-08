@@ -4,8 +4,10 @@
 </clr-control-container>
 <clr-input-container>
     <label>Username</label>
-    <input clrInput type="text" [(ngModel)]="user.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
+    <input clrInput type="text" [(ngModel)]="user.name" name="name" required maxlength=255 
+    [readOnly]="readOnly" appUserNameValidator [id]="user?.id ? user.id! : '0'"/> 
     <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
+    <clr-control-error *clrIfError="'appUserNameValidator'">This name is already taken</clr-control-error>
 </clr-input-container>
 <clr-input-container>
     <label>First Name</label>

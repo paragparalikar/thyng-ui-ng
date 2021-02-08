@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Language } from '../shared/language.enum';
 import { Pagination } from '../shared/page';
 import { UserGroup } from './user-group';
@@ -22,6 +22,17 @@ export class UserGroupService {
       language: Language.SQL,
       script: ''
     };
+  }
+
+  existsByName(id: string, name: string): Observable<boolean>{
+    return this.http.head(`${this.baseUrl}/${id}?name=${name}`,{observe: 'response'}).pipe(
+      map(response => {
+        return 302 === response.status;
+      }),
+      catchError(error => {
+        return of(404 === error.status ? false : true);
+      })
+    );
   }
 
   findAll(): Observable<UserGroup[]> {

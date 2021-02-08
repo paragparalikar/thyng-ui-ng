@@ -7,8 +7,10 @@
     <clr-input-container class="compact clr-col-6">
         <label hidden></label>
         <input clrInput [(ngModel)]="attribute.name" class="inline-control compact" 
-            [name]="'attr-name-'+i" placeholder="Name" required maxlength="255"/>
+            [name]="'attr-name-'+i" placeholder="Name" required maxlength="255" 
+            appThingAttributeNameValidator [attributes]="attributes"/>
         <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>    
+        <clr-control-error *clrIfError="'appThingAttributeNameValidator'">Duplicate name</clr-control-error>    
     </clr-input-container>
     <clr-input-container class="compact clr-col-6">
         <label hidden></label>
@@ -16,4 +18,7 @@
         [name]="'attr-value-'+i" placeholder="Value" required maxlength="255"/>
         <clr-control-error *clrIfError="'required'">Value is required</clr-control-error>
     </clr-input-container>
+    <button class="btn btn-link btn-icon" (click)="delete(attribute)">
+        <clr-icon shape="trash"></clr-icon>
+    </button>
 </div>

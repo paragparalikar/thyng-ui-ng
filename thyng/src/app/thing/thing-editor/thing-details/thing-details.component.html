@@ -4,8 +4,10 @@
 </clr-control-container>
 <clr-input-container>
     <label>Name</label>
-    <input clrInput type="text" [(ngModel)]="thing.name" name="name" required maxlength=255 [readOnly]="readOnly" /> 
+    <input clrInput type="text" [(ngModel)]="thing.name" name="name" required 
+    maxlength=255 [readOnly]="readOnly" appThingNameValidator [id]="thing?.id ? thing.id! : '0'" /> 
     <clr-control-error *clrIfError="'required'">Name is a required field</clr-control-error>
+    <clr-control-error *clrIfError="'appThingNameValidator'">This name is already taken</clr-control-error>
 </clr-input-container>
 <clr-input-container>
     <label>Inactivity Period (millis)</label>

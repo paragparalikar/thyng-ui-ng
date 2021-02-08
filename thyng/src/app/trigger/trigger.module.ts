@@ -10,6 +10,7 @@ import { TriggerEditorComponent } from './trigger-editor/trigger-editor.componen
 import { TriggerDetailsComponent } from './trigger-editor/trigger-details/trigger-details.component';
 import { TriggerScriptsComponent } from './trigger-editor/trigger-scripts/trigger-scripts.component';
 import { TriggerWindowComponent } from './trigger-editor/trigger-window/trigger-window.component';
+import { TriggerNameValidatorDirective } from './trigger-editor/trigger-details/trigger-name-validator.directive';
 
 const routes: Routes = [
   {path:'', component: TriggerListComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TriggerListComponent, TriggerEditorComponent, TriggerDetailsComponent, TriggerScriptsComponent, TriggerWindowComponent],
+  declarations: [TriggerListComponent, TriggerEditorComponent, TriggerDetailsComponent, TriggerScriptsComponent, TriggerWindowComponent, TriggerNameValidatorDirective],
   imports: [
     CommonModule,
     HttpClientModule,

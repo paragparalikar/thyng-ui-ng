@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule, ClrTabsModule, ClrSelectModule, ClrRadioModule } from '@clr/angular';
 import { ThingGroupListComponent } from './thing-group-list/thing-group-list.component';
 import { ThingGroupEditorComponent } from './thing-group-editor/thing-group-editor.component';
+import { ThingGroupNameValidatorDirective } from './thing-group-editor/thing-group-name-validator.directive';
 
 const routes: Routes = [
   {path:'', component: ThingGroupListComponent},
@@ -14,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ThingGroupListComponent, ThingGroupEditorComponent],
+  declarations: [ThingGroupListComponent, ThingGroupEditorComponent, ThingGroupNameValidatorDirective],
   imports: [
     CommonModule,
     HttpClientModule,

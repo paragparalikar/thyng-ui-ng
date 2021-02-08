@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { EventType } from '../shared/event-type.enum';
 import { Language } from '../shared/language.enum';
 import { Trigger } from './trigger';
@@ -22,6 +22,17 @@ export class TriggerService {
   findById(id: string, templateTriggerId?: string): Observable<Trigger>{
     return '0' === id ? (templateTriggerId ? this.copy(templateTriggerId) : of(this.buildDefault())) 
               : this.http.get<Trigger>(`${this.baseUrl}/${id}`);
+  }
+
+  existsByName(id: string, name: string): Observable<boolean>{
+    return this.http.head(`${this.baseUrl}/${id}?name=${name}`,{observe: 'response'}).pipe(
+      map(response => {
+        return 302 === response.status;
+      }),
+      catchError(error => {
+        return of(404 === error.status ? false : true);
+      })
+    );
   }
 
   buildDefault(): Trigger {

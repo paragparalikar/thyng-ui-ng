@@ -31,7 +31,6 @@ export class GlobalMessageHttpInterceptor implements HttpInterceptor {
               text: 'There has been an error, please contact administrator'
           });
         } else {
-          console.log("this is server side error");
           errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
           let messageText: string | undefined = undefined;
           switch(error.status){
@@ -39,7 +38,6 @@ export class GlobalMessageHttpInterceptor implements HttpInterceptor {
               case 401: messageText = 'Your session has expired, please login again'; break;
               case 402: messageText = 'Your account is suspended due to lack of funds'; break;
               case 403: messageText = 'You are not authorized to access this resource'; break;
-              case 404: messageText = 'Requested page could not be found'; break;
               case 500: messageText = 'There has been an unexpected server error, please contact administrator'; break;
               case 501: messageText = 'This functionality is yet to be implemented'; break;
               case 503: messageText = 'Server is currently unavailable, please try after some time';
@@ -52,7 +50,6 @@ export class GlobalMessageHttpInterceptor implements HttpInterceptor {
             });
           }
         }
-        console.log(errorMsg);
         return throwError(error);
       })
     );

@@ -8,11 +8,13 @@ import { HomeModule } from './home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from 'ngx-clipboard';
 import { GlobalMessageHttpInterceptor } from './shared/global-message/global-message-http-interceptor';
+import { ActionNameValidatorDirective } from './action/action-name-validator.directive';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ActionNameValidatorDirective
   ],
   imports: [
     BrowserModule,

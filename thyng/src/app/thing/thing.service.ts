@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Page, Pagination } from '../shared/page';
 import { Thing } from './thing';
 
@@ -26,6 +26,17 @@ export class ThingService {
 
   findById(id: string): Observable<Thing>{
     return '0' === id ? of(this.buildDefault()) : this.http.get<Thing>(`${this.baseUrl}/${id}`);
+  }
+
+  existsByName(id: string, name: string): Observable<boolean> {
+    return this.http.head(`${this.baseUrl}/${id}?name=${name}`,{observe: 'response'}).pipe(
+      map(response => {
+        return 302 === response.status;
+      }),
+      catchError(error => {
+        return of(404 === error.status ? false : true);
+      })
+    );
   }
 
   buildDefault(): Thing{

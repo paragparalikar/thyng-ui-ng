@@ -11,6 +11,9 @@ import { ThingDetailsComponent } from './thing-editor/thing-details/thing-detail
 import { ThingAttributesComponent } from './thing-editor/thing-attributes/thing-attributes.component';
 import { ActuatorsComponent } from './thing-editor/actuators/actuators.component';
 import { SensorsComponent } from './thing-editor/sensors/sensors.component';
+import { ThingNameValidatorDirective } from './thing-name-validator.directive';
+import { ThingAttributeNameValidatorDirective } from './thing-editor/thing-attributes/thing-attribute-name-validator.directive';
+import { SensorNameValidatorDirective } from './thing-editor/sensors/sensor-name-validator.directive';
 
 const routes: Routes = [
   {path:'', component: ThingListComponent},
@@ -19,7 +22,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [ThingListComponent, ThingEditorComponent, ThingDetailsComponent, ThingAttributesComponent, SensorsComponent, ActuatorsComponent],
+  declarations: [ThingListComponent, ThingEditorComponent, ThingDetailsComponent, ThingAttributesComponent, SensorsComponent, ActuatorsComponent, ThingNameValidatorDirective, ThingAttributeNameValidatorDirective, SensorNameValidatorDirective],
   imports: [
     CommonModule,
     HttpClientModule,

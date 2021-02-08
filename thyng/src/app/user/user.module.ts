@@ -9,6 +9,7 @@ import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrB
 import { SharedModule } from '../shared/shared.module';
 import { UserDetailsComponent } from './user-editor/user-details/user-details.component';
 import { UserAttributesComponent } from './user-editor/user-attributes/user-attributes.component';
+import { UserNameValidatorDirective } from './user-editor/user-details/user-name-validator.directive';
 
 const routes: Routes = [
   {path:'', component: UserListComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [UserListComponent, UserEditorComponent, UserDetailsComponent, UserAttributesComponent],
+  declarations: [UserListComponent, UserEditorComponent, UserDetailsComponent, UserAttributesComponent, UserNameValidatorDirective],
   imports: [
     CommonModule,
     HttpClientModule,

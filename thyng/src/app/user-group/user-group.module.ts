@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ClrDatagridModule, ClrFormsModule, ClrIconModule, ClrButtonModule, ClrButtonGroupModule, ClrTextareaModule, ClrTabsModule, ClrSelectModule, ClrRadioModule } from '@clr/angular';
 import { SharedModule } from '../shared/shared.module';
+import { UserGroupNameValidatorDirective } from './user-group-editor/user-group-name-validator.directive';
 
 const routes: Routes = [
   {path:'', component: UserGroupListComponent},
@@ -14,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UserGroupListComponent, UserGroupEditorComponent],
+  declarations: [UserGroupListComponent, UserGroupEditorComponent, UserGroupNameValidatorDirective],
   imports: [
     CommonModule,
     HttpClientModule,

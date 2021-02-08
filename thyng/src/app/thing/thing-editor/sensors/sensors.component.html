@@ -6,8 +6,11 @@
 <div *ngFor="let sensor of sensors; let i = index" class="clr-row">
     <clr-input-container class="compact clr-col-5">
         <label hidden></label>
-        <input clrInput [(ngModel)]="sensor.name" class="inline-control compact" [name]="'sensor-name-'+i" placeholder="Name" required maxlength="255"/>
+        <input clrInput [(ngModel)]="sensor.name" class="inline-control compact" 
+        [name]="'sensor-name-'+i" placeholder="Name" required maxlength="255"
+        appSensorNameValidator [sensors]="sensors"/>
         <clr-control-error *clrIfError="'required'">Name is required</clr-control-error>
+        <clr-control-error *clrIfError="'appSensorNameValidator'">Duplicate Name</clr-control-error>
     </clr-input-container>
     <clr-input-container class="compact clr-col-4">
         <label hidden></label>

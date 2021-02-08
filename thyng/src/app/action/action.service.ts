@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Action } from './action';
 import { ActionType } from './action-type.enum';
 
@@ -24,6 +25,17 @@ export class ActionService {
       subject: '',
       content: ''
     };
+  }
+
+  existsByName(id: string, name: string): Observable<boolean>{
+    return this.http.head(`${this.baseUrl}/${id}?name=${name}`,{observe: 'response'}).pipe(
+      map(response => {
+        return 302 === response.status;
+      }),
+      catchError(error => {
+        return of(404 === error.status ? false : true);
+      })
+    );
   }
 
   findAll(): Observable<Action[]> {
