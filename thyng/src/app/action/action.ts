@@ -1,12 +1,14 @@
 import { ActionType } from './action-type.enum';
+import { AlertType } from './alert/alert-type.enum';
 
 export interface Action {
     id?: string;
     enabled: boolean;
-    actionType: ActionType;
+    type: ActionType;
     name: string;
-    rateLimit: number;
+    throttlingPeriod: number;
 
+    alertType?: AlertType;
     userGroupIds?: string[];
     subject?: string;
     content?: string;

@@ -1,0 +1,55 @@
+<form clrForm>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Unit</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>
+                    <button class="btn btn-primary" (click)="add()">
+                        <clr-icon shape="plus"></clr-icon> Add Sensor
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sensor of sensors; let i = index">
+                <td>{{sensor.id}}</td>
+                <td>
+                    <clr-input-container>
+                        <input clrInput type="text" [(ngModel)]="sensor.name" [name]="'name'+i" required />
+                        <clr-control-error>Name is required</clr-control-error>
+                    </clr-input-container>
+                </td>
+                <td>
+                    <clr-input-container>
+                        <input clrInput type="text" [(ngModel)]="sensor.unit" [name]="'unit'+i" required />
+                        <clr-control-error>Unit is required</clr-control-error>
+                    </clr-input-container>
+                </td>
+                <td>
+                    <clr-input-container>
+                        <input clrInput type="number" [(ngModel)]="sensor.min" [name]="'min'+i" required />
+                        <clr-control-error>Min is required</clr-control-error>
+                    </clr-input-container>
+                </td>
+                <td>
+                    <clr-input-container>
+                        <input clrInput type="number" [(ngModel)]="sensor.max" [name]="'max'+i" required />
+                        <clr-control-error>Max is required</clr-control-error>
+                    </clr-input-container>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-icon btn-primary" (click)="save(sensor)">
+                        <clr-icon shape="floppy"></clr-icon>
+                    </button>
+                    <button type="button" class="btn btn-icon btn-danger" (click)="delete(sensor)">
+                        <clr-icon shape="trash"></clr-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

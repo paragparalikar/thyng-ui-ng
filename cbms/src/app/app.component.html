@@ -1,0 +1,29 @@
+<div class="main-container">
+  <header class="header-6">
+    <div class="branding">
+      <a href="..." class="nav-link">
+          <clr-icon shape="vm-bug"></clr-icon>
+          <span class="title">Condition Based Monitoring System</span>
+      </a>
+    </div>
+  </header>
+  <div class="content-container">
+      <clr-vertical-nav>
+          <a clrVerticalNavLink routerLink="./dashboard" routerLinkActive="active">
+            <clr-icon shape="dashboard"></clr-icon> Dashboard
+          </a>
+          <a clrVerticalNavLink routerLink="./things" routerLinkActive="active">
+            <clr-icon shape="nodes"></clr-icon> Machines
+          </a>
+          <a clrVerticalNavLink routerLink="./sensors" routerLinkActive="active">
+            <clr-icon shape="dashboard"></clr-icon> Sensors
+          </a>
+          <a clrVerticalNavLink routerLink="./channels" routerLinkActive="active">
+            <clr-icon shape="dashboard"></clr-icon> Channels
+          </a>
+      </clr-vertical-nav>
+      <div class="content-area">
+          <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>

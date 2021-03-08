@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ClrDatagridSortOrder } from '@clr/angular';
+import { Component } from '@angular/core';
+import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Message } from 'src/app/shared/message';
+import { Pagination } from 'src/app/shared/page';
 import { EventType } from '../../shared/event-type.enum';
 import { Language } from '../../shared/language.enum';
 import { Trigger } from '../trigger';
@@ -10,22 +11,26 @@ import { TriggerService } from '../trigger.service';
 @Component({
   templateUrl: './trigger-list.component.html',
 })
-export class TriggerListComponent implements OnInit {
+export class TriggerListComponent {
 
   triggers: Trigger[] = [];
   message?: Message;
   Language = Language;
   EventType = EventType;
   sortType = ClrDatagridSortOrder.ASC;
+  total: number = 0;
+  loading: boolean = true;
 
   constructor(private triggerService: TriggerService,
               private confirmDialogService: ConfirmDialogService) { }
 
-  ngOnInit(): void {
-    this.triggerService.findAll().subscribe(
-      triggers => {
-        this.triggers = triggers;
-        this.message = undefined;
+  refresh(state: ClrDatagridStateInterface) {
+    this.loading = true;
+    this.triggerService.findPage(new Pagination<Trigger>(state)).subscribe(
+      page => {
+        this.triggers = page.items;
+        this.loading = false;
+        this.total = page.page.total;
       }
     );
   }

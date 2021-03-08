@@ -1,0 +1,34 @@
+<form clrForm>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>
+                    <button class="btn btn-primary" (click)="add()">
+                        <clr-icon shape="plus"></clr-icon> Add Machine
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let thing of things, let i = index">
+                <td>{{thing.id ? thing.id : ''}}</td>
+                <td>
+                    <clr-input-container>
+                        <input clrInput type="text" [(ngModel)]="thing.name" [name]="'name'+i" required />
+                        <clr-control-error>Name is required</clr-control-error>
+                    </clr-input-container>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-icon btn-primary" (click)="save(thing)">
+                        <clr-icon shape="floppy"></clr-icon>
+                    </button>
+                    <button type="button" class="btn btn-icon btn-danger" (click)="delete(thing)">
+                        <clr-icon shape="trash"></clr-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

@@ -1,0 +1,42 @@
+<form clrForm>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Channel Name</th>
+                <th>Machine</th>
+                <th>Sensor</th>
+                <th>
+                    <button class="btn btn-primary" (click)="saveAll()">
+                        <clr-icon shape="floppy"></clr-icon> Save All
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let channel of channels; let i = index">
+                <td>{{channel.channel}}</td>
+                <td>
+                    <clr-select-container>
+                        <select clrSelect [name]="'thing'+i" [(ngModel)]="channel.thing">
+                            <option value=undefined>None</option>
+                            <option *ngFor="let thing of things" [ngValue]="thing">{{thing.name}}</option>
+                        </select>
+                    </clr-select-container>
+                </td>
+                <td>
+                    <clr-select-container>
+                        <select clrSelect [name]="'sensor'+i" [(ngModel)]="channel.sensor">
+                            <option value=undefined>None</option>
+                            <option *ngFor="let sensor of sensors" [ngValue]="sensor">{{sensor.name}}</option>
+                        </select>
+                    </clr-select-container>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-icon btn-primary" (click)="save(channel)">
+                        <clr-icon shape="floppy"></clr-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

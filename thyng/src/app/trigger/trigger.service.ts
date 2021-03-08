@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { EventType } from '../shared/event-type.enum';
 import { Language } from '../shared/language.enum';
+import { Pagination } from '../shared/page';
 import { Trigger } from './trigger';
 
 @Injectable({
@@ -15,8 +16,8 @@ export class TriggerService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<Trigger[]>{
-    return this.http.get<Trigger[]>(this.baseUrl);
+  findPage(page: Pagination<Trigger>): Observable<Pagination<Trigger>> {
+    return this.http.post<Pagination<Trigger>>(`${this.baseUrl}/query`, page);
   }
 
   findById(id: string, templateTriggerId?: string): Observable<Trigger>{

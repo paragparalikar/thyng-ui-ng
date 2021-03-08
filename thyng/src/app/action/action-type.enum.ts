@@ -1,8 +1,6 @@
 export enum ActionType {
-    SMS = "SMS",
-    MAIL = "MAIL",
-    POPUP = "POPUP",
-    PUSH_MESSAGE = "PUSH_MESSAGE",
+   
+    ALERT = "ALERT",
     WEBHOOK = "WEBHOOK",
-    ACTUATE = "ACTUATE"
+    ACTIVATION = "ACTIVATION"
 }

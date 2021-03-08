@@ -8,7 +8,7 @@
             </div>
             <div>
                 <app-local-message [message]="message"></app-local-message>
-                 <clr-datagrid class="datagrid-compact">
+                <clr-datagrid (clrDgRefresh)="refresh($event)" class="datagrid-compact" [clrDgLoading]="loading" >
                     <clr-dg-column [clrDgField]="'name'" [clrDgSortOrder]="sortType">Name</clr-dg-column>
                     <clr-dg-column>Actions</clr-dg-column>
                     <clr-dg-row *clrDgItems="let trigger of triggers">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/shared/message';
 import { Action } from '../../action';
+import { ActionType } from '../../action-type.enum';
 import { ActionService } from '../../action.service';
 
 @Component({
@@ -38,6 +39,8 @@ export class AlertEditorComponent implements OnInit {
 
   save(){
     if(this.action){
+      this.action.type = ActionType.ALERT;
+      console.log(this.action);
       this.actionService.save(this.action).subscribe(
         action => {
           this.action = action;

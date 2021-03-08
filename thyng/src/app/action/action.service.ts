@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Pagination } from '../shared/page';
 import { Action } from './action';
 import { ActionType } from './action-type.enum';
 
@@ -19,8 +20,8 @@ export class ActionService {
       id: undefined,
       name: '',
       enabled: true,
-      actionType: ActionType.MAIL,
-      rateLimit: 0,
+      type: ActionType.ALERT,
+      throttlingPeriod: 0,
       userGroupIds: [],
       subject: '',
       content: ''
@@ -39,7 +40,13 @@ export class ActionService {
   }
 
   findAll(): Observable<Action[]> {
-    return this.http.get<Action[]>(this.baseUrl);
+    return this.http.get<Pagination<Action>>(this.baseUrl).pipe(
+      map(page => page.items)
+    );
+  }
+
+  findPage(page: Pagination<Action>, actionType: ActionType): Observable<Pagination<Action>> {
+    return this.http.post<Pagination<Action>>(`${this.baseUrl}/query`, page);
   }
 
   findById(id: string): Observable<Action>{
@@ -53,6 +60,5 @@ export class ActionService {
   delete(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
-
 
 }

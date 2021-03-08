@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ClrDatagridSortOrder } from '@clr/angular';
+import { Component } from '@angular/core';
+import { ClrDatagridSortOrder, ClrDatagridStateInterface } from '@clr/angular';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { Message } from 'src/app/shared/message';
+import { Filter, Pagination } from 'src/app/shared/page';
 import { Action } from '../../action';
+import { ActionType } from '../../action-type.enum';
 import { ActionService } from '../../action.service';
 
 @Component({
@@ -12,25 +13,31 @@ import { ActionService } from '../../action.service';
   styles: [
   ]
 })
-export class AlertListComponent implements OnInit {
-
-    message?: Message;
+export class AlertListComponent {
+    
   actions: Action[] = [];
+  message?: Message;
   sortType = ClrDatagridSortOrder.ASC;
+  ActionType = ActionType;
+  total: number = 0;
+  loading: boolean = true;
+  alertTypeFilter: Filter = {
+    property: 'type',
+    value: ActionType.ALERT
+  };
 
-  constructor(private route: ActivatedRoute,
-              private actionService: ActionService,
-              private confirmDialogService: ConfirmDialogService) { }
+  constructor(private actionService: ActionService,
+  private confirmDialogService: ConfirmDialogService) { }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(
-      map => {
-        this.actionService.findAll().subscribe(
-          actions => {
-            this.message = undefined;
-            this.actions = actions;
-          }
-        );
+  refresh(state: ClrDatagridStateInterface) {
+    this.loading = true;
+    const page = new Pagination<Action>(state);
+    page.filter.push(this.alertTypeFilter);
+    this.actionService.findPage(page, ActionType.ALERT).subscribe(
+      pagination => {
+        this.actions = pagination.items;
+        this.total = pagination.page.total;
+        this.loading = false;
       }
     );
   }
