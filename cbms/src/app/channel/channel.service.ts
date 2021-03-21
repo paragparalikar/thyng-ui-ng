@@ -9,8 +9,10 @@ import { Channel } from './channel';
 export class ChannelService {
 
   baseUrl = 'http://localhost:8080/channel-configurations';
-
+ 
   constructor(private http: HttpClient) { }
+
+  
 
   findAll(): Observable<Channel[]> {
     return this.http.get<Channel[]>(this.baseUrl); 

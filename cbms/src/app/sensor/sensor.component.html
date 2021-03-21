@@ -1,5 +1,36 @@
 <form clrForm>
-    <table class="table">
+    <div *ngIf="alert" class="alert alert-success" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    Sensor has been added successfully!
+                </span>
+            </div>
+        </div>
+        <button (click)="closeAlert()" type="button" class="close" aria-label="Close">
+            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+        </button>
+    </div>
+
+    <div *ngIf="alertDelete" class="alert alert-danger" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    Sensor has been deleted successfully!
+                </span>
+            </div>
+        </div>
+        <button (click)="closeAlertDelete()" type="button" class="close" aria-label="Close">
+            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+        </button>
+    </div>
+    <table class="table table-compact">
         <thead>
             <tr>
                 <th>Id</th>
@@ -18,31 +49,58 @@
             <tr *ngFor="let sensor of sensors; let i = index">
                 <td>{{sensor.id}}</td>
                 <td>
-                    <clr-input-container>
-                        <input clrInput type="text" [(ngModel)]="sensor.name" [name]="'name'+i" required />
-                        <clr-control-error>Name is required</clr-control-error>
-                    </clr-input-container>
+                    <div class="clr-input-wrapper">
+                        <input placeholder="Sensor Name" type="text" clrInput [(ngModel)]="sensor.name"
+                            [name]="'name'+i" minlength="4" #sensorName="ngModel" required
+                            (keypress)="alphanumaricOnly($event)"  />
+                        <div style="color:red;" *ngIf="findDuplicate(sensor.name) && i > 0">Duplicate Name </div>
+                    </div>
+                    <div *ngIf="sensorName.invalid && (sensorName.dirty || sensorName.touched)"
+                        class="alert alert-danger" >
+                        <div *ngIf="sensorName.errors.required">
+                            Name is required.
+                        </div>
+                        <div *ngIf="sensorName.errors.minlength">
+                            Name must be at least 4 characters long.
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <clr-input-container>
-                        <input clrInput type="text" [(ngModel)]="sensor.unit" [name]="'unit'+i" required />
-                        <clr-control-error>Unit is required</clr-control-error>
-                    </clr-input-container>
+                    <div class="clr-input-wrapper">
+                        <input placeholder="Unit" type="text" clrInput [(ngModel)]="sensor.unit" [name]="'unit'+i"
+                            #unitName="ngModel"  required (keypress)="numaricOnly($event)"/>
+                    </div>
+                    <div *ngIf="unitName.invalid && (unitName.dirty || unitName.touched)" class="alert alert-danger">
+                        <div *ngIf="unitName.errors.required">
+                            Unit is required.
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <clr-input-container>
-                        <input clrInput type="number" [(ngModel)]="sensor.min" [name]="'min'+i" required />
-                        <clr-control-error>Min is required</clr-control-error>
-                    </clr-input-container>
+                    <div class="clr-input-wrapper">
+                        <input clrInput placeholder="Min Value" type="number" [(ngModel)]="sensor.min" [name]="'min'+i"
+                            #minValue="ngModel" required />
+                    </div>
+                    <div *ngIf="minValue.invalid && (minValue.dirty || minValue.touched)" class="alert alert-danger">
+                        <div *ngIf="minValue.errors.required">
+                            Min Value is required.
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <clr-input-container>
-                        <input clrInput type="number" [(ngModel)]="sensor.max" [name]="'max'+i" required />
-                        <clr-control-error>Max is required</clr-control-error>
-                    </clr-input-container>
+                    <div class="clr-input-wrapper">
+                        <input clrInput type="number" placeholder="Max Value" [(ngModel)]="sensor.max" [name]="'max'+i"
+                            #maxValue="ngModel" required />
+                    </div>
+                    <div *ngIf="maxValue.invalid && (maxValue.dirty || maxValue.touched)" class="alert alert-danger">
+                        <div *ngIf="maxValue.errors.required">
+                            Max Value is required.
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-icon btn-primary" (click)="save(sensor)">
+                    <button type="button" class="btn btn-icon btn-primary" (click)="save(sensor)"
+                        [disabled]="!sensorName.valid || !unitName.valid || !minValue.valid || !maxValue.valid">
                         <clr-icon shape="floppy"></clr-icon>
                     </button>
                     <button type="button" class="btn btn-icon btn-danger" (click)="delete(sensor)">
@@ -53,3 +111,14 @@
         </tbody>
     </table>
 </form>
+
+<clr-modal [(clrModalOpen)]="openModal">
+    <h3 class="modal-title">Confirmation Message</h3>
+    <div class="modal-body">
+        <p>Are you sure you want to delete the Sensor?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="doNothing()">Cancel</button>
+        <button type="button" class="btn btn-warning" (click)="deleteSensor()">Delete</button>
+    </div>
+</clr-modal>

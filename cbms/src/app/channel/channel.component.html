@@ -1,5 +1,20 @@
 <form clrForm>
-    <table class="table">
+    <div *ngIf="alert" class="alert alert-success" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    Channel configuration has been saved successfully!
+                </span>
+            </div>
+        </div>
+        <button (click)="closeAlert()" type="button" class="close" aria-label="Close">
+            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+        </button>
+    </div>
+    <table class="table table-compact">
         <thead>
             <tr>
                 <th>Channel Name</th>

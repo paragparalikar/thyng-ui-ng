@@ -1,9 +1,41 @@
 <form clrForm>
-    <table class="table">
+    <div *ngIf="alert" class="alert alert-success" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    Machine has been added successfully!
+                </span>
+            </div>
+        </div>
+        <button (click)="closeAlert()" type="button" class="close" aria-label="Close">
+            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+        </button>
+    </div>
+
+    <div *ngIf="alertDelete" class="alert alert-danger" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    Machine has been deleted successfully!
+                </span>
+            </div>
+        </div>
+        <button (click)="closeAlertDelete()" type="button" class="close" aria-label="Close">
+            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+        </button>
+    </div>
+
+    <table class="table table-compact">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Machine Name</th>
                 <th>
                     <button class="btn btn-primary" (click)="add()">
                         <clr-icon shape="plus"></clr-icon> Add Machine
@@ -13,15 +45,27 @@
         </thead>
         <tbody>
             <tr *ngFor="let thing of things, let i = index">
-                <td>{{thing.id ? thing.id : ''}}</td>
+                <td>{{thing.id}}</td>
                 <td>
-                    <clr-input-container>
-                        <input clrInput type="text" [(ngModel)]="thing.name" [name]="'name'+i" required />
-                        <clr-control-error>Name is required</clr-control-error>
-                    </clr-input-container>
+                    <div class="clr-input-wrapper">
+                        <input placeholder="Machine Name" clrInput [(ngModel)]="thing.name" [name]="'name'+i"
+                            minlength="4" #thingName="ngModel" required (keypress)="alphanumaricOnly($event)" />
+                        <div style="color:red;" *ngIf="findDuplicate(thing.name) && i > 0">Duplicate Name </div>
+                    </div>
+
+                    <div *ngIf="thingName.invalid && (thingName.dirty || thingName.touched)" class="alert alert-danger"
+                        id="errorValidations">
+                        <div *ngIf="thingName.errors.required">
+                            Name is required.
+                        </div>
+                        <div *ngIf="thingName.errors.minlength">
+                            Name must be at least 4 characters long.
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-icon btn-primary" (click)="save(thing)">
+                    <button type="button" class="btn btn-icon btn-primary" (click)="save(thing)"
+                        [disabled]="!thingName.valid">
                         <clr-icon shape="floppy"></clr-icon>
                     </button>
                     <button type="button" class="btn btn-icon btn-danger" (click)="delete(thing)">
@@ -32,3 +76,14 @@
         </tbody>
     </table>
 </form>
+
+<clr-modal [(clrModalOpen)]="openModal">
+    <h3 class="modal-title">Confirmation Message</h3>
+    <div class="modal-body">
+        <p>Are you sure you want to delete the Machine?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="doNothing()">Cancel</button>
+        <button type="button" class="btn btn-warning" (click)="deleteThing()">Delete</button>
+    </div>
+</clr-modal>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,13 +12,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { SensorComponent } from './sensor/sensor.component';
 import { ChannelComponent } from './channel/channel.component';
 
+import { ChartsModule } from 'ng2-charts'
+import { ChartComponent } from './chart/chart.component';
+import { DatePipe } from '@angular/common';
+import { AboutUsComponent } from './about-us/about-us.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     ThingComponent,
     SensorComponent,
-    ChannelComponent
+    ChannelComponent,
+    ChartComponent,
+    AboutUsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -26,9 +35,13 @@ import { ChannelComponent } from './channel/channel.component';
     ClarityModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [DatePipe],
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 export class AppModule { }
