@@ -1,1 +1,101 @@
-<p>dashboard works!</p>
+<div *ngIf="dataCollectionToggle" class="alert alert-app-level alert-info" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+            </div>
+            <div class="alert-text">
+                Data Collection is in progress...
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<clr-toggle-container style="padding-left: 40%; block-size: 10%;">
+    <label>Toggle the switch to ON/OFF for data collection</label>
+    <clr-toggle-wrapper>
+        <input type="checkbox" class="toggle" clrToggle name="options" [(ngModel)]="dataCollectionToggle" />
+        <label>Data Collection</label>
+    </clr-toggle-wrapper>
+</clr-toggle-container>
+
+<button class="btn btn-primary" (click)="opened=true" style="float: right;">
+    +Add Graph
+</button>
+
+
+<ng-container *ngIf="opened">
+    <form (ngSubmit)="onSubmit()" #graphForm="ngForm">
+        <clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="true">
+            <h3 class="modal-title">Configuration for Graph</h3>
+            <div class="modal-body">
+                <div class="form-group">
+                    <clr-select-container>
+                        <label>Machine</label>
+                        <select clrSelect [name]="'thing'+i" [(ngModel)]="selectedThing" required>
+                            <option value=undefined>Select Machine</option>
+                            <option *ngFor="let thing of things" [ngValue]="thing">{{thing.name}}</option>
+                        </select>
+                        <clr-control-error>This field is required!</clr-control-error>
+                    </clr-select-container>
+                </div>
+                <div class="form-group">
+                    <clr-select-container>
+                        <label>Sensor</label>
+                        <select clrSelect [name]="'sensor'+i" [(ngModel)]="selectedSensor" required>
+                            <option value=undefined>Select Sensor</option>
+                            <option *ngFor="let sensor of sensors" [ngValue]="sensor">{{sensor.name}}
+                            </option>
+                        </select>
+                        <clr-control-error>This field is required!</clr-control-error>
+                    </clr-select-container>
+                </div>
+                <div class="form-group">
+                    <clr-date-container>
+                        <label>From Date</label>
+                        <input type="date" name="fromDate" [(clrDate)]="fromDate" placeholder="Pick from date" required />
+                        <clr-control-error>This field is required!</clr-control-error>
+                    </clr-date-container>
+                </div>
+                <div class="form-group">
+                    <clr-date-container>
+                        <label>To Date</label>
+                        <input type="date" name="toDate" [(clrDate)]="toDate" clrDate placeholder="Pick to date" required />
+                    </clr-date-container>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!graphForm.form.valid"
+                    (click)="generateGraph();">
+                    Generate Graph
+                </button>
+            </div>
+
+        </clr-modal>
+    </form>
+</ng-container>
+
+<div *ngIf="showGraph">
+    <app-chart [timestamp]="timestamps" [value]="values" [label]="selectedThing.name + ', ' + selectedSensor.name"></app-chart>
+    <table class="table" *ngIf="plots">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Average</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let plot of plots">
+                <td>{{plot.from ? plot.from : ''}}</td>
+                <td>{{plot.to ? plot.to : ''}}</td>
+                <td>{{plot.average}}</td>
+                <td>{{plot.min}}</td>
+                <td>{{plot.max}}</td>
+                <td>{{plot.count}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
