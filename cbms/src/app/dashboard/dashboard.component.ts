@@ -44,7 +44,6 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleDataCollection(){
-    this.dataCollectionToggle = !this.dataCollectionToggle;
     this.dashboardservice.enable(this.dataCollectionToggle).subscribe(
       value => this.dataCollectionToggle = value
     );
