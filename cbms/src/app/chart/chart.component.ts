@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, TimeUnit } from 'chart.js';
+import { Component, Input } from '@angular/core';
+import { ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+
+
 
 @Component({
   selector: 'app-chart',
@@ -15,7 +17,7 @@ export class ChartComponent {
 
   @Input() set timestamp(timestamp: Date[]) {
     this._timestamp = timestamp;
-    this.lineChartLabels = timestamp.map(time => time ? time.toString() : '');
+    this.lineChartLabels = timestamp.map(time => time ? time.toString().replace(/T/, ' ').replace(/\..+/, '') : '');
   }
 
   @Input() set value(values: number[]) {
@@ -26,15 +28,16 @@ export class ChartComponent {
     }];
   }
 
-  @Input() set label(label: string){
+  @Input() set label(label: string) {
     this._label = label;
   }
 
   public lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Label[] = [];
-  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+  public lineChartOptions={
     responsive: true,
     annotation: true,
+    maintainAspectRatio: false,
   };
 
   public lineChartColors: Color[] = [
@@ -46,11 +49,10 @@ export class ChartComponent {
   public lineChartLegend = true;
   public lineChartType = 'line';
   public lineChartPlugins = [];
+  
+  }
 
 
-
-
-}
 
 
 

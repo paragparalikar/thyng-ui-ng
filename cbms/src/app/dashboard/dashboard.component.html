@@ -15,11 +15,15 @@
 <clr-toggle-container style="padding-left: 40%; block-size: 10%;">
     <label>Toggle the switch to ON/OFF for data collection</label>
     <clr-toggle-wrapper>
-        <input type="checkbox" class="toggle" clrToggle name="options" [(ngModel)]="dataCollectionToggle" />
+        <input type="checkbox" class="toggle" clrToggle name="options" [(ngModel)]="dataCollectionToggle" (change)="toggleDataCollection()" />
         <label>Data Collection</label>
     </clr-toggle-wrapper>
 </clr-toggle-container>
 
+
+<button class="btn btn-primary" (click)="generateGraph()" style="float: right;" *ngIf="showGraph">
+    Refresh
+</button>
 <button class="btn btn-primary" (click)="opened=true" style="float: right;">
     +Add Graph
 </button>
@@ -74,8 +78,8 @@
     </form>
 </ng-container>
 
-<div *ngIf="showGraph">
-    <app-chart [timestamp]="timestamps" [value]="values" [label]="selectedThing.name + ', ' + selectedSensor.name"></app-chart>
+<div *ngIf="showGraph" >
+    <app-chart [timestamp]="timestamps" [value]="values" [label]="selectedThing.name + ', ' + selectedSensor.name" ></app-chart>
     <table class="table" *ngIf="plots">
         <thead>
             <tr>
@@ -89,11 +93,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let plot of plots">
-                <td>{{plot.from ? plot.from : ''}}</td>
-                <td>{{plot.to ? plot.to : ''}}</td>
-                <td>{{plot.average}}</td>
-                <td>{{plot.min}}</td>
-                <td>{{plot.max}}</td>
+                <td>{{plot.from ? plot.from.slice(0, 19).replace('T',' ') : ''}}</td>
+                <td>{{plot.to ? plot.to.replace('T', ' ').slice(0, 19) : ''}}</td>
+                <td>{{plot.average.toFixed(2)}}</td>
+                <td>{{plot.min.toFixed(2)}}</td>
+                <td>{{plot.max.toFixed(2)}}</td>
                 <td>{{plot.count}}</td>
             </tr>
         </tbody>

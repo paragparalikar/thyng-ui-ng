@@ -24,6 +24,7 @@
                     <button class="btn btn-primary" (click)="saveAll()">
                         <clr-icon shape="floppy"></clr-icon> Save All
                     </button>
+                    
                 </th>
             </tr>
         </thead>
@@ -44,12 +45,14 @@
                             <option value=undefined>None</option>
                             <option *ngFor="let sensor of sensors" [ngValue]="sensor">{{sensor.name}}</option>
                         </select>
+                        
                     </clr-select-container>
                 </td>
                 <td>
                     <button type="button" class="btn btn-icon btn-primary" (click)="save(channel)">
                         <clr-icon shape="floppy"></clr-icon>
                     </button>
+                    
                 </td>
             </tr>
         </tbody>

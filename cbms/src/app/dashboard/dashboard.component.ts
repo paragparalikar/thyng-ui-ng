@@ -43,7 +43,13 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  
+  toggleDataCollection(){
+    this.dataCollectionToggle = !this.dataCollectionToggle;
+    this.dashboardservice.enable(this.dataCollectionToggle).subscribe(
+      value => this.dataCollectionToggle = value
+    );
+  }
+
   generateGraph() {
     this.opened = false
     this.dashboardservice.generate({

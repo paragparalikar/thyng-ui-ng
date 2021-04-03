@@ -17,6 +17,10 @@ export class DashboardService {
     return this.http.post<SeriesResponseDto>(this.baseUrl, SeriesRequestDto)
   }
 
+  enable(value: boolean): Observable<boolean> {
+    return this.http.get<boolean>(`${this.baseUrl}?enable=${value}`);
+  }
+
 
 }
 
