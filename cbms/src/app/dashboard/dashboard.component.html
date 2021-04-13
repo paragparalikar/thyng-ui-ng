@@ -1,4 +1,4 @@
-<div *ngIf="dataCollectionToggle" class="alert alert-app-level alert-info" role="alert">
+<div *ngIf="dataCollectionToggle && dataFrequency" class="alert alert-app-level alert-info" role="alert">
     <div class="alert-items">
         <div class="alert-item static">
             <div class="alert-icon-wrapper">
@@ -9,23 +9,59 @@
             </div>
 
         </div>
+
+
     </div>
-
 </div>
-<clr-toggle-container style="padding-left: 40%; block-size: 10%;">
-    <label>Toggle the switch to ON/OFF for data collection</label>
-    <clr-toggle-wrapper>
-        <input type="checkbox" class="toggle" clrToggle name="options" [(ngModel)]="dataCollectionToggle" (change)="toggleDataCollection()" />
-        <label>Data Collection</label>
-    </clr-toggle-wrapper>
-</clr-toggle-container>
 
+<div *ngIf="dataBackupAlert" class="alert alert-success" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+            </div>
+            <div class="alert-text">
+                Data successfully downloaded. Please check your Downloads folder...
+            </div>
+
+        </div>
+    </div>
+    <button (click)="closeAlert()" type="button" class="close" aria-label="Close">
+        <clr-icon aria-hidden="true" shape="close"></clr-icon>
+    </button>
+</div>
+
+
+<div style="float: left; margin-left: 20%;">
+    <clr-input-container>
+        <label>Set Data Collection Frequency</label>
+        <input type="number" value=0.5 min=0.5 step="0.1" clrInput placeholder="Value" name="frequency"
+            [(ngModel)]="dataFrequency" required />
+        <clr-control-error>This field is required!</clr-control-error>
+    </clr-input-container>
+    <label>Minutes</label>
+</div>
+<div style="float: left; margin-left: 20%; ">
+    <clr-toggle-container>
+        <label>Toggle switch ON/OFF for data collection</label>
+        <clr-toggle-wrapper>
+            <input type="checkbox" class="toggle" clrToggle name="options" [(ngModel)]="dataCollectionToggle"
+                (change)="toggleDataCollection()" id="toggle_switch" [disabled]="!dataFrequency" />
+            <label>Data Collection</label>
+        </clr-toggle-wrapper>
+    </clr-toggle-container>
+</div>
+
+<button class="btn btn-primary" (click)="backup()" [(ngModel)]="dataBackupAlert"
+    style="float: right; background-color: green;">
+    Backup
+</button>
 
 <button class="btn btn-primary" (click)="generateGraph()" style="float: right;" *ngIf="showGraph">
     Refresh
 </button>
 <button class="btn btn-primary" (click)="opened=true" style="float: right;">
-    +Add Graph
+    {{showGraph ? "Update ": "+Add"}} Graph
 </button>
 
 
@@ -37,39 +73,67 @@
                 <div class="form-group">
                     <clr-select-container>
                         <label>Machine</label>
-                        <select clrSelect [name]="'thing'+i" [(ngModel)]="selectedThing" required>
+                        <select clrSelect [name]="'thing'+i" [(ngModel)]="selectedThing" required
+                            #SelectedThing="ngModel">
                             <option value=undefined>Select Machine</option>
                             <option *ngFor="let thing of things" [ngValue]="thing">{{thing.name}}</option>
                         </select>
-                        <clr-control-error>This field is required!</clr-control-error>
                     </clr-select-container>
+                    <div *ngIf="SelectedThing.invalid && (SelectedThing.dirty || SelectedThing.touched)"
+                        class="alert alert-danger" id="errorValidations">
+                        <div *ngIf="SelectedThing.errors.required">
+                            Machine name is required!
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <clr-select-container>
                         <label>Sensor</label>
-                        <select clrSelect [name]="'sensor'+i" [(ngModel)]="selectedSensor" required>
+                        <select clrSelect [name]="'sensor'+i" [(ngModel)]="selectedSensor" required
+                            #SelectedSensor="ngModel">
                             <option value=undefined>Select Sensor</option>
                             <option *ngFor="let sensor of sensors" [ngValue]="sensor">{{sensor.name}}
                             </option>
                         </select>
-                        <clr-control-error>This field is required!</clr-control-error>
                     </clr-select-container>
+                    <div *ngIf="SelectedSensor.invalid && (SelectedSensor.dirty || SelectedSensor.touched)"
+                        class="alert alert-danger" id="errorValidations">
+                        <div *ngIf="SelectedSensor.errors.required">
+                            Sensor name is required!
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <clr-date-container>
                         <label>From Date</label>
-                        <input type="date" name="fromDate" [(clrDate)]="fromDate" placeholder="Pick from date" required />
-                        <clr-control-error>This field is required!</clr-control-error>
+                        <input type="date" name="fromDate" max="{{todayString}}" [(clrDate)]="fromDate"
+                            [(ngModel)]="fromDate" placeholder="Pick from date" #FromDate="ngModel" required />
                     </clr-date-container>
+                    <div *ngIf="FromDate.invalid && (FromDate.dirty || FromDate.touched)" class="alert alert-danger"
+                        id="errorValidations">
+                        <div *ngIf="FromDate.errors.required">
+                            From Date is required!
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <clr-date-container>
                         <label>To Date</label>
-                        <input type="date" name="toDate" [(clrDate)]="toDate" clrDate placeholder="Pick to date" required />
+                        <input type="date" name="toDate" max="{{todayString}}" [(clrDate)]="toDate" clrDate [(ngModel)]="toDate"
+                            placeholder="Pick to date" #ToDate="ngModel" required/>
                     </clr-date-container>
+                    <div *ngIf="ToDate.invalid && (ToDate.dirty || ToDate.touched)" class="alert alert-danger"
+                        id="errorValidations">
+                        <div *ngIf="ToDate.errors.required">
+                            To Date is required!
+                        </div>
+                        
+                    </div>
+                    
+                        
                 </div>
                 <button type="submit" class="btn btn-primary" [disabled]="!graphForm.form.valid"
-                    (click)="generateGraph();">
+                    (click)="generateGraph();" style="float: right; margin-top: 20px;">
                     Generate Graph
                 </button>
             </div>
@@ -78,8 +142,9 @@
     </form>
 </ng-container>
 
-<div *ngIf="showGraph" >
-    <app-chart [timestamp]="timestamps" [value]="values" [label]="selectedThing.name + ', ' + selectedSensor.name" ></app-chart>
+<div *ngIf="showGraph" style="padding-top: 7%;">
+    <app-chart [timestamp]="timestamps" [value]="values" [label]="selectedThing.name + ', ' + selectedSensor.name">
+    </app-chart>
     <table class="table" *ngIf="plots">
         <thead>
             <tr>

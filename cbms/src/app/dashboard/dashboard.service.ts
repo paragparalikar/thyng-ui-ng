@@ -21,6 +21,9 @@ export class DashboardService {
     return this.http.get<boolean>(`${this.baseUrl}?enable=${value}`);
   }
 
+  save(dataFrequency:number): Observable<number>{
+    return this.http.post<number>(this.baseUrl, dataFrequency);
+  }
 
 }
 

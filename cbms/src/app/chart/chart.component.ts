@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import { BaseChartDirective } from 'ng2-charts';
 
 
 
@@ -10,7 +11,7 @@ import { Color, Label } from 'ng2-charts';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent {
-
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   _timestamp: Date[] = [];
   _value: number[] = [];
   _label: string;
