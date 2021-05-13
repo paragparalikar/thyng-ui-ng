@@ -35,14 +35,14 @@ export class DashboardComponent implements OnInit {
   values: number[] = [];
   timestamps: Date[] = [];
   showGraph: boolean = false;
-  dataFrequency: number;
+  dataFrequency: number ;
   options: string;
   dataBackupAlert: boolean = false;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   labels_line: any;
-  public url = ['E:/cbms-data-source/abc.txt'];
+  public url = 'E:/cbms-data-source/abc.txt';
   todayString: string;
-  
+
 
 
   todaysDate(): string {
@@ -68,21 +68,30 @@ export class DashboardComponent implements OnInit {
       sensors => this.sensors = sensors
     );
 
-    this.dashboardservice.save(this.dataFrequency).subscribe(
-      dataFrequency => this.dataFrequency = dataFrequency
-    );
+    /*this.dashboardservice.save(this.dataFrequency).subscribe(
+      dataFrequency => this.dataFrequency = dataFrequency 
+    );*/
 
     this.todaysDate();
-    
+
   }
 
   toggleDataCollection() {
-    this.dashboardservice.enable(this.dataCollectionToggle).subscribe(
-      value => this.dataCollectionToggle = value
-    );
+    /*this.dashboardservice.enable(this.dataCollectionToggle).subscribe(
+      value => this.dataCollectionToggle = value */
+    if (this.dataCollectionToggle) {
+      this.dashboardservice.enable(this.dataFrequency).subscribe(
+        dataFrequency => this.dataFrequency = dataFrequency
+      );
+    }
+    else {
+      this.dashboardservice.enable(this.dataFrequency).subscribe(
+        dataFrequency => 0);
+    }
   }
 
   generateGraph() {
+    console.log("graph")
     this.opened = false
     this.dashboardservice.generate({
       thingId: this.selectedThing.id,
@@ -110,36 +119,41 @@ export class DashboardComponent implements OnInit {
     this.dataBackupAlert = false;
   }
 
-  
-
   backup(): void {
-    let count = 0;
-    const zip = new JSZip();
-
-    this.url.forEach((url) => {
-      const filename = url.split('/')[url.split('/').length - 1];
-
-      JSZipUtils.getBinaryContent(url, (err, data) => {
-        if (err) {
-          throw err;
-        }
-
-        zip.file(filename, data, { binary: true });
-        count++;
-
-        if (count === this.url.length) {
-          zip.generateAsync({ type: 'blob' }).then((content) => {
-            const objectUrl: string = URL.createObjectURL(content);
-            const link: any = document.createElement('a');
-
-            link.download = 'sample.zip';
-            link.href = objectUrl;
-            link.click();
-          });
-        }
-      });
-    });
+    console.log("backup")
+    window.open(this.url, null);
   }
+
+  /* 
+    backup(): void {
+      console.log("backup")
+      let count = 0;
+      const zip = new JSZip();
+  
+      this.url.forEach((url) => {
+        const filename = url.split('/')[url.split('/').length - 1];
+  
+        JSZipUtils.getBinaryContent(url, (err, data) => {
+          if (err) {
+            throw err;
+          }
+  
+          zip.file(filename, data, { binary: true });
+          count++;
+  
+          if (count === this.url.length) {
+            zip.generateAsync({ type: 'blob' }).then((content) => {
+              const objectUrl: string = URL.createObjectURL(content);
+              const link: any = document.createElement('a');
+  
+              link.download = 'sample.zip';
+              link.href = objectUrl;
+              link.click();
+            });
+          }
+        });
+      });
+    }*/
 
 }
 

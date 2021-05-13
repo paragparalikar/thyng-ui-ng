@@ -17,12 +17,12 @@ export class DashboardService {
     return this.http.post<SeriesResponseDto>(this.baseUrl, SeriesRequestDto)
   }
 
-  enable(value: boolean): Observable<boolean> {
+  /*enable(value: boolean): Observable<boolean> {
     return this.http.get<boolean>(`${this.baseUrl}?enable=${value}`);
-  }
+  }*/
 
-  save(dataFrequency:number): Observable<number>{
-    return this.http.post<number>(this.baseUrl, dataFrequency);
+  enable(dataFrequency:number): Observable<number>{
+     return this.http.put<number>(`${this.baseUrl}?delay=${dataFrequency}`, dataFrequency);
   }
 
 }

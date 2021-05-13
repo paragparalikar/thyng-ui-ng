@@ -100,10 +100,10 @@
                 </td>
                 <td>
                     <button type="button" class="btn btn-icon btn-primary" (click)="save(sensor)"
-                        [disabled]="!sensorName.valid || !unitName.valid || !minValue.valid || !maxValue.valid">
+                        [disabled]="!sensorName.valid || !unitName.valid || !minValue.valid || !maxValue.valid" title="Save">
                         <clr-icon shape="floppy"></clr-icon>
                     </button>
-                    <button type="button" class="btn btn-icon btn-danger" (click)="delete(sensor)">
+                    <button type="button" class="btn btn-icon btn-danger" (click)="delete(sensor)" title="Delete">
                         <clr-icon shape="trash"></clr-icon>
                     </button>
                 </td>

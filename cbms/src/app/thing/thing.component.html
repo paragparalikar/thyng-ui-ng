@@ -65,10 +65,10 @@
                 </td>
                 <td>
                     <button type="button" class="btn btn-icon btn-primary" (click)="save(thing)"
-                        [disabled]="!thingName.valid">
+                        [disabled]="!thingName.valid" title="Save">
                         <clr-icon shape="floppy"></clr-icon>
                     </button>
-                    <button type="button" class="btn btn-icon btn-danger" (click)="delete(thing)">
+                    <button type="button" class="btn btn-icon btn-danger" (click)="delete(thing)" title="Delete">
                         <clr-icon shape="trash"></clr-icon>
                     </button>
                 </td>

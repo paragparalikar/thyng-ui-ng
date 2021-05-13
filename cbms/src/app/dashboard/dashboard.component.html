@@ -31,18 +31,37 @@
     </button>
 </div>
 
-
-<div style="float: left; margin-left: 20%;">
-    <clr-input-container>
-        <label>Set Data Collection Frequency</label>
-        <input type="number" value=0.5 min=0.5 step="0.1" clrInput placeholder="Value" name="frequency"
-            [(ngModel)]="dataFrequency" required />
-        <clr-control-error>This field is required!</clr-control-error>
-    </clr-input-container>
-    <label>Minutes</label>
+<div style="float: left; margin-left: 15%; ">
+    <div class="clr-row">
+        <div class="clr-col-8 clr-align-self-start">
+            <clr-input-container>
+                <label>Set Data Collection Frequency</label>
+                <input type="number" value=1 min=1 step="1" clrInput placeholder="Value" name="frequency"
+                    [(ngModel)]="dataFrequency" required />
+                <clr-control-error>This field is required!</clr-control-error>
+            </clr-input-container>
+        </div>
+        <div class="clr-col-1 clr-align-self-center">
+            <a href="javascript:void(0)" role="tooltip" aria-haspopup="true"
+                class="tooltip tooltip-md tooltip-bottom-right">
+                <cds-icon shape="info-circle" size="md"></cds-icon>
+                <span class="tooltip-content">Set data collection frequency in minutes here. Minimum frequency value
+                    is
+                    0.5(30
+                    sec)</span>
+            </a>
+        </div>
+        <div class="clr-col-1 clr-align-self-end">
+            <div>Minutes</div>
+        </div>
+    </div>
 </div>
-<div style="float: left; margin-left: 20%; ">
-    <clr-toggle-container>
+
+
+
+
+<div style="float: left; margin-left: 10%; ">
+    <clr-toggle-container title="Toggle switch ON/OFF for data collection">
         <label>Toggle switch ON/OFF for data collection</label>
         <clr-toggle-wrapper>
             <input type="checkbox" class="toggle" clrToggle name="options" [(ngModel)]="dataCollectionToggle"
@@ -52,17 +71,18 @@
     </clr-toggle-container>
 </div>
 
-<button class="btn btn-primary" (click)="backup()" [(ngModel)]="dataBackupAlert"
-    style="float: right; background-color: green;">
-    Backup
-</button>
+
+
 
 <button class="btn btn-primary" (click)="generateGraph()" style="float: right;" *ngIf="showGraph">
     Refresh
 </button>
+
+
 <button class="btn btn-primary" (click)="opened=true" style="float: right;">
     {{showGraph ? "Update ": "+Add"}} Graph
 </button>
+
 
 
 <ng-container *ngIf="opened">
@@ -119,27 +139,28 @@
                 <div class="form-group">
                     <clr-date-container>
                         <label>To Date</label>
-                        <input type="date" name="toDate" max="{{todayString}}" [(clrDate)]="toDate" clrDate [(ngModel)]="toDate"
-                            placeholder="Pick to date" #ToDate="ngModel" required/>
+                        <input type="date" name="toDate" max="{{todayString}}" [(clrDate)]="toDate" clrDate
+                            [(ngModel)]="toDate" placeholder="Pick to date" #ToDate="ngModel" required />
                     </clr-date-container>
                     <div *ngIf="ToDate.invalid && (ToDate.dirty || ToDate.touched)" class="alert alert-danger"
                         id="errorValidations">
                         <div *ngIf="ToDate.errors.required">
                             To Date is required!
                         </div>
-                        
+
                     </div>
-                    
-                        
+
+
                 </div>
                 <button type="submit" class="btn btn-primary" [disabled]="!graphForm.form.valid"
-                    (click)="generateGraph();" style="float: right; margin-top: 20px;">
+                    (click)="setInterval(generateGraph(), 500);" style="float: right; margin-top: 20px;">
                     Generate Graph
                 </button>
             </div>
 
         </clr-modal>
     </form>
+
 </ng-container>
 
 <div *ngIf="showGraph" style="padding-top: 7%;">
