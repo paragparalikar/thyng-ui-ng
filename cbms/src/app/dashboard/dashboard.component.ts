@@ -30,12 +30,10 @@ export class DashboardComponent implements OnInit {
   selectedSensor?: Sensor;
   fromDate?: Date;
   toDate?: Date;
-  dataCollectionToggle: boolean;
   plots: PlotDto[] = [];
   values: number[] = [];
-  timestamps: Date[] = [];
+  timestamps: String[] = [];
   showGraph: boolean = false;
-  dataFrequency: number;
   options: string;
   dataBackupAlert: boolean = false;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
@@ -44,7 +42,9 @@ export class DashboardComponent implements OnInit {
   todayString: string;
   openModal: boolean = false;
   dataDeleteAlert: boolean = false;
-  delayValue: any;
+  delay: number;
+  dataCollectionToggle: boolean;
+  datePipe = new DatePipe('en-US');
 
 
 
@@ -60,7 +60,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private thingService: ThingService,
     private sensorService: SensorService,
-    public datePipe: DatePipe,
     private dashboardservice: DashboardService) { }
 
   ngOnInit(): void {
@@ -70,28 +69,19 @@ export class DashboardComponent implements OnInit {
     this.sensorService.findAll().subscribe(
       sensors => this.sensors = sensors
     );
-
-    /*this.dashboardservice.save(this.dataFrequency).subscribe(
-      dataFrequency => this.dataFrequency = dataFrequency 
-    );*/
-
+    this.dashboardservice.delay().subscribe(
+      delay => {
+        this.delay = delay;
+        this.dataCollectionToggle = delay > 0;
+      }
+    );
     this.todaysDate();
-
   }
 
   toggleDataCollection() {
-    /*this.dashboardservice.enable(this.dataCollectionToggle).subscribe(
-      value => this.dataCollectionToggle = value */
-    this.dashboardservice.delay().subccribe(delayValue => this.delayValue = delayValue)
-    if (this.delayValue) {
-      this.dataCollectionToggle = true;
-    }
-    if (this.dataCollectionToggle) {
-      this.dashboardservice.enable(this.dataFrequency).subscribe(
-        dataFrequency => this.dataFrequency = dataFrequency
-      );
-    }
-
+    this.dashboardservice.enable(this.delay).subscribe(
+      delay => this.delay = delay
+    );
   }
 
   generateGraph() {
@@ -106,7 +96,7 @@ export class DashboardComponent implements OnInit {
       result => {
         this.plots = result.plots;
         this.values = result.values;
-        this.timestamps = result.timestamps;
+        this.timestamps = result.timestamps.map(timestamp => this.datePipe.transform(timestamp, 'dd-MMM-yyyy hh:mm', 'GMT+5:30'));
       }
     );
     this.showGraph = true;

@@ -38,8 +38,8 @@ export class DashboardService {
     return this.http.delete(this.baseUrl);
   }
 
-  delay():any{
-    return this.http.get(`${this.baseUrl}/delay`, null );
+  delay(): Observable<number>{
+    return this.http.get<number>(`${this.baseUrl}/delay`);
 
   }
 }

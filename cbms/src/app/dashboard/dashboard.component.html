@@ -1,4 +1,4 @@
-<div *ngIf="dataCollectionToggle && dataFrequency" class="alert alert-app-level alert-info" role="alert">
+<div *ngIf="dataCollectionToggle && delay" class="alert alert-app-level alert-info" role="alert">
     <div class="alert-items">
         <div class="alert-item static">
             <div class="alert-icon-wrapper">
@@ -7,10 +7,7 @@
             <div class="alert-text">
                 Data Collection is in progress...
             </div>
-
         </div>
-
-
     </div>
 </div>
 
@@ -53,7 +50,7 @@
             <clr-input-container>
                 <label>Set Data Collection Frequency</label>
                 <input type="number" value=1 min=1 step="1" clrInput placeholder="Value" name="frequency"
-                    [(ngModel)]="dataFrequency" required />
+                    [(ngModel)]="delay" required />
                 <clr-control-error>This field is required!</clr-control-error>
             </clr-input-container>
         </div>
@@ -81,7 +78,7 @@
         <label>Toggle switch ON/OFF for data collection</label>
         <clr-toggle-wrapper>
             <input type="checkbox" class="toggle" clrToggle name="options" [(ngModel)]="dataCollectionToggle"
-                (change)="toggleDataCollection()" id="toggle_switch" [disabled]="!dataFrequency" />
+                (change)="toggleDataCollection()" id="toggle_switch" [disabled]="!delay" />
             <label>Data Collection</label>
         </clr-toggle-wrapper>
     </clr-toggle-container>
@@ -202,8 +199,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let plot of plots">
-                <td>{{plot.from ? plot.from.slice(0, 19).replace('T',' ') : ''}}</td>
-                <td>{{plot.to ? plot.to.replace('T', ' ').slice(0, 19) : ''}}</td>
+                <td>{{plot.from | date:'dd-MMM-yyyy hh:mm':'+0530'}}</td>
+                <td>{{plot.to | date:'dd-MMM-yyyy hh:mm':'+0530'}}</td>
                 <td>{{plot.average.toFixed(2)}}</td>
                 <td>{{plot.min.toFixed(2)}}</td>
                 <td>{{plot.max.toFixed(2)}}</td>
