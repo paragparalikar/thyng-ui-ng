@@ -9,8 +9,8 @@ import { Thing } from '../thing/thing';
 import { ThingService } from '../thing/thing.service';
 import { DashboardService, PlotDto } from './dashboard.service';
 import { BaseChartDirective } from 'ng2-charts';
-import * as JSZip from 'jszip';
-import * as JSZipUtils from 'D:/Users/Prachi/cbms/thyng-ui-ng/cbms/src/assets/script/jszip-utils.js';
+import * as fileSaver from 'file-saver';
+
 
 import { count } from 'node:console';
 
@@ -35,13 +35,16 @@ export class DashboardComponent implements OnInit {
   values: number[] = [];
   timestamps: Date[] = [];
   showGraph: boolean = false;
-  dataFrequency: number ;
+  dataFrequency: number;
   options: string;
   dataBackupAlert: boolean = false;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   labels_line: any;
   public url = 'E:/cbms-data-source/abc.txt';
   todayString: string;
+  openModal: boolean = false;
+  dataDeleteAlert: boolean = false;
+  delayValue: any;
 
 
 
@@ -79,15 +82,16 @@ export class DashboardComponent implements OnInit {
   toggleDataCollection() {
     /*this.dashboardservice.enable(this.dataCollectionToggle).subscribe(
       value => this.dataCollectionToggle = value */
+    this.dashboardservice.delay().subccribe(delayValue => this.delayValue = delayValue)
+    if (this.delayValue) {
+      this.dataCollectionToggle = true;
+    }
     if (this.dataCollectionToggle) {
       this.dashboardservice.enable(this.dataFrequency).subscribe(
         dataFrequency => this.dataFrequency = dataFrequency
       );
     }
-    else {
-      this.dashboardservice.enable(this.dataFrequency).subscribe(
-        dataFrequency => 0);
-    }
+
   }
 
   generateGraph() {
@@ -119,41 +123,37 @@ export class DashboardComponent implements OnInit {
     this.dataBackupAlert = false;
   }
 
-  backup(): void {
-    console.log("backup")
-    window.open(this.url, null);
+  closeAlertDelete() {
+    this.dataDeleteAlert = false;
   }
 
-  /* 
-    backup(): void {
-      console.log("backup")
-      let count = 0;
-      const zip = new JSZip();
-  
-      this.url.forEach((url) => {
-        const filename = url.split('/')[url.split('/').length - 1];
-  
-        JSZipUtils.getBinaryContent(url, (err, data) => {
-          if (err) {
-            throw err;
-          }
-  
-          zip.file(filename, data, { binary: true });
-          count++;
-  
-          if (count === this.url.length) {
-            zip.generateAsync({ type: 'blob' }).then((content) => {
-              const objectUrl: string = URL.createObjectURL(content);
-              const link: any = document.createElement('a');
-  
-              link.download = 'sample.zip';
-              link.href = objectUrl;
-              link.click();
-            });
-          }
-        });
-      });
-    }*/
+  deleteCall() {
+    this.openModal = true;
+  }
+
+  deleteData(): void {
+    console.log("delete")
+    this.dashboardservice.purge().subscribe(() => console.info("Files deleted successfully"));
+    this.openModal = false;
+    this.dataDeleteAlert = true;
+    setTimeout(() => this.dataDeleteAlert = false, 3500);
+  }
+
+  doNothing() {
+    this.openModal = false;
+  }
+
+  backup(): void {
+    console.log("backup")
+    this.dashboardservice.backup().subscribe((response: any) => {
+      let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
+      const url = window.URL.createObjectURL(blob);
+      fileSaver.saveAs(blob, `backup_${this.todayString}.zip`);
+      this.dataBackupAlert = true;
+      setTimeout(() => this.dataBackupAlert = false, 3500);
+    }), (error: any) => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
 
 }
 

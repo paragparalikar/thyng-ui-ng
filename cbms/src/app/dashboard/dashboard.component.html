@@ -31,6 +31,22 @@
     </button>
 </div>
 
+<div *ngIf="dataDeleteAlert" class="alert alert-danger" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                Data has been deleted successfully!
+            </span>
+        </div>
+    </div>
+    <button (click)="closeAlertDelete()" type="button" class="close" aria-label="Close">
+        <clr-icon aria-hidden="true" shape="close"></clr-icon>
+    </button>
+</div>
+
 <div style="float: left; margin-left: 15%; ">
     <div class="clr-row">
         <div class="clr-col-8 clr-align-self-start">
@@ -71,17 +87,24 @@
     </clr-toggle-container>
 </div>
 
-
-
-
-<button class="btn btn-primary" (click)="generateGraph()" style="float: right;" *ngIf="showGraph">
+<button class="btn btn-primary btn-sm" (click)="generateGraph()" style="float: right;" *ngIf="showGraph">
     Refresh
 </button>
 
 
-<button class="btn btn-primary" (click)="opened=true" style="float: right;">
+<button class="btn btn-success btn-sm" (click)="opened=true" style="float: right;">
     {{showGraph ? "Update ": "+Add"}} Graph
 </button>
+
+<button class="btn btn-primary-outline btn-sm" (click)="backup()" style="float: right;">
+    Backup
+</button>
+
+<button class="btn btn-warning btn-sm" (click)="deleteCall()" style="float: right;">
+    Delete Data
+</button>
+
+
 
 
 
@@ -189,3 +212,15 @@
         </tbody>
     </table>
 </div>
+
+
+<clr-modal [(clrModalOpen)]="openModal">
+    <h3 class="modal-title">Confirmation Message</h3>
+    <div class="modal-body">
+        <p>Are you sure you want to delete data and clean the data folder?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="doNothing()">Cancel</button>
+        <button type="button" class="btn btn-warning" (click)="deleteData()">Delete</button>
+    </div>
+</clr-modal>

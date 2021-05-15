@@ -2,6 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { BaseChartDirective } from 'ng2-charts';
+import { parse } from 'node:path';
 
 
 
@@ -18,7 +19,7 @@ export class ChartComponent {
 
   @Input() set timestamp(timestamp: Date[]) {
     this._timestamp = timestamp;
-    this.lineChartLabels = timestamp.map(time => time ? time.toString().replace(/T/, ' ').replace(/\..+/, '') : '');
+    this.lineChartLabels = (timestamp.map(time => time ? time.toString().replace(/T/, ' ').replace(/\..+/, '') : ''));
   }
 
   @Input() set value(values: number[]) {

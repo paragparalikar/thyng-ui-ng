@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sensor } from '../sensor/sensor';
 import { Thing } from '../thing/thing';
 import { DashboardComponent } from './dashboard.component';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import {Http, ResponseContentType} from '@angular/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +23,25 @@ export class DashboardService {
     return this.http.get<boolean>(`${this.baseUrl}?enable=${value}`);
   }*/
 
+
+
   enable(dataFrequency:number): Observable<number>{
      return this.http.put<number>(`${this.baseUrl}?delay=${dataFrequency}`, dataFrequency);
   }
 
+  
+  backup(): any{		
+		return this.http.get(this.baseUrl, {responseType: 'blob'});
+   }
+
+  purge(): any{
+    return this.http.delete(this.baseUrl);
+  }
+
+  delay():any{
+    return this.http.get(`${this.baseUrl}/delay`, null );
+
+  }
 }
 
 export interface SeriesResponseDto{
